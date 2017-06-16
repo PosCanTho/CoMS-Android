@@ -1,4 +1,4 @@
-package cse.duytan.coms.views;
+package cse.duytan.coms.customviews;
 
 /**
  * Created by Pham Van Thien on 6/15/2017.

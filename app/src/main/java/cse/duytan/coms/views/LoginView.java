@@ -1,4 +1,4 @@
-package cse.duytan.coms.models;
+package cse.duytan.coms.views;
 
 /**
  * Created by Pham Van Thien on 6/15/2017.
@@ -6,5 +6,5 @@ package cse.duytan.coms.models;
  * Phone: 0979477093
  */
 
-public class LoginModel {
+public interface LoginView {
 }
