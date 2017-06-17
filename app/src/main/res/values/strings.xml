@@ -6,12 +6,19 @@
     <string name="lbl_password">Password</string>
     <string name="lbl_dont_have_an_account_sign_up">Don\'t have an account? sign up</string>
     <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="lbl_email">Email</string>
     <!--Title-->
+    <string name="title_forgot_password">Forgot password</string>
+
     <!--Message-->
+    <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
+
     <!--Alert-->
     <!--Button-->
-    <string name="lbl_sign_in">Sign In</string>
-
+    <string name="btn_sign_in">Sign In</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_submit">Submit</string>
+    <string name="btn_confirm">Confirm</string>
     <!--Hint-->
     <!--Menu-->
     <!--Font-->

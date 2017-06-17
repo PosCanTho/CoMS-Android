@@ -1,5 +1,6 @@
 package cse.duytan.coms.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
+import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,12 +35,17 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.btnSignin, R.id.tvForgot})
+    @OnClick({R.id.btnSignin, R.id.tvForgot, R.id.tvSignup})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
+                Toast.makeText(this, "OKE", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tvForgot:
+                new ForgotPasswordDialog(LoginActivity.this).show();
+                break;
+            case R.id.tvSignup:
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }
     }
