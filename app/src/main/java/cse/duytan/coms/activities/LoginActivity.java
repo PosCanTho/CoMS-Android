@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
+import cse.duytan.coms.dialogs.ConfirmDialog;
+import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                Toast.makeText(this, "OKE", Toast.LENGTH_SHORT).show();
+                new ConfirmDialog(LoginActivity.this,"Đăng nhập thất bại").show();
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();
