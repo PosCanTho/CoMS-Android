@@ -26,5 +26,27 @@
     <!--Font-->
     <!--Description-->
     <string name="des_logo">Logo</string>
-
+    <!-- dũng -->
+    <string name="nav_home">Trang chủ</string>
+    <string name="title_page_sendabstract">Gửi Bài Tóm Tắt</string>
+    <string name="nav_notification">Thông báo</string>
+    <string name="nav_schedule">Lịch hội nghị</string>
+    <string name="nav_setting">Cài đặt</string>
+    <string name="nav_logout">Đăng xuất</string>
+    <string name="nav_name_user">Full name</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="search_hint">Search (Example: Room name, conference name)</string>
+    <string name="nav_message">Tin nhắn</string>
+    <string name="nav_profile">Hồ sơ</string>
+    <string name="nav_conference">Hội nghị</string>
+    <string name="nav_reviews">Đánh giá</string>
+    <string name="nav_list_abstract">Danh sách bài tóm tắt</string>
+    <string name="nav_login">Đăng nhập</string>
+    <!-- Exit -->
+    <string name="exit_title">Exit</string>
+    <string name="exit_mes">Are you sure you want to exit?</string>
+    <string name="exit_submit">Yes</string>
+    <!---->
+    <!-- end dũng -->
 </resources>
