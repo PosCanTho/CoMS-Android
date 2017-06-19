@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                new ConfirmDialog(LoginActivity.this,"Đăng nhập thất bại").show();
+                new ConfirmDialog(LoginActivity.this,"Đăng nhập thất bại", null).show();
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();
