@@ -2,6 +2,8 @@ package cse.duytan.coms.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -30,12 +32,12 @@ public class ConfirmOkDialog extends Dialog {
     private String title, msg;
     private PopupCalback popupCalback;
 
-    public ConfirmOkDialog(@NonNull Context context, String title, String message , PopupCalback popupCalback) {
+    public ConfirmOkDialog(@NonNull Context context, String title, String message, PopupCalback popupCalback) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_confirm_ok);
         setCancelable(false);
-        this.getWindow().setBackgroundDrawable(context.getResources().getDrawable(R.color.transparent_white));
+        this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         this.title = title;
         this.msg = message;
@@ -44,7 +46,7 @@ public class ConfirmOkDialog extends Dialog {
         initUI();
     }
 
-    public ConfirmOkDialog(@NonNull Context context, String message, PopupCalback popupCalback) {
+    public ConfirmOkDialog(@NonNull Context context, String message,PopupCalback popupCalback) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_confirm_ok);
@@ -61,9 +63,10 @@ public class ConfirmOkDialog extends Dialog {
     @OnClick(R.id.btnOke)
     public void onViewClicked() {
         dismiss();
+        popupCalback.popupCalback(R.id.btnOke, null);
     }
 
-    private void initUI(){
+    private void initUI() {
         tvTitle.setText(title);
         tvMsg.setText(msg);
     }

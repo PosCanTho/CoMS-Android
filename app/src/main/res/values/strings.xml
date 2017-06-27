@@ -1,14 +1,33 @@
 <resources>
     <string name="app_name">CoMS</string>
 
+    <!--THIEN-->
     <!--Lable-->
     <string name="lbl_username">Username</string>
     <string name="lbl_password">Password</string>
     <string name="lbl_dont_have_an_account_sign_up">Don\'t have an account? sign up</string>
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="lbl_email">Email</string>
+    <string name="lbl_fullname">Fullname</string>
+    <string name="lbl_confirm_password">Confirm password</string>
+    <string name="lbl_already_have_an_account_sign_up">Already have an account? sign in</string>
+    <string name="lbl_change_password">Change Password?</string>
+    <string name="lbl_manage_package">Manage Package?</string>
+    <string name="lbl_phone_number">Phone nummber</string>
+    <string name="lbl_birth_day">Birth day</string>
+    <string name="lbl_gender">Gender</string>
+    <string name="lbl_male">Male</string>
+    <string name="lbl_female">Female</string>
+    <string name="lbl_old_password">Old password</string>
+    <string name="lbl_new_password">New password</string>
+    <string name="lbl_past_session">Past session</string>
     <!--Title-->
     <string name="title_forgot_password">Forgot password</string>
+    <string name="title_register">Register</string>
+    <string name="title_image">Image</string>
+    <string name="title_my_profile">My Profile</string>
+    <string name="title_change_password">Change password</string>
+    <string name="title_profile">Profile</string>
 
     <!--Message-->
     <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
@@ -21,11 +40,19 @@
     <string name="btn_confirm">Confirm</string>
     <string name="btn_ok">OKE</string>
     <string name="btn_yes">Yes</string>
+    <string name="btn_reset">Reset</string>
     <!--Hint-->
     <!--Menu-->
+    <string name="menu_take_photo">Take photo</string>
+    <string name="menu_select_photo">Select photo</string>
+    <string name="menu_edit_profile">Edit profile</string>
+    <string name="menu_chat">Chat</string>
+    <string name="menu_bookmark">Bookmark</string>
     <!--Font-->
     <!--Description-->
     <string name="des_logo">Logo</string>
+    <!--END THIEN-->
+
     <!-- dũng -->
     <string name="nav_home">Trang chủ</string>
     <string name="title_page_sendabstract">Gửi Bài Tóm Tắt</string>

@@ -2,6 +2,8 @@ package cse.duytan.coms.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +33,25 @@ public class ConfirmDialog extends Dialog {
     Button btnCancel;
     @BindView(R.id.btnYes)
     Button btnYes;
-    private String title, msg;
+
+    private String title, msg, btnLeft, btnRight;
     private PopupCalback popupCalback;
+
     public ConfirmDialog(@NonNull Context context, String title, String message, PopupCalback popupCalback) {
+        super(context);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.dialog_confirm);
+        setCancelable(true);
+        this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        this.title = title;
+        this.msg = message;
+        this.popupCalback = popupCalback;
+        ButterKnife.bind(this);
+        initUI();
+    }
+
+    public ConfirmDialog(@NonNull Context context, String title, String message, String btnLeft, String btnRight, PopupCalback popupCalback) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_confirm);
@@ -42,6 +60,8 @@ public class ConfirmDialog extends Dialog {
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         this.title = title;
         this.msg = message;
+        this.btnRight = btnLeft;
+        this.btnLeft = btnRight;
         this.popupCalback = popupCalback;
         ButterKnife.bind(this);
         initUI();
@@ -58,6 +78,7 @@ public class ConfirmDialog extends Dialog {
         this.msg = message;
         this.popupCalback = popupCalback;
         ButterKnife.bind(this);
+        setTitleButton();
         initUI();
     }
 
@@ -67,6 +88,11 @@ public class ConfirmDialog extends Dialog {
         tvMsg.setText(msg);
     }
 
+    private void setTitleButton() {
+        btnCancel.setText(btnLeft);
+        btnYes.setText(btnRight);
+    }
+
     @OnClick({R.id.btnCancel, R.id.btnYes})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -74,6 +100,7 @@ public class ConfirmDialog extends Dialog {
                 dismiss();
                 break;
             case R.id.btnYes:
+                popupCalback.popupCalback(R.id.btnYes, null);
                 break;
         }
     }

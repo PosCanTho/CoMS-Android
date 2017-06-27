@@ -30,6 +30,10 @@
     <dimen name="radius20">20dp</dimen>
     <dimen name="radius25">25dp</dimen>
     <dimen name="radius30">30dp</dimen>
+    <!--Size icon-->
+    <dimen name="icon8">8dp</dimen>
+    <dimen name="icon16">16dp</dimen>
+    <dimen name="icon32">32dp</dimen>
 
     <!-- Dũng -->
     <!-- Default screen margins, per the Android Design guidelines. -->

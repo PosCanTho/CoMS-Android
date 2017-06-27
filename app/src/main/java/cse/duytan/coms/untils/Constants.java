@@ -7,4 +7,11 @@ package cse.duytan.coms.untils;
  */
 /*Giao diện dùng để chứa các biến dùng chung cho dự án*/
 public interface Constants {
+
+    /*Config*/
+    boolean IS_DEBUG = true;
+    String TAG = "OKE";
+    /*End Config*/
+
+    int ID_MENU_POPUP = Utils.PROCESS++;
 }

@@ -1,5 +1,6 @@
 package cse.duytan.coms.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,34 +14,37 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
 import cse.duytan.coms.dialogs.ConfirmDialog;
-import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
-    @BindView(R.id.edUsername)
-    EditText edUsername;
+
+    @BindView(R.id.etUsername)
+    EditText etUsername;
     @BindView(R.id.btnSignin)
     Button btnSignin;
     @BindView(R.id.tvSignup)
     TextView tvSignup;
-    @BindView(R.id.edPassword)
-    EditText edPassword;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
     @BindView(R.id.tvForgot)
     TextView tvForgot;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
         ButterKnife.bind(this);
+        this.context = LoginActivity.this;
     }
 
     @OnClick({R.id.btnSignin, R.id.tvForgot, R.id.tvSignup})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                new ConfirmDialog(LoginActivity.this,"Đăng nhập thất bại", null).show();
+                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();
@@ -50,4 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
 }
