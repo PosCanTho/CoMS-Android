@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/radius5"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/radius5">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_credit_card" />
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/tvName"
+            style="@style/tvBlack14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintLeft_toLeftOf="@+id/ivImage"
+            app:layout_constraintRight_toRightOf="@+id/ivImage"
+            app:layout_constraintTop_toBottomOf="@+id/ivImage"
+            app:layout_constraintVertical_bias="0.0"
+            app:typeFace="@string/font_nunito_semibold" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

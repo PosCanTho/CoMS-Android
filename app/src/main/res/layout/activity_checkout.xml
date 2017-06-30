@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/clMain"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="cse.duytan.coms.activities.CheckoutActivity">
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/textView36"
+            style="@style/tvBlack16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/lbl_total"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:typeFace="@string/font_nunito_bold" />
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginStart="8dp"
+            android:text="2000$"
+            android:textColor="#84ceca"
+            android:textSize="@dimen/size16"
+            app:layout_constraintBottom_toBottomOf="@+id/textView36"
+            app:layout_constraintLeft_toRightOf="@+id/textView36"
+            app:layout_constraintTop_toTopOf="@+id/textView36"
+            app:layout_constraintVertical_bias="0.5"
+            app:typeFace="@string/font_nunito_bold" />
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/textView40"
+            style="@style/tvBlack16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbl_select_your_payment_method"
+            app:layout_constraintLeft_toLeftOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/textView36"
+            app:typeFace="@string/font_nunito_regular" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvPaymentMethod"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/textView40"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/textView41"
+            style="@style/tvBlack16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbl_select_role"
+            app:layout_constraintLeft_toLeftOf="@+id/rvPaymentMethod"
+            app:layout_constraintTop_toBottomOf="@+id/rvPaymentMethod"
+            app:typeFace="@string/font_nunito_regular" />
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/tvRole"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btnHeight48"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_line_red"
+            android:drawableRight="@drawable/ic_down_arrow_12dp"
+            android:gravity="center"
+            android:textSize="@dimen/size14"
+            android:paddingRight="@dimen/padding10"
+            android:text="@string/lbl_select_your_role"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/textView41"
+            app:layout_constraintRight_toRightOf="@+id/rvPaymentMethod"
+            app:layout_constraintTop_toBottomOf="@+id/textView41"
+            app:typeFace="@string/font_nunito_regular" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clPaymentMethod"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/tvRole"
+            app:layout_constraintRight_toRightOf="@+id/tvRole"
+            app:layout_constraintTop_toBottomOf="@+id/tvRole">
+
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/textView43"
+                style="@style/tvBlack16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/lbl_enter_your_card_details"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:typeFace="@string/font_nunito_regular" />
+
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/textView44"
+                style="@style/tvBlack14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/lbl_card_number"
+                app:layout_constraintLeft_toLeftOf="@+id/textView43"
+                app:layout_constraintTop_toBottomOf="@+id/textView43"
+                app:typeFace="@string/font_nunito_italic" />
+
+            <LinearLayout
+                android:id="@+id/llCardNumber"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btnHeight48"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:paddingLeft="@dimen/padding10"
+                android:background="@drawable/bg_line_red"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="@+id/textView44"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView44">
+
+                <EditText
+                    android:id="@+id/etCard1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="****"
+                    android:gravity="center"
+                    style="@style/tvBlack14"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <EditText
+                    android:id="@+id/etCard2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="****"
+                    android:gravity="center"
+                    style="@style/tvBlack14"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <EditText
+                    android:id="@+id/etCard3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="****"
+                    style="@style/tvBlack14"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <EditText
+                    android:id="@+id/etCard4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="****"
+                    style="@style/tvBlack14"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:background="@null"
+                    android:layout_marginLeft="@dimen/padding10"
+                    android:layout_marginRight="@dimen/padding10"
+                    app:srcCompat="@drawable/ic_visa" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="@+id/llCardNumber"
+                app:layout_constraintRight_toRightOf="@+id/llCardNumber"
+                app:layout_constraintTop_toBottomOf="@+id/llCardNumber">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/textView48"
+                        style="@style/tvBlack14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_expiration_date"
+                        app:typeFace="@string/font_nunito_italic" />
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvMonth"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btnHeight48"
+                        android:layout_marginRight="@dimen/padding10"
+                        android:background="@drawable/bg_line_red"
+                        android:drawableRight="@drawable/ic_down_arrow_12dp"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/padding10"
+                        android:text="@string/lbl_month"
+                        android:textSize="@dimen/size14"
+                        app:typeFace="@string/font_nunito_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/textView50"
+                        style="@style/tvBlack14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:visibility="invisible"
+                        app:typeFace="@string/font_nunito_italic" />
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btnHeight48"
+                        android:layout_marginRight="@dimen/padding20"
+                        android:background="@drawable/bg_line_red"
+                        android:drawableRight="@drawable/ic_down_arrow_12dp"
+                        android:gravity="center"
+                        android:paddingRight="@dimen/padding10"
+                        android:text="@string/lbl_year"
+                        android:textSize="@dimen/size14"
+                        app:typeFace="@string/font_nunito_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/textView45"
+                        style="@style/tvBlack14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_ccv_code"
+                        app:typeFace="@string/font_nunito_italic" />
+
+                    <EditText
+                        android:id="@+id/etCCVCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btnHeight48"
+                        android:background="@drawable/bg_line_red"
+                        android:ems="10"
+                        android:gravity="center"
+                        style="@style/tvBlack14"
+                        android:maxLength="3"
+                        android:inputType="number"
+                        android:hint="***" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnConfirm"
+            style="@style/btnRedHeight48"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/btn_confirm"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/clPaymentMethod"
+            app:layout_constraintRight_toRightOf="@+id/clPaymentMethod"
+            app:layout_constraintTop_toBottomOf="@+id/clPaymentMethod" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -44,7 +44,7 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
+                startActivity(new Intent(LoginActivity.this, PackageActivity.class));
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();

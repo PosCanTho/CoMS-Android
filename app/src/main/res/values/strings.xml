@@ -21,6 +21,20 @@
     <string name="lbl_old_password">Old password</string>
     <string name="lbl_new_password">New password</string>
     <string name="lbl_past_session">Past session</string>
+    <string name="lbl_total">Total:</string>
+    <string name="lbl_select_your_payment_method">1. Select your Payment method</string>
+    <string name="lbl_select_role">2. Select role</string>
+    <string name="lbl_select_your_role">Select your role</string>
+    <string name="lbl_enter_your_card_details">3. Enter your Card Details</string>
+    <string name="lbl_card_number">Card number</string>
+    <string name="lbl_expiration_date">Expiration date</string>
+    <string name="lbl_ccv_code">CCV Code</string>
+    <string name="lbl_month">Month</string>
+    <string name="lbl_year">Year</string>
+    <string name="lbl_credit_card">Credit card</string>
+    <string name="lbl_paypal">Paypal</string>
+    <string name="lbl_check">Check</string>
+
     <!--Title-->
     <string name="title_forgot_password">Forgot password</string>
     <string name="title_register">Register</string>
@@ -28,11 +42,15 @@
     <string name="title_my_profile">My Profile</string>
     <string name="title_change_password">Change password</string>
     <string name="title_profile">Profile</string>
+    <string name="title_message">Message</string>
+    <string name="title_package">Package</string>
+    <string name="title_checkout">Checkout</string>
 
     <!--Message-->
     <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
 
     <!--Alert-->
+
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>
     <string name="btn_cancel">Cancel</string>
@@ -42,13 +60,23 @@
     <string name="btn_yes">Yes</string>
     <string name="btn_reset">Reset</string>
     <!--Hint-->
+
     <!--Menu-->
     <string name="menu_take_photo">Take photo</string>
     <string name="menu_select_photo">Select photo</string>
     <string name="menu_edit_profile">Edit profile</string>
     <string name="menu_chat">Chat</string>
     <string name="menu_bookmark">Bookmark</string>
+
     <!--Font-->
+    <string name="font_nunito_bold">Nunito-Bold.ttf</string>
+    <string name="font_nunito_italic">Nunito-Italic.ttf</string>
+    <string name="font_nunito_light">Nunito-Light.ttf</string>
+    <string name="font_nunito_regular">Nunito-Regular.ttf</string>
+    <string name="font_nunito_semibold">Nunito-SemiBold.ttf</string>
+    <string name="font_nunito_extrabold">Nunito-ExtraBold.ttf</string>
+    <string name="font_nunito_extralight">Nunito-ExtraLight.ttf</string>
+
     <!--Description-->
     <string name="des_logo">Logo</string>
     <!--END THIEN-->
@@ -74,6 +102,9 @@
     <string name="exit_title">Exit</string>
     <string name="exit_mes">Are you sure you want to exit?</string>
     <string name="exit_submit">Yes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!---->
     <!-- end dũng -->
 </resources>
