@@ -46,7 +46,7 @@
     <string name="title_package">Package</string>
     <string name="title_checkout">Checkout</string>
 
-    <!--Message-->
+    <!--Conversation-->
     <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
 
     <!--Alert-->
@@ -60,6 +60,7 @@
     <string name="btn_yes">Yes</string>
     <string name="btn_reset">Reset</string>
     <!--Hint-->
+    <string name="hint_type_message">Type message</string>
 
     <!--Menu-->
     <string name="menu_take_photo">Take photo</string>
@@ -67,6 +68,8 @@
     <string name="menu_edit_profile">Edit profile</string>
     <string name="menu_chat">Chat</string>
     <string name="menu_bookmark">Bookmark</string>
+    <string name="menu_clear_all">Clear all</string>
+    <string name="menu_view_profile">View profile</string>
 
     <!--Font-->
     <string name="font_nunito_bold">Nunito-Bold.ttf</string>

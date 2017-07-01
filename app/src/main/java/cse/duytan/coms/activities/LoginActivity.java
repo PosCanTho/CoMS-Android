@@ -18,7 +18,6 @@ import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 
 public class LoginActivity extends BaseActivity {
 
-
     @BindView(R.id.etUsername)
     EditText etUsername;
     @BindView(R.id.btnSignin)
@@ -44,7 +43,7 @@ public class LoginActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                startActivity(new Intent(LoginActivity.this, PackageActivity.class));
+                startActivity(new Intent(LoginActivity.this, ChatActivity.class));
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();

@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cse.duytan.coms.R;
 import cse.duytan.coms.adapters.RecyclerMessageAdapter;
-import cse.duytan.coms.models.Message;
+import cse.duytan.coms.models.Conversation;
 
 /**
  * Created by Pham Van Thien on 6/27/2017.
@@ -32,7 +32,7 @@ public class MessageFragment extends Fragment {
 
     private View v;
     private RecyclerMessageAdapter messageAdapter;
-    private ArrayList<Message> listMessage;
+    private ArrayList<Conversation> listMessage;
 
     @Nullable
     @Override
@@ -58,7 +58,7 @@ public class MessageFragment extends Fragment {
     private void setRvMessageAdp() {
         listMessage = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            listMessage.add(new Message("Steve Jobs " + i, "Do you want iphone 8, you want iphone 8, you want iphone 8.", ""));
+            listMessage.add(new Conversation("Steve Jobs " + i, "Do you want iphone 8, you want iphone 8, you want iphone 8.", ""));
         }
         messageAdapter = new RecyclerMessageAdapter(listMessage);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());

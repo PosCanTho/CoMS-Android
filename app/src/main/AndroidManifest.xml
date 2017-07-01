@@ -50,9 +50,10 @@
             android:name=".activities.PackageActivity"
             android:label="@string/title_package" />
         <activity
-            android:label="@string/title_checkout"
             android:name=".activities.CheckoutActivity"
+            android:label="@string/title_checkout"
             android:parentActivityName=".activities.PackageActivity" />
+        <activity android:name=".activities.ChatActivity"></activity>
     </application>
 
 </manifest>

@@ -1,23 +1,23 @@
 package cse.duytan.coms.models;
 
 /**
- * Created by Pham Van Thien on 7/1/2017.
+ * Created by Pham Van Thien on 6/27/2017.
  * Email: pvthiendeveloper@gmail.com
  * Phone: 0979477093
  */
 
-public class Message {
+public class Conversation {
     private String name;
     private String message;
-    private String time;
+    private String avatarUrl;
 
-    public Message() {
+    public Conversation() {
     }
 
-    public Message(String name, String message, String time) {
+    public Conversation(String name, String message, String avatarUrl) {
         this.name = name;
         this.message = message;
-        this.time = time;
+        this.avatarUrl = avatarUrl;
     }
 
     public String getName() {
@@ -36,11 +36,11 @@ public class Message {
         this.message = message;
     }
 
-    public String getTime() {
-        return time;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

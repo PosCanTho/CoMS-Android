@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
-import cse.duytan.coms.models.Message;
+import cse.duytan.coms.models.Conversation;
 
 /**
  * Created by Pham Van Thien on 6/27/2017.
@@ -18,9 +18,9 @@ import cse.duytan.coms.models.Message;
  */
 
 public class RecyclerMessageAdapter extends RecyclerView.Adapter<RecyclerMessageAdapter.ViewHolder> {
-    private ArrayList<Message> listMessage;
+    private ArrayList<Conversation> listMessage;
 
-    public RecyclerMessageAdapter(ArrayList<Message> listMessage) {
+    public RecyclerMessageAdapter(ArrayList<Conversation> listMessage) {
         this.listMessage = listMessage;
     }
 
@@ -32,7 +32,7 @@ public class RecyclerMessageAdapter extends RecyclerView.Adapter<RecyclerMessage
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Message message = listMessage.get(position);
+        Conversation message = listMessage.get(position);
         holder.tvName.setText(message.getName());
         holder.tvMessage.setText(message.getMessage());
     }
