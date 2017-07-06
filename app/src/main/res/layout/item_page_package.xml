@@ -26,7 +26,8 @@
             android:background="@color/red"
             app:layout_constraintBottom_toTopOf="@+id/tvDescription" />
 
-        <TextView
+        <cse.duytan.coms.customviews.CustomTextView
+            app:typeFace="@string/font_nunito_bold"
             style="@style/tvBlack16"
             android:text="Description package"
             android:id="@+id/tvDescription"

@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
+import cse.duytan.coms.untils.Utils;
 
 /**
  * Created by Pham Van Thien on 6/16/2017.
@@ -39,6 +40,7 @@ public class ForgotPasswordDialog extends Dialog {
         this.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         ButterKnife.bind(this);
+        btnConfirm.setTypeface(Utils.getFonts(context, R.string.font_nunito_regular));
     }
 
     @OnClick({R.id.ibtnLose, R.id.btnConfirm})

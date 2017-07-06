@@ -67,6 +67,7 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
         ButterKnife.bind(this);
         context = RegisterActivity.this;
         fileAvatar = Utils.createImageFile();
+        initUI();
     }
 
     @OnClick({R.id.ibtnChooseAvatar, R.id.btnRegister, R.id.tvSignin})
@@ -81,6 +82,10 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
                 finish();
                 break;
         }
+    }
+
+    private void initUI() {
+        btnRegister.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
     }
 
     private void openAlbum() {

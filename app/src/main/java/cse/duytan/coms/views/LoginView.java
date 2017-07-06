@@ -7,4 +7,6 @@ package cse.duytan.coms.views;
  */
 
 public interface LoginView {
+    void error(String msg);
+    void success();
 }

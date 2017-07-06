@@ -5,7 +5,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <cse.duytan.coms.customviews.CustomTextView
+        app:typeFace="@string/font_nunito_regular"
         android:id="@+id/tvName"
         style="@style/tvWhite14"
         android:layout_width="wrap_content"

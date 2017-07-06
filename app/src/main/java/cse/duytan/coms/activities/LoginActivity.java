@@ -14,9 +14,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
 import cse.duytan.coms.dialogs.ConfirmDialog;
+import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
+import cse.duytan.coms.presenters.LoginPresenter;
+import cse.duytan.coms.untils.Utils;
+import cse.duytan.coms.views.LoginView;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginView {
 
     @BindView(R.id.etUsername)
     EditText etUsername;
@@ -28,7 +32,9 @@ public class LoginActivity extends BaseActivity {
     EditText etPassword;
     @BindView(R.id.tvForgot)
     TextView tvForgot;
+
     private Context context;
+    private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +43,14 @@ public class LoginActivity extends BaseActivity {
         getSupportActionBar().hide();
         ButterKnife.bind(this);
         this.context = LoginActivity.this;
+        initUI();
     }
 
     @OnClick({R.id.btnSignin, R.id.tvForgot, R.id.tvSignup})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                startActivity(new Intent(LoginActivity.this, ChatActivity.class));
+                loginPresenter.login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim());
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();
@@ -54,5 +61,19 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    private void initUI() {
+        loginPresenter = new LoginPresenter(this, this);
+        btnSignin.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
+    }
 
+
+    @Override
+    public void error(String msg) {
+        new ConfirmOkDialog(this, msg, this).show();
+    }
+
+    @Override
+    public void success() {
+        startActivity(new Intent(LoginActivity.this, PackageActivity.class));
+    }
 }
