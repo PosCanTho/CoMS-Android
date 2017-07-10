@@ -25,16 +25,12 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_register"
@@ -58,15 +54,22 @@
         <activity android:name=".activities.ChatActivity" />
         <activity
             android:name=".activities.NewMessageActivity"
-            android:label="@string/title_new_message"></activity>
+            android:label="@string/title_new_message" />
         <activity
             android:name=".activities.ConferenceInfomationActivity"
             android:label="Thông tin tiểu ban"
-            android:parentActivityName=".activities.ConferenceInfomationActivity"></activity>
+            android:parentActivityName=".activities.ConferenceInfomationActivity" />
         <activity
             android:name=".activities.ConferenceSessionInfomationActivity"
             android:label="Thông tin hội nghị"
             android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.MapActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
