@@ -2,6 +2,8 @@ package cse.duytan.coms.untils;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
 import android.view.MenuItem;
@@ -180,6 +182,26 @@ public class Utils implements Constants {
 
     public static Typeface getFonts(Context context, int fontName) {
         return Typeface.createFromAsset(context.getAssets(), "fonts/" + context.getString(fontName));
+    }
+
+    //Kiểm tra kết nối mạng
+    public static boolean isConnectionAvailable(Context context) {
+        try {
+            final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            final NetworkInfo wifi = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            final NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (wifi.isAvailable() && wifi.isConnected()) {
+                return true;
+            } else if (mobile.isAvailable() && mobile.isConnected()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (Exception e) {
+            //e.printStackTrace();
+        }
+        return false;
     }
 
 }
