@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#B71C1C</color>
     <color name="colorAccent">#f44336</color>
     <color name="amber">#FF9800</color>
+    <color name="green">#00E676</color>
 
     <!--Thiện-->
     <color name="white">#FFFFFF</color>

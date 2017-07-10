@@ -103,6 +103,12 @@
 
     <!--Description-->
     <string name="des_logo">Logo</string>
+
+    <!--Tabs-->
+    <string name="tab_not_yet_evaluated">Not yet evaluated</string>
+    <string name="tab_feedback">Feedback</string>
+    <string name="tab_reject">reject</string>
+    <string name="tab_accept">Accept</string>
     <!--END THIEN-->
 
     <!-- dũng -->
@@ -122,13 +128,49 @@
     <string name="nav_reviews">Đánh giá</string>
     <string name="nav_list_abstract">Danh sách bài tóm tắt</string>
     <string name="nav_login">Đăng nhập</string>
+    <string name="done">Lưu</string>
     <!-- Exit -->
     <string name="exit_title">Exit</string>
     <string name="exit_mes">Are you sure you want to exit?</string>
     <string name="exit_submit">Yes</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!---->
+    <string name="title_papertext">Gửi Bài Báo</string>
+    <string name="title_abstarct">Gửi Bài Tóm Tắt</string>
+    <string name="title_see_review_abstract">Xem đánh giá bài tóm tắt</string>
+    <string name="title_see_review_paper">Xem đánh giá bài báo</string>
+    <string name="title_see_abstract">Xem bài tóm tắt</string>
+    <string name="title_see_paper">Xem bài báo</string>
+    <string name="title_update_abstract">Cập nhật bài tóm tắt</string>
+    <string-array name="dsChude">
+        <item>Vui lòng chọn chủ đề …</item>
+        <item>Chủ đề 1</item>
+        <item>Chủ đề 2</item>
+        <item>Chủ đề 3</item>
+        <item>Chủ đề 4</item>
+        <item>Chủ đề 5</item>
+        <item>Chủ đề 6</item>
+    </string-array>
+    <string-array name="dsLoaihinhnghiencuu">
+        <item>Vui lòng chọn loại hình nghiên cứu …</item>
+        <item>Loại hinh nghiên cưu 1</item>
+        <item>Loại hinh nghiên cưu 2</item>
+        <item>Loại hinh nghiên cưu 3</item>
+        <item>Loại hinh nghiên cưu 4</item>
+        <item>Loại hinh nghiên cưu 5</item>
+        <item>Loại hinh nghiên cưu 6</item>
+        <item>Loại hinh nghiên cưu 7</item>
+        <item>Loại hinh nghiên cưu 8</item>
+        <item>Loại hinh nghiên cưu 9</item>
+        <item>Loại hinh nghiên cưu 10</item>
+        <item>Loại hinh nghiên cưu 11</item>
+    </string-array>
+    <string-array name="dsLoaihinhtrinhbay">
+        <item>Vui lòng chọn loại hình trình bày …</item>
+        <item>Loại hình trình bày 1</item>
+        <item>Loại hình trình bày 2</item>
+        <item>Loại hình trình bày 3</item>
+        <item>Loại hình trình bày 4</item>
+        <item>Loại hình trình bày 5</item>
+    </string-array>
     <!-- end dũng -->
 </resources>
