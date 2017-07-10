@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ic_sort_by_date"
+        android:orderInCategory="100"
+        android:title="Xắp xếp theo ngày tạo"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ic_sort_by_conference"
+        android:orderInCategory="100"
+        android:title="Xắp xếp theo tiểu ban"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/ic_sort_by_field"
+        android:orderInCategory="100"
+        android:title="Xắp xếp theo Lỉnh vực nghiên cứu"
+        app:showAsAction="withText" />
+</menu>
