@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/actionChat"
+        android:icon="@drawable/ic_chat"
+        android:orderInCategory="1"
+        android:title="@string/menu_chat"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/actionBookmark"
+        android:icon="@drawable/ic_bookmark_selected"
+        android:orderInCategory="2"
+        android:title="@string/menu_bookmark"
+        app:showAsAction="ifRoom" />
+</menu>

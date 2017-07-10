@@ -1,7 +1,9 @@
 package cse.duytan.coms.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -27,6 +29,7 @@ public class ProfileActivity extends BaseActivity {
 
     private ListPastSessionAdapter pastSessionAdp;
     private ArrayList<PastSession> listPastSession;
+    private boolean isBookmark = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,11 @@ public class ProfileActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
+        if (!isBookmark){
+            getMenuInflater().inflate(R.menu.profile_menu, menu);
+        }else{
+            getMenuInflater().inflate(R.menu.profile_bookmark_menu, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -47,6 +54,7 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void initUI() {
+        showHomeButton();
         setLvPastSessionAdp();
     }
 
@@ -74,5 +82,27 @@ public class ProfileActivity extends BaseActivity {
             listPastSession.get(position).setSelected(!pastSession.isSelected());
             pastSessionAdp.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.actionChat:
+                startActivity(new Intent(ProfileActivity.this, ChatActivity.class));
+                finish();
+                break;
+            case R.id.actionBookmark:
+                Toast.makeText(this, "Add bookmark", Toast.LENGTH_SHORT).show();
+                this.isBookmark = !isBookmark;
+                invalidateOptionsMenu();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -67,7 +67,10 @@
             android:name=".activities.ConferenceSessionInfomationActivity"
             android:label="Thông tin hội nghị"
             android:parentActivityName=".activities.MainActivity" />
-        <activity android:name=".activities.MapActivity">
+        <activity
+            android:name=".activities.MapActivity"
+            android:label="@string/title_map"
+            android:parentActivityName=".activities.MainActivity">
 
         </activity>
         <activity

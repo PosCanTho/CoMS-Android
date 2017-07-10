@@ -104,6 +104,10 @@ public class MainActivity extends BaseActivity {
                 R.drawable.ic_settings);
         Bitmap iconSignOut = BitmapFactory.decodeResource(getApplicationContext().getResources(),
                 R.drawable.ic_logout);
+        Bitmap ic_review = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_review);
+        Bitmap ic_map_location = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_map_location);
 
         listMenu.add(new MenuApp(iconHome, "Trang chủ", "5", new HomeFragment()));
         listMenu.add(new MenuApp(iconSchedule, "Lịch trình", "16", new ScheduleFragment()));
@@ -111,9 +115,10 @@ public class MainActivity extends BaseActivity {
         //  arrayList.add(new MenuApp(iconProfile, "Thông tin cá nhân", "", new HomeFragment()));
         listMenu.add(new MenuApp(iconMessage, "Nhắn tin", "16", new MessageFragment()));
         listMenu.add(new MenuApp(iconNotification, "Thông báo", "16", new NotificationFragment()));
-        listMenu.add(new MenuApp(iconNotification, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
-        listMenu.add(new MenuApp(iconNotification, "Đánh giá", "4", new ReviewsFragment()));
+        listMenu.add(new MenuApp(ic_review, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
+        listMenu.add(new MenuApp(ic_review, "Đánh giá", "4", new ReviewsFragment()));
         listMenu.add(new MenuApp(iconSetting, "Cài đặt", "", new SettingsFragment()));
+        listMenu.add(new MenuApp(ic_map_location, "Bản đồ", "", null));
         listMenu.add(new MenuApp(iconNotification, "Mua gói", "", null));
         listMenu.add(new MenuApp(iconSignOut, "Đăng xuất", "", null));
 
@@ -131,6 +136,8 @@ public class MainActivity extends BaseActivity {
                         new ConfirmDialog(MainActivity.this, getString(R.string.msg_are_you_sure_you_want_to_logout), MainActivity.this).show();
                     }else if (selectItem == (listMenu.size() - 2)) {
                         startActivity(new Intent(MainActivity.this, PackageActivity.class));
+                    }else if (selectItem == (listMenu.size() - 3)) {
+                        startActivity(new Intent(MainActivity.this, MapActivity.class));
                     }
                 }
 

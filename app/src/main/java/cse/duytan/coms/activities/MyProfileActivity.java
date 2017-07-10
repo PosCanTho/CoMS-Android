@@ -121,6 +121,9 @@ public class MyProfileActivity extends BaseActivity {
 
     private void initUI() {
         fileAvatar = Utils.createImageFile();
+
+        rBtnMale.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
+        rBtnFemale.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
         showHomeButton();
     }
 
