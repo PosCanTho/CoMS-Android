@@ -20,37 +20,25 @@ import cse.duytan.coms.untils.AdapterCallback;
  * Phone: 0979477093
  */
 
-public class RecyclerMessageAdapter extends RecyclerView.Adapter<RecyclerMessageAdapter.ViewHolder> {
-    private ArrayList<Conversation> listMessage;
-    private AdapterCallback adapterCallback;
+public class RecyclerNotificationAdapter extends RecyclerView.Adapter<RecyclerNotificationAdapter.ViewHolder> {
 
-    public RecyclerMessageAdapter(ArrayList<Conversation> listMessage, @NonNull AdapterCallback adapterCallback) {
-        this.listMessage = listMessage;
-        this.adapterCallback = adapterCallback;
+    public RecyclerNotificationAdapter(@NonNull AdapterCallback adapterCallback) {
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_message, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_notification, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final Conversation message = listMessage.get(position);
-        holder.tvName.setText(message.getName());
-        holder.tvMessage.setText(message.getMessage());
-        holder.clMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapterCallback.adpaterCallback(message, R.id.clMain, position);
-            }
-        });
+
     }
 
     @Override
     public int getItemCount() {
-        return listMessage.size();
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
