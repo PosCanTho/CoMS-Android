@@ -39,4 +39,5 @@ dependencies {
     compile 'com.yarolegovich:discrete-scrollview:1.2.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
 }
