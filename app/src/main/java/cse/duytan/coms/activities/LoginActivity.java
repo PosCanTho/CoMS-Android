@@ -3,22 +3,35 @@ package cse.duytan.coms.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
-import cse.duytan.coms.dialogs.ConfirmDialog;
+import cse.duytan.coms.connections.DownloadAsynTask;
+import cse.duytan.coms.connections.DownloadCallback;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
+import cse.duytan.coms.models.User;
 import cse.duytan.coms.presenters.LoginPresenter;
 import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.LoginView;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 
 public class LoginActivity extends BaseActivity implements LoginView {
 
@@ -74,6 +87,28 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void success() {
-        startActivity(new Intent(LoginActivity.this, PackageActivity.class));
+        try {
+            JSONObject postData = new JSONObject();
+            postData.put("username", "huynhbadieu");
+            postData.put("password", "UUNpZzQxYXN5VWY4MHIrL0FNN3hIaEtOU0VvPQ==");
+            postData.put("imei", "");
+            DownloadAsynTask.POST(this, 1, "http://dev.duytan.edu.vn:8075/ConnectService.asmx/Login", postData.toString(), User.class, true, this);
+        } catch (Exception e) {
+        }
+    }
+
+    @Override
+    public void downloadSuccess(int processId, Object data) {
+        super.downloadSuccess(processId, data);
+        User user = (User) data;
+       // Toast.makeText(context, "Hello, "+user.Table.get(0).getUserName(), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+    }
+
+    @Override
+    public void downloadError(int processId, String msg) {
+        super.downloadError(processId, msg);
+        Log.d(TAG, "downloadError: " + msg);
+        // new ConfirmOkDialog(LoginActivity.this, msg, LoginActivity.this).show();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.yarolegovich.discretescrollview.DiscreteScrollView;
@@ -44,6 +45,9 @@ public class PackageActivity extends BaseActivity implements DiscreteScrollView.
     }
 
     private void initUI() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         setDsvPackageAdp();
     }
 
@@ -75,5 +79,14 @@ public class PackageActivity extends BaseActivity implements DiscreteScrollView.
     @OnClick(R.id.fabCheckout)
     public void onViewClicked() {
         startActivity(new Intent(PackageActivity.this, CheckoutActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

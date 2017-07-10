@@ -1,288 +1,197 @@
 package cse.duytan.coms.activities;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import cse.duytan.coms.R;
+import cse.duytan.coms.adapters.MenuAdapter;
+import cse.duytan.coms.customviews.NonScrollListView;
+import cse.duytan.coms.dialogs.ConfirmDialog;
+import cse.duytan.coms.fragments.ConferenceFragment;
 import cse.duytan.coms.fragments.HomeFragment;
-import cse.duytan.coms.fragments.SendAbstractFragment;
+import cse.duytan.coms.fragments.MessageFragment;
+import cse.duytan.coms.fragments.NotificationFragment;
+import cse.duytan.coms.fragments.ScheduleFragment;
 import cse.duytan.coms.fragments.SettingsFragment;
+import cse.duytan.coms.models.MenuApp;
+import cse.duytan.coms.views.MainView;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity {
 
-    // fragment
-    private FragmentManager fragmentManager;
-    private HomeFragment homeFragment;
-    private SendAbstractFragment sendAbstractFragment;
-    private SettingsFragment settingFragment;
+    private NonScrollListView menu;
+    private MenuAdapter menuAdapter;
 
-    //  style user
-    public static final int STYLE_USER = 0;// người dùng thường
-    public static final int STYLE_USER_AUTHOR = 1;// tác giả
-    public static final int STYLE_USER_REVIEW = 2;// người đánh giá
-    private int styleUser = STYLE_USER; // style user default
-
-
-    //page fragment
-    public static final int PAGE_HOME = 0;
-    public static final int PAGE_SENDABSTRACT = 1;
-    public static final int PAGE_SETTING = 2;
-    public static final int PAGE_MYSCHEDULE = 3;
-    private int currentPage = PAGE_SENDABSTRACT;
-
-    // custom toolbar, navigation view
-    private Toolbar toolbar;
-    private AppBarLayout appBarLayout;
-    private ActionBarDrawerToggle toggle;
-    private DrawerLayout drawer;
     private NavigationView navigationView;
-    private TextView tvFullName;
-
-    private MenuItem searchItem;
-
-    // get current fragment
-    public int getCurrentPage() {
-        return currentPage;
-    }
-
-    // set current fragment
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    // get user style
-    public int getStyleUser() {
-        return styleUser;
-    }
-
-
+    private DrawerLayout drawer;
+    private ImageView ivAvatar;
+    private int selectItem;
+    private ArrayList<MenuApp> listMenu;
+    public MainView mainView;
+    private FragmentManager fragmentManager;
+    private  FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //dũng 15-6-2017
-        createView();
-    }
-
-    private void createView() {
-        fragmentManager = getFragmentManager();
-        homeFragment = new HomeFragment();
-        sendAbstractFragment = new SendAbstractFragment();
-        settingFragment = new SettingsFragment();
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        appBarLayout = (AppBarLayout) findViewById(R.id.ab_layout);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        initUI();
+        setUpMenu();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view_user);
-        View header = navigationView.getHeaderView(0);
-        tvFullName = (TextView) header.findViewById(R.id.tv_full_name);
-        // hiện thị danh sách chức năng trên thanh drawer theo người dùng ^^
-        if (getStyleUser() == STYLE_USER_REVIEW) {// người đánh giá
-            navigationView.getMenu().findItem(R.id.nav_notification).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_message).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_profile).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_reviews).setVisible(true);//chức năng reviewer
-            navigationView.getMenu().findItem(R.id.nav_list_abstract).setVisible(false);
-        }else if(getStyleUser() == STYLE_USER_AUTHOR){// tác giả
-            navigationView.getMenu().findItem(R.id.nav_notification).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_message).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_profile).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_reviews).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_list_abstract).setVisible(true);
-        }else{// khách
-            navigationView.getMenu().findItem(R.id.nav_notification).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_message).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_profile).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_reviews).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_list_abstract).setVisible(false);
-        }
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-
-        switchPage(PAGE_HOME);
     }
 
+    private void initUI() {
+        fragmentManager =  getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        switchFragment(new HomeFragment());
 
-    // switch fragment
-    private void switchPage(int id) {
-        switch (id) {
-            case PAGE_HOME:
-                setTitle("Trang chủ");
-                fragmentManager.beginTransaction().replace(R.id.frame_contain, homeFragment).commit();
-                setCurrentPage(PAGE_HOME);
-                navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-                setShadowToolbar(0);
-                break;
-            case PAGE_SENDABSTRACT:
-                setTitle("Gửi bài tóm tắt");
-                fragmentManager.beginTransaction().replace(R.id.frame_contain, sendAbstractFragment).commit();
-                setCurrentPage(PAGE_SENDABSTRACT);
-                getSupportActionBar().setDisplayShowHomeEnabled(true);
-                break;
-            case PAGE_SETTING:
-                setTitle(getString(R.string.nav_setting));
-                fragmentManager.beginTransaction().replace(R.id.frame_contain, settingFragment).commit();
-                setCurrentPage(PAGE_SETTING);
-                setShadowToolbar(8);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        ivAvatar = (ImageView) navigationView.findViewById(R.id.ivAvatar);
+
+        ivAvatar.setOnClickListener(this);
+    }
+
+    private void setUpMenu() {
+        menu = (NonScrollListView) findViewById(R.id.lsMenu);
+        listMenu = new ArrayList<>();
+        Bitmap iconHome = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_home);
+        Bitmap iconSchedule = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_calendar_menu);
+        Bitmap iconConference = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_conference);
+        Bitmap iconProfile = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_user);
+        Bitmap iconMessage = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_mail);
+        Bitmap iconNotification = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_notification);
+        Bitmap iconSetting = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_settings);
+        Bitmap iconSignOut = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                R.drawable.ic_logout);
+
+        listMenu.add(new MenuApp(iconHome, "Trang chủ", "5", new HomeFragment()));
+        listMenu.add(new MenuApp(iconSchedule, "Lịch trình", "16", new ScheduleFragment()));
+        listMenu.add(new MenuApp(iconConference, "Hội nghị", "16", new ConferenceFragment()));
+        //  arrayList.add(new MenuApp(iconProfile, "Thông tin cá nhân", "", new HomeFragment()));
+        listMenu.add(new MenuApp(iconMessage, "Nhắn tin", "16", new MessageFragment()));
+        listMenu.add(new MenuApp(iconNotification, "Thông báo", "16", new NotificationFragment()));
+        listMenu.add(new MenuApp(iconSetting, "Cài đặt", "", new SettingsFragment()));
+        listMenu.add(new MenuApp(iconNotification, "Mua gói", "", null));
+        listMenu.add(new MenuApp(iconSignOut, "Đăng xuất", "", null));
+
+        menuAdapter = new MenuAdapter(getApplicationContext(), listMenu);
+        menu.setAdapter(menuAdapter);
+        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                selectItem = position;
+                Fragment fragment = listMenu.get(selectItem).getFragment();
+                if (fragment != null) {
+                    switchFragment(fragment);
+                } else {
+                    if (selectItem == (listMenu.size() - 1)) {
+                        new ConfirmDialog(MainActivity.this, getString(R.string.msg_are_you_sure_you_want_to_logout), MainActivity.this).show();
+                    }else if (selectItem == (listMenu.size() - 2)) {
+                        startActivity(new Intent(MainActivity.this, PackageActivity.class));
+                    }
+                }
+
+            }
+        });
+    }
+
+    private void switchFragment(Fragment fragment){
+        getFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();
+        drawer.closeDrawer(GravityCompat.START);
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        switch (selectItem) {
+            case 3:
+                getMenuInflater().inflate(R.menu.message_menu, menu);
                 break;
             default:
                 break;
         }
+        return true;
     }
-
-    // set shadow toolbar
-    public void setShadowToolbar(float input) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            appBarLayout.setElevation(input);
-        }
-    }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.actionNewMessage:
+                startActivity(new Intent(MainActivity.this, NewMessageActivity.class));
+                break;
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    // override button BACK of Android plaform
     @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+    public void popupCalback(int processId, Object data) {
+        if (processId == ID_DIALOG_CONFIRM_YES) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
         }
-        backArrowButton(); // call method event BACK
     }
 
-    public void hideBackArrow() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toggle.syncState();
-    }
-
-    // display BACK on toolbar
-    public void displayBackArrow() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //do something you want
-                if (((homeFragment.getCurrentLayout() == HomeFragment.LAYOUT_HOME) && (getCurrentPage() == PAGE_HOME))
-                        || (getCurrentPage() == PAGE_MYSCHEDULE || (getCurrentPage() == PAGE_SETTING))
-                        ) {
-                    drawer.openDrawer(GravityCompat.START);
-                } else {
-                    backArrowButton();
-                }
-            }
-        });
-
-    }
-
-
-    // method event BACK
-    private void backArrowButton() {
-        int id = getCurrentPage(); // get current fragment
-        // switch current fragment
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
         switch (id) {
-            case PAGE_HOME:
-                int layoutHome = homeFragment.getCurrentLayout(); // get current layout of fragment
-
-                // switch layout
-                switch (layoutHome) {
-                    case HomeFragment.LAYOUT_HOME:
-                        new AlertDialog.Builder(this)
-                                .setTitle(getString(R.string.exit_title))
-                                .setMessage(getString(R.string.exit_mes))
-                                .setNegativeButton(getString(R.string.btn_cancel), null)
-                                .setPositiveButton(getString(R.string.exit_submit), new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        finish();
-                                    }
-                                }).show();
-                        break;
-
-                    case HomeFragment.LAYOUT_ABSTRACT:
-                        homeFragment.switchLayout(HomeFragment.LAYOUT_LIST_ABSTRACT);
-                        break;
-                    default:
-                        break;
-                }
-                break;
-//            case PAGE_NOTIFICATION:
-//
-//                break;
-//            case PAGE_SCHEDULE:
-//                break;
-            case PAGE_SETTING:
-                switchPage(PAGE_HOME);
+            case R.id.ivAvatar:
+                startActivity(new Intent(MainActivity.this, MyProfileActivity.class));
                 break;
             default:
                 break;
         }
-    }
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.nav_home:
-                switchPage(PAGE_HOME);
-                break;
-//            case R.id.nav_notification:
-//                switchPage(PAGE_NOTIFICATION);
-//                break;
-            case R.id.nav_schedule:
-                switchPage(PAGE_MYSCHEDULE);
-                break;
-            case R.id.nav_setting:
-                switchPage(PAGE_SETTING);
-                break;
-            case R.id.nav_logout:
-
-                break;
-            default:
-                break;
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

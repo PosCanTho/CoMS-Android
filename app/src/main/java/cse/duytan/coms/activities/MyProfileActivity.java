@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import cse.duytan.coms.dialogs.CropImageDialog;
 import cse.duytan.coms.models.CircleImageView;
 import cse.duytan.coms.untils.Utils;
 
-public class MyProfileActivity extends BaseActivity{
+public class MyProfileActivity extends BaseActivity {
 
     @BindView(R.id.ivAvatar)
     CircleImageView ivAvatar;
@@ -88,6 +89,9 @@ public class MyProfileActivity extends BaseActivity{
                 new ChangePasswordDialog(MyProfileActivity.this).show();
                 break;
             case R.id.tvManagePackage:
+                Toast.makeText(this, "Chưa có giao diện.", Toast.LENGTH_SHORT).show();
+                break;
+            default:
                 break;
         }
     }
@@ -106,12 +110,18 @@ public class MyProfileActivity extends BaseActivity{
                 invalidateOptionsMenu();
                 onEdit();
                 break;
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initUI() {
         fileAvatar = Utils.createImageFile();
+        showHomeButton();
     }
 
     private void onEdit() {
@@ -181,4 +191,5 @@ public class MyProfileActivity extends BaseActivity{
             }
         }
     }
+
 }
