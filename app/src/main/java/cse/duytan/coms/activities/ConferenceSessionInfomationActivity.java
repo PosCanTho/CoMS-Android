@@ -33,7 +33,7 @@ public class ConferenceSessionInfomationActivity extends AppCompatActivity {
     private ArrayList<String> list = new ArrayList<>();
     private ArrayList<FunctionInSession> listFunc = new ArrayList<>();
     private PresentationSlotAdapter adapterPre;
-    private ListFunctionInConferenceSessionAdapter adapterFunc;
+    private ListFunctionInConferenceSessionAdapter adapterFunc;//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
