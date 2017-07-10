@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
+import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.PopupCalback;
 
 /**
@@ -22,7 +23,7 @@ import cse.duytan.coms.untils.PopupCalback;
  * Phone: 0979477093
  */
 
-public class ConfirmOkDialog extends Dialog {
+public class ConfirmOkDialog extends Dialog implements Constants {
     @BindView(R.id.tvTitle)
     TextView tvTitle;
     @BindView(R.id.tvMsg)
@@ -63,7 +64,7 @@ public class ConfirmOkDialog extends Dialog {
     @OnClick(R.id.btnOke)
     public void onViewClicked() {
         dismiss();
-        popupCalback.popupCalback(R.id.btnOke, null);
+        if(popupCalback != null) popupCalback.popupCalback(ID_DIALOG_CONFIRM_OKE, null);
     }
 
     private void initUI() {
