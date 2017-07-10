@@ -4,17 +4,24 @@
     <dimen name="btnHeight48">48dp</dimen>
     <!--Textsize-->
     <dimen name="size8">8sp</dimen>
+    <dimen name="size10">10sp</dimen>
     <dimen name="size12">12sp</dimen>
     <dimen name="size14">14sp</dimen>
     <dimen name="size16">16sp</dimen>
     <dimen name="size18">18sp</dimen>
+    <dimen name="size20">20sp</dimen>
+    <dimen name="size22">22sp</dimen>
     <!--Padding-->
     <dimen name="padding5">5dp</dimen>
+    <dimen name="padding8">8dp</dimen>
     <dimen name="padding10">10dp</dimen>
     <dimen name="padding15">15dp</dimen>
+    <dimen name="padding16">16dp</dimen>
     <dimen name="padding20">20dp</dimen>
+    <dimen name="padding24">24dp</dimen>
     <dimen name="padding25">25dp</dimen>
     <dimen name="padding30">30dp</dimen>
+    <dimen name="padding32">32dp</dimen>
     <dimen name="padding35">35dp</dimen>
     <dimen name="padding40">40dp</dimen>
     <!--Line-->
@@ -33,7 +40,10 @@
     <!--Size icon-->
     <dimen name="icon8">8dp</dimen>
     <dimen name="icon16">16dp</dimen>
+    <dimen name="icon24">24dp</dimen>
     <dimen name="icon32">32dp</dimen>
+    <!--Avatar-->
+    <dimen name="avatar40">40dp</dimen>
 
     <!-- Dũng -->
     <!-- Default screen margins, per the Android Design guidelines. -->

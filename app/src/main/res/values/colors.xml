@@ -13,5 +13,8 @@
     <color name="transparent_black">#80000000</color>
     <color name="transparent_white">#00000000</color>
     <color name="gray">#858585</color>
+    <color name="gray_line">#E1E1E1</color>
+    <color name="gray_selected">#E7E7E7</color>
+    <color name="gray_icon">#757575</color>
     <color name="teal">#64FFDA</color>
 </resources>
