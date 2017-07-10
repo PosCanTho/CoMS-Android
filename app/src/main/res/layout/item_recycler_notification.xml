@@ -14,69 +14,53 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:text="Steve Jobs"
-        android:textColor="#4A4A4A"
+        android:text="Message from 2017 SoMS Symposium:
+The presentations will be avaliable for
+download the next three months, please
+make sure to save what you need."
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/ivAvatar"
-        app:layout_constraintRight_toLeftOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent"
-        app:typeFace="@string/font_roboto_bold" />
+        app:typeFace="@string/font_roboto_regular"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <cse.duytan.coms.models.CircleImageView
         android:id="@+id/ivAvatar"
-        android:layout_width="@dimen/avatar40"
-        android:layout_height="@dimen/avatar40"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="0dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         android:src="@drawable/ic_test"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
+        android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvName" />
+        app:layout_constraintTop_toTopOf="@+id/tvName"
+        android:layout_marginTop="0dp" />
 
     <cse.duytan.coms.customviews.CustomTextView
-        android:id="@+id/tvMessage"
+        android:id="@+id/tvTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
-        android:text="Do you want iphone 8, do you want iphone 8, do you want iphone 8."
+        android:text="30 day ago."
         android:textSize="@dimen/size12"
         android:textColor="#757575"
         app:layout_constraintLeft_toLeftOf="@+id/tvName"
-        app:layout_constraintRight_toLeftOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
-        app:typeFace="@string/font_roboto_regular"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:typeFace="@string/font_roboto_regular" />
 
     <TextView
         android:id="@+id/textView38"
         android:layout_width="0dp"
         android:layout_height="@dimen/line1"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
         android:layout_marginTop="16dp"
         android:background="@color/gray_line"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintRight_toRightOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessage"
-        app:layout_constraintLeft_toRightOf="@+id/ivAvatar" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTime"
+        app:layout_constraintLeft_toRightOf="@+id/ivAvatar"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="@+id/tvName" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="15dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivAvatar"
-        app:layout_constraintVertical_bias="0.521"
-        app:srcCompat="@drawable/ic_right_arrow" />
 </android.support.constraint.ConstraintLayout>
