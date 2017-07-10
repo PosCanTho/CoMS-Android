@@ -1,57 +1,53 @@
 package cse.duytan.coms.fragments;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import cse.duytan.coms.R;
-import cse.duytan.coms.activities.MainActivity;
+import cse.duytan.coms.adapters.HomeAdapter;
 
 /**
- * Created by lehoangdung on 16/06/2017.
+ * A simple {@link Fragment} subclass.
  */
+public class HomeFragment extends android.app.Fragment {
 
-public class HomeFragment extends Fragment {
-    public static final int LAYOUT_HOME = 0;
-    public static final int LAYOUT_ABSTRACT = 1;
-    public static final int LAYOUT_LIST_ABSTRACT = 2;
-    private int currentLayout = LAYOUT_HOME;
 
-    // get current layout
-    public int getCurrentLayout() {
-        return currentLayout;
+    public HomeFragment() {
     }
-    // set current layout
-    public void setCurrentLayout(int currentLayout) {
-        this.currentLayout = currentLayout;
-    }
-
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        //getActivity().setTitle("Lịch trình");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        setUp(view);
+        setHasOptionsMenu(true);
+
         return view;
     }
 
-    public void switchLayout(int id) {
-        switch (id) {
-            case LAYOUT_HOME:
-                setCurrentLayout(LAYOUT_HOME);
-                ((MainActivity) getActivity()).setShadowToolbar(0);
-                ((MainActivity) getActivity()).hideBackArrow();
-                break;
-            case LAYOUT_LIST_ABSTRACT:
-                setCurrentLayout(LAYOUT_LIST_ABSTRACT);
-                ((MainActivity) getActivity()).setShadowToolbar(0);
-                ((MainActivity) getActivity()).displayBackArrow();
-                break;
 
-            default:
-                break;
-        }
-
+    private void setUp(View view) {
+        HomeAdapter homeAdapter;
+        ListView list = (ListView) view.findViewById(R.id.lsHome);
+        ArrayList<String> listData = new ArrayList<>();
+        listData.add("1");
+        listData.add("2");
+        listData.add("1");
+        listData.add("1");
+        listData.add("1");
+        listData.add("1");
+        listData.add("1");
+        homeAdapter = new HomeAdapter(getActivity(), listData);
+        list.setAdapter(homeAdapter);
     }
+
 }
