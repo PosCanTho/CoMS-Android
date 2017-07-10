@@ -56,11 +56,18 @@ public class ChatActivity extends BaseActivity {
             case R.id.actionProfile:
                 startActivity(new Intent(ChatActivity.this, ProfileActivity.class));
                 break;
+            case android.R.id.home:
+                finish();
+                break;
+            default:break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initUI() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         setRvChatAdp();
     }
 
