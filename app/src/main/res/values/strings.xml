@@ -67,6 +67,8 @@
     <string name="msg_sorry_no_internet">Sorry, no Internet connectivity detected. Please reconnect and try again.</string>
     <string name="msg_sorry_an_has_occurred">Sorry an error has occurred.</string>
     <string name="msg_are_you_sure_you_want_to_logout">Are you sure you want to logout.</string>
+    <string name="msg_permission_denied_to_write_your_external_storage">Permission denied to write your External storage.</string>
+    <string name="msg_permission_denied_to_read_your_external_storage">Permission denied to read your External storage.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

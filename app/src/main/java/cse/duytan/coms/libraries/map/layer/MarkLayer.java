@@ -10,12 +10,12 @@ import android.graphics.PointF;
 import android.view.MotionEvent;
 
 
-
 import java.util.List;
 
 import cse.duytan.coms.R;
 import cse.duytan.coms.libraries.map.MapView;
 import cse.duytan.coms.libraries.map.utils.MapMath;
+import cse.duytan.coms.untils.Utils;
 
 /**
  * MarkLayer
@@ -52,8 +52,8 @@ public class MarkLayer extends MapBaseLayer {
         radiusMark = setValue(10f);
 
         bmpMark = BitmapFactory.decodeResource(mapView.getResources(), R.mipmap.mark);
-        bmpMarkTouch = BitmapFactory.decodeResource(mapView.getResources(), R.drawable.ic_location);
-
+//        bmpMarkTouch = BitmapFactory.decodeResource(mapView.getResources(), R.drawable.ic_location);
+        bmpMarkTouch = Utils.getBitmapFromVectorDrawable(mapView.getContext(), R.drawable.ic_location);
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -153,6 +153,7 @@ public class MarkLayer extends MapBaseLayer {
 
     public interface MarkIsClickListener {
         void markIsClick(int num, float x, float y);
+
         void markIsClick(int num);
     }
 }

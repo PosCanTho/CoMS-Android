@@ -3,15 +3,18 @@ package cse.duytan.coms.activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-
-import java.io.IOException;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cse.duytan.coms.R;
 import cse.duytan.coms.libraries.map.MapView;
 import cse.duytan.coms.libraries.map.MapViewListener;
@@ -20,6 +23,10 @@ import cse.duytan.coms.models.TestData;
 
 public class MapActivity extends AppCompatActivity {
 
+    @BindView(R.id.ivZoomIn)
+    ImageButton ivZoomIn;
+    @BindView(R.id.ivZoomOut)
+    ImageButton ivZoomOut;
     private MapView mapView;
     private MarkLayer markLayer;
 
@@ -27,17 +34,18 @@ public class MapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        ButterKnife.bind(this);
         intUI();
     }
 
-    private void intUI(){
+    private void intUI() {
         mapView = (MapView) findViewById(R.id.mapview);
 
         setUpMap();
     }
 
-    private void setUpMap(){
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.ic_map);
+    private void setUpMap() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_map);
         mapView.loadMap(bitmap);
         mapView.setMapViewListener(new MapViewListener() {
             @Override
@@ -68,5 +76,19 @@ public class MapActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @OnClick({R.id.ivZoomIn, R.id.ivZoomOut})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ivZoomIn:
+                mapView.setCurrentZoom(mapView.getCurrentZoom()+0.5f);
+                mapView.refresh();
+                break;
+            case R.id.ivZoomOut:
+                mapView.setCurrentZoom(mapView.getCurrentZoom()-0.5f);
+                mapView.refresh();
+                break;
+        }
     }
 }

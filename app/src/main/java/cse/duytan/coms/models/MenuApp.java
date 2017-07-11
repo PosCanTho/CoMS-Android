@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
  */
 
 public class MenuApp {
-    private Bitmap icon;
+    private int icon;
     private String name;
     private String total;
     private Fragment fragment;
@@ -25,18 +25,18 @@ public class MenuApp {
     public MenuApp() {
     }
 
-    public MenuApp(Bitmap icon, String name, String total, Fragment fragment) {
+    public MenuApp(int icon, String name, String total, Fragment fragment) {
         this.icon = icon;
         this.name = name;
         this.total = total;
         this.fragment = fragment;
     }
 
-    public Bitmap getIcon() {
+    public int getIcon() {
         return icon;
     }
 
-    public void setIcon(Bitmap icon) {
+    public void setIcon(int icon) {
         this.icon = icon;
     }
 

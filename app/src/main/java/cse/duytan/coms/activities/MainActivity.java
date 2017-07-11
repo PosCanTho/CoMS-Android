@@ -88,39 +88,17 @@ public class MainActivity extends BaseActivity {
     private void setUpMenu() {
         menu = (NonScrollListView) findViewById(R.id.lsMenu);
         listMenu = new ArrayList<>();
-        Bitmap iconHome = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_home);
-        Bitmap iconSchedule = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_calendar_menu);
-        Bitmap iconConference = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_conference);
-        Bitmap iconProfile = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_user);
-        Bitmap iconMessage = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_mail);
-        Bitmap iconNotification = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_notification);
-        Bitmap iconSetting = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_settings);
-        Bitmap iconSignOut = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_logout);
-        Bitmap ic_review = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_review);
-        Bitmap ic_map_location = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_map_location);
-
-        listMenu.add(new MenuApp(iconHome, "Trang chủ", "5", new HomeFragment()));
-        listMenu.add(new MenuApp(iconSchedule, "Lịch trình", "16", new ScheduleFragment()));
-        listMenu.add(new MenuApp(iconConference, "Hội nghị", "16", new ConferenceFragment()));
-        //  arrayList.add(new MenuApp(iconProfile, "Thông tin cá nhân", "", new HomeFragment()));
-        listMenu.add(new MenuApp(iconMessage, "Nhắn tin", "16", new MessageFragment()));
-        listMenu.add(new MenuApp(iconNotification, "Thông báo", "16", new NotificationFragment()));
-        listMenu.add(new MenuApp(ic_review, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
-        listMenu.add(new MenuApp(ic_review, "Đánh giá", "4", new ReviewsFragment()));
-        listMenu.add(new MenuApp(iconSetting, "Cài đặt", "", new SettingsFragment()));
-        listMenu.add(new MenuApp(ic_map_location, "Bản đồ", "", null));
-        listMenu.add(new MenuApp(iconNotification, "Mua gói", "", null));
-        listMenu.add(new MenuApp(iconSignOut, "Đăng xuất", "", null));
+        listMenu.add(new MenuApp(R.drawable.ic_home, "Trang chủ", "5", new HomeFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new ScheduleFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_conference, "Hội nghị", "16", new ConferenceFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_user, "Nhắn tin", "16", new MessageFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_notification, "Thông báo", "16", new NotificationFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá", "4", new ReviewsFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_map_location, "Bản đồ", "", null));
+        listMenu.add(new MenuApp(R.drawable.ic_notification, "Mua gói", "", null));
+        listMenu.add(new MenuApp(R.drawable.ic_logout, "Đăng xuất", "", null));
 
         menuAdapter = new MenuAdapter(getApplicationContext(), listMenu);
         menu.setAdapter(menuAdapter);

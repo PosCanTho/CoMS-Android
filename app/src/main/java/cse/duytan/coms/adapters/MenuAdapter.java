@@ -1,6 +1,7 @@
 package cse.duytan.coms.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class MenuAdapter extends BaseAdapter {
         MenuApp data = list.get(i);
         oneItem.tvName.setText(data.getName());
         oneItem.tvTotal.setText(data.getTotal());
-        oneItem.ivIcon.setImageBitmap(data.getIcon());
+        oneItem.ivIcon.setImageResource(data.getIcon());
         return v;
     }
 

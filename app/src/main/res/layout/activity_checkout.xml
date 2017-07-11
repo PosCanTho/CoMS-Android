@@ -25,22 +25,19 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif"
             android:text="@string/lbl_total"
-            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:typeFace="@string/font_nunito_bold" />
+            app:typeFace="@string/font_nunito_regular" />
 
         <cse.duytan.coms.customviews.CustomTextView
             android:id="@+id/tvTotal"
+            style="@style/tvBlack16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:text="2000$"
-            android:textColor="#84ceca"
-            android:textSize="@dimen/size16"
             app:layout_constraintBottom_toBottomOf="@+id/textView36"
             app:layout_constraintLeft_toRightOf="@+id/textView36"
             app:layout_constraintTop_toTopOf="@+id/textView36"
@@ -89,9 +86,9 @@
             android:background="@drawable/bg_line_red"
             android:drawableRight="@drawable/ic_down_arrow_12dp"
             android:gravity="center"
-            android:textSize="@dimen/size14"
             android:paddingRight="@dimen/padding10"
             android:text="@string/lbl_select_your_role"
+            android:textSize="@dimen/size14"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="@+id/textView41"
             app:layout_constraintRight_toRightOf="@+id/rvPaymentMethod"
@@ -142,10 +139,10 @@
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
-                android:paddingLeft="@dimen/padding10"
                 android:background="@drawable/bg_line_red"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:paddingLeft="@dimen/padding10"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="@+id/textView44"
                 app:layout_constraintRight_toRightOf="parent"
@@ -153,53 +150,53 @@
 
                 <EditText
                     android:id="@+id/etCard1"
+                    style="@style/tvBlack14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="****"
                     android:gravity="center"
-                    style="@style/tvBlack14"
+                    android:hint="****"
                     android:inputType="number"
                     android:maxLength="4" />
 
                 <EditText
                     android:id="@+id/etCard2"
+                    style="@style/tvBlack14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="****"
                     android:gravity="center"
-                    style="@style/tvBlack14"
+                    android:hint="****"
                     android:inputType="number"
                     android:maxLength="4" />
 
                 <EditText
                     android:id="@+id/etCard3"
+                    style="@style/tvBlack14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="****"
-                    style="@style/tvBlack14"
                     android:gravity="center"
+                    android:hint="****"
                     android:inputType="number"
                     android:maxLength="4" />
 
                 <EditText
                     android:id="@+id/etCard4"
+                    style="@style/tvBlack14"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="****"
-                    style="@style/tvBlack14"
                     android:gravity="center"
+                    android:hint="****"
                     android:inputType="number"
                     android:maxLength="4" />
 
@@ -207,10 +204,10 @@
                     android:id="@+id/imageView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:background="@null"
                     android:layout_marginLeft="@dimen/padding10"
                     android:layout_marginRight="@dimen/padding10"
+                    android:layout_weight="0"
+                    android:background="@null"
                     app:srcCompat="@drawable/ic_visa" />
             </LinearLayout>
 
@@ -301,15 +298,15 @@
 
                     <EditText
                         android:id="@+id/etCCVCode"
+                        style="@style/tvBlack14"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/btnHeight48"
                         android:background="@drawable/bg_line_red"
                         android:ems="10"
                         android:gravity="center"
-                        style="@style/tvBlack14"
-                        android:maxLength="3"
+                        android:hint="***"
                         android:inputType="number"
-                        android:hint="***" />
+                        android:maxLength="3" />
 
                 </LinearLayout>
             </LinearLayout>

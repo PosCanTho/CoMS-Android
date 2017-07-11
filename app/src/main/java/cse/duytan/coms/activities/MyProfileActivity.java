@@ -1,11 +1,16 @@
 package cse.duytan.coms.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -120,7 +125,6 @@ public class MyProfileActivity extends BaseActivity {
     }
 
     private void initUI() {
-        fileAvatar = Utils.createImageFile();
 
         rBtnMale.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
         rBtnFemale.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
@@ -156,6 +160,7 @@ public class MyProfileActivity extends BaseActivity {
     }
 
     private void openAlbum() {
+        fileAvatar = Utils.createImageFile();
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
@@ -163,20 +168,44 @@ public class MyProfileActivity extends BaseActivity {
     }
 
     private void openCamera() {
+        fileAvatar = Utils.createImageFile();
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileAvatar));
+        i.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(MyProfileActivity.this, getPackageName() + ".my.package.name.provider", fileAvatar));
         startActivityForResult(i, TAKE_PHOTO);
     }
 
     @Override
     public void popupCalback(int processId, Object data) {
         if (processId == R.id.ivTakePhoto || processId == R.id.tvTakePhoto) {
-            openCamera();
+            ActivityCompat.requestPermissions(MyProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, TAKE_PHOTO);
         } else if (processId == R.id.ivSelectPhoto || processId == R.id.tvSelectPhoto) {
-            openAlbum();
+            ActivityCompat.requestPermissions(MyProfileActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, SELECT_PHOTO);
         } else if (processId == TAKE_PHOTO || processId == SELECT_PHOTO) {
             ivAvatar.setImageBitmap((Bitmap) data);
             fileAvatar.deleteOnExit();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case TAKE_PHOTO:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openCamera();
+                } else {
+                    Toast.makeText(this, getString(R.string.msg_permission_denied_to_write_your_external_storage), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case SELECT_PHOTO:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openAlbum();
+                } else {
+                    Toast.makeText(this, getString(R.string.msg_permission_denied_to_write_your_external_storage), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
         }
     }
 
