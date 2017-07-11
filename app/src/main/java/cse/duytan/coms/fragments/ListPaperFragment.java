@@ -1,6 +1,5 @@
 package cse.duytan.coms.fragments;
 
-
 import android.app.Activity;
 import android.app.ListFragment;
 import android.content.DialogInterface;
@@ -27,22 +26,22 @@ import cse.duytan.coms.activities.SeeReviewActivity;
 import cse.duytan.coms.activities.SendAbstractActivity;
 import cse.duytan.coms.activities.SendPaperActivity;
 import cse.duytan.coms.activities.XemThongtinActivity;
-import cse.duytan.coms.adapters.AbstractAdapter;
+import cse.duytan.coms.adapters.PaperAdapter;
 import cse.duytan.coms.dialogs.ConfirmDialog;
 import cse.duytan.coms.models.Abstract;
 import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.PopupCalback;
 
 /**
- * Created by lehoangdung on 19/06/2017.
+ * Created by DungTrungCut on 7/11/2017.
  */
 
-public class ListAbstractFragment extends ListFragment implements View.OnClickListener, PopupCalback, Constants {
+public class ListPaperFragment extends ListFragment implements View.OnClickListener, PopupCalback, Constants {
     private ListView listView;
-    private ArrayList<Abstract> arrAbstract;
-    private AbstractAdapter adapter;
+    private ArrayList<Abstract> arrPaper;
+    private PaperAdapter adapter;
     private Animation animation, animation_abs;
-    private LinearLayout ln, ln_func, ln_row_abstract;
+    private LinearLayout ln, ln_func, ln_row_paper;
     public static final int REQUEST_CODE_LISTABSTRACTFRAGMENT_GUIPAPER = 1;
 
     @Override
@@ -55,23 +54,23 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
     }
 
     private void loadListAbstract() {
-        arrAbstract = new ArrayList<>();
+        arrPaper = new ArrayList<>();
         addArrAbstract();
-        adapter = new AbstractAdapter(this.getActivity(), android.R.id.list, arrAbstract);
+        adapter = new PaperAdapter(this.getActivity(), android.R.id.list, arrPaper);
         //setListAdapter(adapter);
         listView.setAdapter(adapter);
     }
 
     private void addArrAbstract() {
-        arrAbstract.add(new Abstract("Hội nghị khoa học kỹ thuật - Tóm tắt 2", 1, "6/9/2017"));
-        arrAbstract.add(new Abstract("Hội nghị trung ương khóa 5 - Tóm tắt 1", 0, "9/10/2017"));
-        arrAbstract.add(new Abstract("Hội nghị tin học trẻ - Tóm tắt 3", 2, "12/11/2017"));
-        arrAbstract.add(new Abstract("Hội nghị APEC - Tóm tắt 2", 2, "16/12/2017"));
-        arrAbstract.add(new Abstract("Hội nghị Diên Hồng - Tóm tắt 2", 3, "5/1/2017"));
-        arrAbstract.add(new Abstract("Hội nghị Răng hàm mặt 2017 - Tóm tắt 4", 0, "6/2/2017"));
-        arrAbstract.add(new Abstract("Hội nghị rút kinh nghiệm công tác giáo dục quản lý kỷ luật và đảm bảo an toàn" +
-                " - Tóm tắt 2", 3, "10/3/2017"));
-        arrAbstract.add(new Abstract("Hội nghị cán bô công chức 2017 - Tóm tắt 1", 1, "3/4/2017"));
+        arrPaper.add(new Abstract("Hội nghị khoa học kỹ thuật - Bài báo 2", 1, "6/9/2017"));
+        arrPaper.add(new Abstract("Hội nghị trung ương khóa 5 - Bài báo 1", 0, "9/10/2017"));
+        arrPaper.add(new Abstract("Hội nghị tin học trẻ - Bài báo 3", 2, "12/11/2017"));
+        arrPaper.add(new Abstract("Hội nghị APEC - Tóm tắt 2", 2, "16/12/2017"));
+        arrPaper.add(new Abstract("Hội nghị Diên Hồng - Tóm tắt 2", 3, "5/1/2017"));
+        arrPaper.add(new Abstract("Hội nghị Răng hàm mặt 2017 - Bài báo 4", 0, "6/2/2017"));
+        arrPaper.add(new Abstract("Hội nghị rút kinh nghiệm công tác giáo dục quản lý kỷ luật và đảm bảo an toàn" +
+                " - Bài báo 2", 3, "10/3/2017"));
+        arrPaper.add(new Abstract("Hội nghị cán bô công chức 2017 - Bài báo 1", 1, "3/4/2017"));
     }
 
 
@@ -82,18 +81,18 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
         TextView txtXemDanhGia, txtXoa, txtCapnhat;// các control chức năng trên 1 dòng từ chối
         ImageView imgXemDanhGia, imgXoa, imgCapnhat;// từ chối
         //Đã duyệt
-        TextView txtGuiBaocaoAbs_Daduyet, txtXemThongtinAbs_Daduyet, txtXemDanhGiaAbs_Daduyet;
-        ImageView imgGuiBaocaoAbs_Daduyet, imgXemThongtinAbs_Daduyet, imgXemDanhGiaAbs_Daduyet;
+        TextView txtGuiBaocaoPaper_Daduyet, txtXemThongtinPaper_Daduyet, txtXemDanhGiaPaper_Daduyet;
+        ImageView imgGuiBaocaoPaper_Daduyet, imgXemThongtinPaper_Daduyet, imgXemDanhGiaPaper_Daduyet;
         //Chờ duyệt
-        TextView txtRutbaiAbs_Choduyet, txtXemThongtinAbs_Choduyet;
-        ImageView imgRutbaiAbs_Choduyet, imgXemThongtinAbs_Choduyet;
+        TextView txtRutbaiPaper_Choduyet, txtXemThongtinPaper_Choduyet;
+        ImageView imgRutbaiPaper_Choduyet, imgXemThongtinPaper_Choduyet;
         //Đoạn soạn
-        TextView txtRutbaiAbs_Dangsoan, txtCapnhatAbs_Dangsoan;
-        ImageView imgRutbaiAbs_Dangsoan, imgCapnhatAbs_Dangsoan;
+        TextView txtRutbaiPaper_Dangsoan, txtCapnhatPaper_Dangsoan;
+        ImageView imgRutbaiPaper_Dangsoan, imgCapnhatPaper_Dangsoan;
 
-        ln = (LinearLayout) v.findViewById(R.id.ln_list_abstract);//thông tin trên 1 dòng
-        ln_func = (LinearLayout) v.findViewById(R.id.ln_listfunc_abstract);// danh sách chức năng trên 1 dòng dựa trên trạng thái => hiển thị
-        ln_row_abstract = (LinearLayout) v.findViewById(R.id.row_abstract);
+        ln = (LinearLayout)v.findViewById(R.id.ln_list_paper);//thông tin trên 1 dòng
+        ln_func = (LinearLayout)v.findViewById(R.id.ln_listfunc_paper);// danh sách chức năng trên 1 dòng dựa trên trạng thái => hiển thị
+        ln_row_paper = (LinearLayout)v.findViewById(R.id.row_paper);
         // từ chối
         txtXemDanhGia = (TextView) v.findViewById(R.id.txtXemDanhGiaAbs);
         txtXoa = (TextView) v.findViewById(R.id.txtXoaAbs);
@@ -103,40 +102,40 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
         imgCapnhat = (ImageView) v.findViewById(R.id.imgCapNhatAbs);
 
         //đã duyệt
-        txtGuiBaocaoAbs_Daduyet = (TextView) v.findViewById(R.id.txtGuiBaocaoAbs_Daduyet);
-        txtXemThongtinAbs_Daduyet = (TextView) v.findViewById(R.id.txtXemThongtinAbs_Daduyet);
-        txtXemDanhGiaAbs_Daduyet = (TextView) v.findViewById(R.id.txtXemDanhGiaAbs_Daduyet);
-        imgGuiBaocaoAbs_Daduyet = (ImageView) v.findViewById(R.id.imgGuiBaocaoAbs_Daduyet);
-        imgXemThongtinAbs_Daduyet = (ImageView) v.findViewById(R.id.imgXemThongtinAbs_Daduyet);
-        imgXemDanhGiaAbs_Daduyet = (ImageView) v.findViewById(R.id.imgXemDanhGiaAbs_Daduyet);
+        txtGuiBaocaoPaper_Daduyet = (TextView) v.findViewById(R.id.txtGuiBaocaoAbs_Daduyet);
+        txtXemThongtinPaper_Daduyet = (TextView) v.findViewById(R.id.txtXemThongtinAbs_Daduyet);
+        txtXemDanhGiaPaper_Daduyet = (TextView) v.findViewById(R.id.txtXemDanhGiaAbs_Daduyet);
+        imgGuiBaocaoPaper_Daduyet = (ImageView) v.findViewById(R.id.imgGuiBaocaoAbs_Daduyet);
+        imgXemThongtinPaper_Daduyet = (ImageView) v.findViewById(R.id.imgXemThongtinAbs_Daduyet);
+        imgXemDanhGiaPaper_Daduyet = (ImageView) v.findViewById(R.id.imgXemDanhGiaAbs_Daduyet);
 
         //chờ duyệt
-        txtRutbaiAbs_Choduyet = (TextView) v.findViewById(R.id.txtRutbaiAbs_Choduyet);
-        txtXemThongtinAbs_Choduyet = (TextView) v.findViewById(R.id.txtXemThongtinAbs_Choduyet);
-        imgRutbaiAbs_Choduyet = (ImageView) v.findViewById(R.id.imgRutbaiAbs_Choduyet);
-        imgXemThongtinAbs_Choduyet = (ImageView) v.findViewById(R.id.imgXemThongtinAbs_Choduyet);
+        txtRutbaiPaper_Choduyet = (TextView) v.findViewById(R.id.txtRutbaiAbs_Choduyet);
+        txtXemThongtinPaper_Choduyet = (TextView) v.findViewById(R.id.txtXemThongtinAbs_Choduyet);
+        imgRutbaiPaper_Choduyet = (ImageView) v.findViewById(R.id.imgRutbaiAbs_Choduyet);
+        imgXemThongtinPaper_Choduyet = (ImageView) v.findViewById(R.id.imgXemThongtinAbs_Choduyet);
 
         // đang soạn
-        txtRutbaiAbs_Dangsoan = (TextView) v.findViewById(R.id.txtRutbaiAbs_Dangsoan);
-        txtCapnhatAbs_Dangsoan = (TextView) v.findViewById(R.id.txtCapnhatAbs_Dangsoan);
-        imgRutbaiAbs_Dangsoan = (ImageView) v.findViewById(R.id.imgRutbaiAbs_Dangsoan);
-        imgCapnhatAbs_Dangsoan = (ImageView) v.findViewById(R.id.imgCapnhatAbs_Dangsoan);
+        txtRutbaiPaper_Dangsoan = (TextView) v.findViewById(R.id.txtRutbaiAbs_Dangsoan);
+        txtCapnhatPaper_Dangsoan = (TextView) v.findViewById(R.id.txtCapnhatAbs_Dangsoan);
+        imgRutbaiPaper_Dangsoan = (ImageView) v.findViewById(R.id.imgRutbaiAbs_Dangsoan);
+        imgCapnhatPaper_Dangsoan = (ImageView) v.findViewById(R.id.imgCapnhatAbs_Dangsoan);
 
 
         if (ln.getVisibility() == View.GONE) {
             hideFunc();
         } else {
 
-            for (int i = 0; i < listView.getAdapter().getCount(); i++) {
-                if (position != i) {
+            for (int i = 0; i < listView.getAdapter().getCount(); i++){
+                if(position !=i ){
                     Animation animation2, animation_abs2;
                     View viewrow = listView.getChildAt(i);
                     View view = (View) listView.getAdapter().getView(i, viewrow, listView);//listView.getChildAt(i);
-                    LinearLayout ln2 = (LinearLayout) view.findViewById(R.id.ln_list_abstract);
-                    LinearLayout ln_func2 = (LinearLayout) view.findViewById(R.id.ln_listfunc_abstract);
-                    LinearLayout ln_row_abstract2 = (LinearLayout) view.findViewById(R.id.row_abstract);
+                    LinearLayout ln2 = (LinearLayout)view.findViewById(R.id.ln_list_paper);
+                    LinearLayout ln_func2 = (LinearLayout)view.findViewById(R.id.ln_listfunc_paper);
+                    LinearLayout ln_row_abstract2 = (LinearLayout) view.findViewById(R.id.row_paper);
 
-                    if (ln_func2.getVisibility() == View.VISIBLE) {
+                    if(ln_func2.getVisibility() == View.VISIBLE){
                         animation2 = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
                         ln_func2.setVisibility(View.GONE);//ẩn danh sách chức năng
                         animation2.setDuration(400);
@@ -163,32 +162,32 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
         imgXoa.setOnClickListener(this);
         imgCapnhat.setOnClickListener(this);
         //đã duyệt
-        txtGuiBaocaoAbs_Daduyet.setOnClickListener(this);
-        txtXemThongtinAbs_Daduyet.setOnClickListener(this);
-        txtXemDanhGiaAbs_Daduyet.setOnClickListener(this);
-        imgGuiBaocaoAbs_Daduyet.setOnClickListener(this);
-        imgXemThongtinAbs_Daduyet.setOnClickListener(this);
-        imgXemDanhGiaAbs_Daduyet.setOnClickListener(this);
+        txtGuiBaocaoPaper_Daduyet.setOnClickListener(this);
+        txtXemThongtinPaper_Daduyet.setOnClickListener(this);
+        txtXemDanhGiaPaper_Daduyet.setOnClickListener(this);
+        imgGuiBaocaoPaper_Daduyet.setOnClickListener(this);
+        imgXemThongtinPaper_Daduyet.setOnClickListener(this);
+        imgXemDanhGiaPaper_Daduyet.setOnClickListener(this);
         // Chờ duyệt
-        txtRutbaiAbs_Choduyet.setOnClickListener(this);
-        txtXemThongtinAbs_Choduyet.setOnClickListener(this);
-        imgRutbaiAbs_Choduyet.setOnClickListener(this);
-        imgXemThongtinAbs_Choduyet.setOnClickListener(this);
+        txtRutbaiPaper_Choduyet.setOnClickListener(this);
+        txtXemThongtinPaper_Choduyet.setOnClickListener(this);
+        imgRutbaiPaper_Choduyet.setOnClickListener(this);
+        imgXemThongtinPaper_Choduyet.setOnClickListener(this);
         // đang soạn
-        txtRutbaiAbs_Dangsoan.setOnClickListener(this);
-        txtCapnhatAbs_Dangsoan.setOnClickListener(this);
-        imgRutbaiAbs_Dangsoan.setOnClickListener(this);
-        imgCapnhatAbs_Dangsoan.setOnClickListener(this);
+        txtRutbaiPaper_Dangsoan.setOnClickListener(this);
+        txtCapnhatPaper_Dangsoan.setOnClickListener(this);
+        imgRutbaiPaper_Dangsoan.setOnClickListener(this);
+        imgCapnhatPaper_Dangsoan.setOnClickListener(this);
 
     }
 
-    private void hideFunc() {
+    private void hideFunc(){
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
         ln_func.setVisibility(View.GONE);//ẩn danh sách chức năng
         animation.setDuration(400);
         ln_func.setAnimation(animation);
         ln_func.animate().withLayer();
-        ln_row_abstract.setBackgroundColor(Color.WHITE);
+        ln_row_paper.setBackgroundColor(Color.WHITE);
 
         animation_abs = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
         animation_abs.setDuration(700);
@@ -197,7 +196,7 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
         ln.setVisibility(View.VISIBLE);// hiển dòng abstract ra
     }
 
-    private void showFunc() {
+    private void showFunc(){
         animation = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
         ln.setVisibility(View.GONE);
         ln_func.setVisibility(View.VISIBLE);
@@ -214,16 +213,16 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 hideFunc();
                 //chuyển trang Xem đánh giá abs
                 Intent intent4 = new Intent(getActivity(), SeeReviewActivity.class);
-                intent4.putExtra("type", "1");
-                intent4.putExtra("status", "0");//0 từ chối, 1 đồng ý
+                intent4.putExtra("type","2");
+                intent4.putExtra("status","0");//0 từ chối, 1 đồng ý
                 startActivity(intent4);
                 break;
             case R.id.imgXoaAbs:
             case R.id.txtXoaAbs:
                 hideFunc();
                 //hiển thi dialog Xóa
-               // alertDialog("Rút bài", "Bạn có chắc muốn rút bài");
-                new ConfirmDialog(getActivity(), "Rút bài", "Bạn có chắc muốn rút bài", ListAbstractFragment.this).show();
+//                alertDialog("Rút bài","Bạn có chắc muốn rút bài");
+                new ConfirmDialog(getActivity(), "Rút bài", "Bạn có chắc muốn rút bài", ListPaperFragment.this).show();
                 break;
             case R.id.imgCapNhatAbs:
             case R.id.txtCapNhatAbs:
@@ -231,8 +230,8 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 // hiển trị trang cập nhật abs
 //                Toast.makeText(getActivity(), "hiển trị trang cập nhật abs", Toast.LENGTH_SHORT).show();
                 Intent intent7 = new Intent(getActivity(), SendAbstractActivity.class);
-                intent7.putExtra("title", "0");//tiêu đề cập nhật
-                intent7.putExtra("type", "1");// bài tóm tắt
+                intent7.putExtra("title","4");//tiêu đề cập nhật
+                intent7.putExtra("type","4");// bài báo
                 startActivity(intent7);
                 break;
             case R.id.imgGuiBaocaoAbs_Daduyet:
@@ -248,7 +247,7 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 hideFunc();
                 //hiện dialog xem thông tin bài abs
                 Intent intent2 = new Intent(getActivity(), XemThongtinActivity.class);
-                intent2.putExtra("type", "1");// tiêu đề bài tóm tắt
+                intent2.putExtra("type","2");// tiêu đề bài báo
                 startActivity(intent2);
                 break;
             case R.id.imgXemDanhGiaAbs_Daduyet:
@@ -256,8 +255,8 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 hideFunc();
                 //chuyển trang xem Đánh giá
                 Intent intent3 = new Intent(getActivity(), SeeReviewActivity.class);
-                intent3.putExtra("type", "1");// bài tóm tắt
-                intent3.putExtra("status", "2");
+                intent3.putExtra("type","2");// bài báo
+                intent3.putExtra("status","2");
                 startActivity(intent3);
                 break;
             case R.id.imgRutbaiAbs_Choduyet:
@@ -265,7 +264,7 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 hideFunc();
                 //hiện dialog Rút bài
 //                Toast.makeText(getActivity(), "hiện dialog Rút bài", Toast.LENGTH_SHORT).show();
-                alertDialog("Rút bài", "Bạn có chắc muốn rút bài");
+                alertDialog("Rút bài","Bạn có chắc muốn rút bài");
                 break;
             case R.id.imgXemThongtinAbs_Choduyet:
             case R.id.txtXemThongtinAbs_Choduyet:
@@ -273,7 +272,7 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 //chuyển trang xem thông tin
                 Toast.makeText(getActivity(), "chuyển trang xem thông tin", Toast.LENGTH_SHORT).show();
                 Intent intent5 = new Intent(getActivity(), XemThongtinActivity.class);
-                intent5.putExtra("type", "1");// bài tóm tắt
+                intent5.putExtra("type","2");// bài tóm tắt
                 startActivity(intent5);
                 break;
             case R.id.imgRutbaiAbs_Dangsoan:
@@ -281,16 +280,16 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
                 hideFunc();
                 //hiện dialog xác nhận rút bài
 //                Toast.makeText(getActivity(), "hiện dialog xác nhận rút bài", Toast.LENGTH_SHORT).show();
-                alertDialog("Rút bài", "Bạn có chắc muốn rút bài");
+                alertDialog("Rút bài","Bạn có chắc muốn rút bài");
                 break;
             case R.id.imgCapnhatAbs_Dangsoan:
             case R.id.txtCapnhatAbs_Dangsoan:
                 hideFunc();
-                //chuyển trang Cập nhật
+                //chuyển trang Cập nhật bài báo
                 Toast.makeText(getActivity(), "chuyển trang Cập nhật", Toast.LENGTH_SHORT).show();
                 Intent intent8 = new Intent(getActivity(), SendAbstractActivity.class);
-                intent8.putExtra("title", "0");//tiêu đề cập nhật
-                intent8.putExtra("type", "1");// bài tóm tắt
+                intent8.putExtra("title","4");//tiêu đề cập nhật
+                intent8.putExtra("type","4");// bài tóm tắt
                 startActivity(intent8);
                 break;
         }
@@ -299,17 +298,17 @@ public class ListAbstractFragment extends ListFragment implements View.OnClickLi
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
+        switch (requestCode){
             case REQUEST_CODE_LISTABSTRACTFRAGMENT_GUIPAPER:
-                if (resultCode == Activity.RESULT_OK) {//Activity.RESULT_CANCELED
-                    int status = data.getIntExtra("status", 1);
-                    Toast.makeText(getActivity(), "Đã nhận dữ liệu trả về " + status, Toast.LENGTH_SHORT).show();
+                if(resultCode == Activity.RESULT_OK){//Activity.RESULT_CANCELED
+                    int status =  data.getIntExtra("status", 1);
+                    Toast.makeText(getActivity(), "Đã nhận dữ liệu trả về "+ status, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
     }
 
-    private void alertDialog(String title, String message) {
+    private void alertDialog(String title, String message){
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Dialog_Alert);

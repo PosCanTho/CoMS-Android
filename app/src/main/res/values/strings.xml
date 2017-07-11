@@ -175,5 +175,10 @@
         <item>Loại hình trình bày 4</item>
         <item>Loại hình trình bày 5</item>
     </string-array>
+    <!-- 10/7/2017 -->
+    <string name="title_review_abstract">Đánh giá bài tóm tắt</string>
+    <string name="title_review_paper">Đánh giá bài báo</string>
+    <string name="title_update_paper">Cập nhật bài báo</string>
+    <!---->
     <!-- end dũng -->
 </resources>

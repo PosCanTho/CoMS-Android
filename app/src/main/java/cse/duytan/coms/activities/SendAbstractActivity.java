@@ -26,12 +26,13 @@ import cse.duytan.coms.R;
 
 public class SendAbstractActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    Intent intent;
-    Button btnChon_chude, btnChon_loaihinhnghiencuu, btnChon_loaihinhtrinhbay;
-    TextView txtChude, txtLoaihinhtrinhbay, txtLoaihinhnghiencuu;
-    EditText edTieude, edTieudeEng, edNoidung;
-    TextView txterr_chude, txterr_loaihinhnghiencuu, txterr_loaihinhtrinhbay, txterr_Tieude;
-    RadioGroup radioGroup;
+    private Intent intent;
+    private Button btnChon_chude, btnChon_loaihinhnghiencuu, btnChon_loaihinhtrinhbay;
+    private TextView txtChude, txtLoaihinhtrinhbay, txtLoaihinhnghiencuu;
+    private EditText edTieude, edTieudeEng, edNoidung, edDanhGia, edThangdiem;
+    private TextView txterr_chude, txterr_loaihinhnghiencuu, txterr_loaihinhtrinhbay, txterr_Tieude, txtTieude_quatrinh, txtTieudeThangdiem;
+    private RadioGroup radioGroup;
+    private String type, title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +41,18 @@ public class SendAbstractActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         intent = this.getIntent();
-        String type = intent.getStringExtra("type");
-        String title = intent.getStringExtra("title");
+        type = intent.getStringExtra("type");
+        title = intent.getStringExtra("title");
         if(type.equals("1") && title.equals("0")){
             setTitle(R.string.title_update_abstract);
-        }else{
+        }if(type.equals("2") && title.equals("2")){
+            setTitle(R.string.title_review_abstract);
+        }if(type.equals("3") && title.equals("3")){
+            setTitle(R.string.title_review_paper);
+        }if(type.equals("4") && title.equals("4")){
+            setTitle(R.string.title_update_paper);
+        }
+        else{
             setTitle(R.string.title_abstarct);
         }
 
@@ -213,7 +221,19 @@ public class SendAbstractActivity extends AppCompatActivity {
         txterr_loaihinhnghiencuu = (TextView) findViewById(R.id.txterr_chonloaihinhnghiencuu_send_abs);
         txterr_loaihinhtrinhbay = (TextView) findViewById(R.id.txterr_chonloaihinhtrinhbay_send_abs);
         txterr_Tieude = (TextView) findViewById(R.id.txterr_Tieude_see_abs);
+        txtTieude_quatrinh = (TextView) findViewById(R.id.txtTieude_quatrinh);
         radioGroup = (RadioGroup) findViewById(R.id.myRadioGroup_quatrinh_send_abs);
+        edDanhGia = (EditText) findViewById(R.id.edDanhGia);
+        txtTieudeThangdiem = (TextView) findViewById(R.id.txtTieude_Thangdiem);
+        edThangdiem = (EditText) findViewById(R.id.edThangdiem);
+
+        if(type.equals("2") && title.equals("2")){
+            txtTieude_quatrinh.setText("Đánh giá:");
+            radioGroup.setVisibility(View.GONE);
+            edDanhGia.setVisibility(View.VISIBLE);
+            txtTieudeThangdiem.setVisibility(View.VISIBLE);
+            edThangdiem.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

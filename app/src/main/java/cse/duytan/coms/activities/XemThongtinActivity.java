@@ -22,7 +22,7 @@ public class XemThongtinActivity extends AppCompatActivity {
         String type = intent.getStringExtra("type");
         if(type.equals("1")){
             setTitle(R.string.title_see_abstract);
-        }else{
+        }else{//2
             setTitle(R.string.title_see_paper);
         }
 

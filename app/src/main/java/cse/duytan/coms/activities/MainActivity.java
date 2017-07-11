@@ -35,9 +35,11 @@ import cse.duytan.coms.dialogs.ConfirmDialog;
 import cse.duytan.coms.fragments.ConferenceFragment;
 import cse.duytan.coms.fragments.HomeFragment;
 import cse.duytan.coms.fragments.ListAbstractFragment;
+import cse.duytan.coms.fragments.ListPaperFragment;
 import cse.duytan.coms.fragments.MessageFragment;
 import cse.duytan.coms.fragments.NotificationFragment;
 import cse.duytan.coms.fragments.ReviewsFragment;
+import cse.duytan.coms.fragments.ReviewsPaperFragment;
 import cse.duytan.coms.fragments.ScheduleFragment;
 import cse.duytan.coms.fragments.SettingsFragment;
 import cse.duytan.coms.models.MenuApp;
@@ -94,7 +96,9 @@ public class MainActivity extends BaseActivity {
         listMenu.add(new MenuApp(R.drawable.ic_user, "Nhắn tin", "16", new MessageFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_notification, "Thông báo", "16", new NotificationFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_review, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá", "4", new ReviewsFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Danh sách bài báo", "20", new ListPaperFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá bài tóm tắt", "4", new ReviewsFragment()));//ReviewsPaperFragment
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá bài báo", "2", new ReviewsPaperFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_map_location, "Bản đồ", "", null));
         listMenu.add(new MenuApp(R.drawable.ic_notification, "Mua gói", "", null));

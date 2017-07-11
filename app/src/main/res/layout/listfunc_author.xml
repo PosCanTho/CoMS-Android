@@ -135,7 +135,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Xem bài tóm tắt"
+            android:text="Xem bài"
             android:textColor="@color/white" />
     </LinearLayout>
     <LinearLayout

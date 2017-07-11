@@ -323,7 +323,7 @@
             />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/txtTieude_quatrinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -344,7 +344,7 @@
             android:checkedButton="@+id/rd_dangsoan_send_abs"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView22">
+            app:layout_constraintTop_toBottomOf="@+id/txtTieude_quatrinh">
             <RadioButton
                 android:id="@+id/rd_dangsoan_send_abs"
                 android:layout_width="wrap_content"
@@ -356,6 +356,58 @@
                 android:layout_height="wrap_content"
                 android:text="Hoàn thành" />
         </RadioGroup>
+
+        <EditText
+            android:id="@+id/edDanhGia"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="Nhập nội dung đánh giá"
+            android:inputType="textMultiLine"
+            android:lines="6"
+            style="@style/tvBlack16"
+            android:textSize="14sp"
+            android:scrollbars="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTieude_quatrinh" />
+
+        <TextView
+            android:id="@+id/txtTieude_Thangdiem"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="8dp"
+            style="@style/tvRed12"
+            android:textAllCaps="true"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edDanhGia"
+            android:text="Thang điểm:" />
+
+        <EditText
+            android:id="@+id/edThangdiem"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:hint="Nhập điểm"
+            style="@style/tvBlack16"
+            android:textSize="14sp"
+            android:inputType="textPersonName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTieude_Thangdiem" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
