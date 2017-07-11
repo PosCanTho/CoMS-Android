@@ -8,30 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONObject;
-
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
-import cse.duytan.coms.connections.DownloadAsynTask;
-import cse.duytan.coms.connections.DownloadCallback;
+import cse.duytan.coms.connections.DownloadAsyncTask;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 import cse.duytan.coms.models.User;
 import cse.duytan.coms.presenters.LoginPresenter;
 import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.LoginView;
-import okhttp3.FormBody;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 
 public class LoginActivity extends BaseActivity implements LoginView {
 
@@ -92,7 +82,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
             postData.put("username", "huynhbadieu");
             postData.put("password", "UUNpZzQxYXN5VWY4MHIrL0FNN3hIaEtOU0VvPQ==");
             postData.put("imei", "");
-            DownloadAsynTask.POST(this, 1, "http://dev.duytan.edu.vn:8075/ConnectService.asmx/Login", postData.toString(), User.class, true, this);
+            DownloadAsyncTask.POST(this, 1, "http://dev.duytan.edu.vn:8075/ConnectService.asmx/Login", postData.toString(), User.class, true, this);
         } catch (Exception e) {
         }
     }

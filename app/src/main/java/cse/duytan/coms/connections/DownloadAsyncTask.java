@@ -25,16 +25,16 @@ import okhttp3.Response;
  * Phone: 0979477093
  */
 
-public class DownloadAsynTask extends OkHttpClient implements Constants {
-    private static final DownloadAsynTask ourInstance = new DownloadAsynTask();
+public class DownloadAsyncTask extends OkHttpClient implements Constants {
+    private static final DownloadAsyncTask ourInstance = new DownloadAsyncTask();
     private static ProcessDialog processDialog;
     private static OkHttpClient client;
 
-    public static DownloadAsynTask getInstance() {
+    public static DownloadAsyncTask getInstance() {
         return ourInstance;
     }
 
-    private DownloadAsynTask() {
+    private DownloadAsyncTask() {
     }
 
     public static <T> T GET(final Context context, final int processId, String url, final Class<T> type, boolean showDialog, final DownloadCallback downloadCallback) {
