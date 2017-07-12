@@ -11,6 +11,7 @@
     <dimen name="size18">18sp</dimen>
     <dimen name="size20">20sp</dimen>
     <dimen name="size22">22sp</dimen>
+    <dimen name="size32">32sp</dimen>
     <!--Padding-->
     <dimen name="padding5">5dp</dimen>
     <dimen name="padding8">8dp</dimen>

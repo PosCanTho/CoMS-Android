@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
@@ -23,6 +22,11 @@ public class ConferenceInfomationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conference_infomation);
         setUp();
+        initUI();
+    }
+
+    private void initUI() {
+        setTitle(R.string.title_conference_infomation);
     }
 
     private void setUp() {

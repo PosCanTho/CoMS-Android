@@ -3,13 +3,13 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
+    <cse.duytan.coms.customviews.CustomTextView
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="1"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        style="@style/tvWhite16"
         android:background="@drawable/bg_circle_red"
         android:layout_width="40dp"
         android:layout_height="40dp" />
@@ -20,7 +20,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <cse.duytan.coms.customviews.CustomTextView
+            style="@style/tvBlack16"
             android:text="Conference Session 1"
             android:textAllCaps="true"
             android:layout_width="match_parent"

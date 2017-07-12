@@ -6,13 +6,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="THURSDAY, JUNE 22, 2017"
-            android:layout_width="match_parent"
-            android:layout_height="55dp" />
         <ListView
             android:id="@+id/lsHome"
             android:layout_width="match_parent"

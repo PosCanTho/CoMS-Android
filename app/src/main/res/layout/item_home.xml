@@ -16,41 +16,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:background="@drawable/bg_line_circle" />
-
-            <TextView
+            <cse.duytan.coms.models.CircleImageView
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:background="@drawable/bg_line_circle"
-                android:gravity="center"
-                android:text="AVATAR"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:src="@drawable/ic_test" />
+
+            <!--<TextView-->
+            <!--android:layout_width="56dp"-->
+            <!--android:layout_height="56dp"-->
+            <!--android:background="@drawable/bg_line_circle"-->
+            <!--android:gravity="center"-->
+            <!--android:text="AVATAR"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="12sp"-->
+            <!--android:textStyle="bold" />-->
         </RelativeLayout>
 
         <LinearLayout
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="16sp"
             android:orientation="vertical">
 
-            <TextView
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvBlack16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Abcd efgh"
+                android:text="Steve Jobs"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <cse.duytan.coms.customviews.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Abcd efgh"
+                android:text="New York"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -60,11 +61,12 @@
             android:layout_gravity="center"
             android:gravity="right">
 
-            <TextView
+            <cse.duytan.coms.customviews.CustomTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="15m" />
+                android:text="7/11/2017"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -73,8 +75,9 @@
     <ImageView
         android:id="@+id/avar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/colorAccent" />
+        android:layout_height="260dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/im_conference" />
 
     <LinearLayout
         android:layout_marginLeft="16dp"
@@ -84,6 +87,7 @@
         android:layout_marginTop="8dp">
 
         <TextView
+            android:id="@+id/txtLikeInHome"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:background="@drawable/like"
@@ -94,6 +98,7 @@
             android:textStyle="italic|bold"/>
 
         <TextView
+            android:id="@+id/txtCommentInHome"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="8dp"
@@ -105,16 +110,17 @@
             android:textStyle="italic|bold"/>/>
     </LinearLayout>
 
-    <TextView
+    <cse.duytan.coms.customviews.CustomTextView
+        android:id="@+id/customTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="6dp"
-        android:textSize="12sp"
-        android:text="You and 22 orther Like this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="Bạn và 22 người nữa thích điều này !"
+        android:textSize="12sp" />
 
-    <TextView
+    <cse.duytan.coms.customviews.CustomTextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,7 +128,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:text="Hola hola, i'm singing hola hola, shakira. I'm sexy and I known it ghjghjgjjghjgjg"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:text="Hảy đến và cảm nhận sự cuồng nhiệt"
+        style="@style/tvBlack16"/>
 </LinearLayout>

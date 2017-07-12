@@ -1,24 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.csepossidemenu.myapplication.Fragment.ConferenceFragment">
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="match_parent">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_marginLeft="16dp"
-            android:text="Conference"
-            android:textSize="40sp"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <ListView
-            android:id="@+id/lsCon"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></ListView>
-    </LinearLayout>
-
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.NonScrollListView
+                android:id="@+id/lsCon"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></cse.duytan.coms.customviews.NonScrollListView>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -1,17 +1,19 @@
 package cse.duytan.coms.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-
 
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
+import cse.duytan.coms.activities.ProfileActivity;
 import cse.duytan.coms.adapters.ListAttendeeAdapter;
 
 /**
@@ -30,7 +32,12 @@ public class AttendeeFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_attendee, container, false);
         setUp(view);
+        initUI();
         return view;
+    }
+
+    private void initUI() {
+        getActivity().setTitle(R.string.title_attendee);
     }
 
     public void setUp(View view) {
@@ -42,5 +49,11 @@ public class AttendeeFragment extends android.app.Fragment {
         list.add("4");
         ListAttendeeAdapter adapter = new ListAttendeeAdapter(getActivity(), list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
+            }
+        });
     }
 }

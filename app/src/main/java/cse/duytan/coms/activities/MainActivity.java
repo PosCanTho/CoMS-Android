@@ -93,15 +93,15 @@ public class MainActivity extends BaseActivity {
         listMenu.add(new MenuApp(R.drawable.ic_home, "Trang chủ", "5", new HomeFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new ScheduleFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_conference, "Hội nghị", "16", new ConferenceFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_user, "Nhắn tin", "16", new MessageFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_review, "Nhắn tin", "16", new MessageFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_notification, "Thông báo", "16", new NotificationFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Danh sách bài báo", "20", new ListPaperFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá bài tóm tắt", "4", new ReviewsFragment()));//ReviewsPaperFragment
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Đánh giá bài báo", "2", new ReviewsPaperFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài báo", "20", new ListPaperFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài tóm tắt", "4", new ReviewsFragment()));//ReviewsPaperFragment
+        listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài báo", "2", new ReviewsPaperFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_map_location, "Bản đồ", "", null));
-        listMenu.add(new MenuApp(R.drawable.ic_notification, "Mua gói", "", null));
+        listMenu.add(new MenuApp(R.drawable.ic_package, "Mua gói", "", null));
+        listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_logout, "Đăng xuất", "", null));
 
         menuAdapter = new MenuAdapter(getApplicationContext(), listMenu);

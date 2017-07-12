@@ -51,7 +51,7 @@ public class ListFunctionInConferenceSessionAdapter extends BaseAdapter {
         TextView tvTotal = (TextView) view.findViewById(R.id.tvTotalInSession);
 
         FunctionInSession data = list.get(i);
-        img.setImageBitmap(data.getIcon());
+        img.setImageResource(data.getIcon());
         tvName.setText(data.nameFunction);
         tvTotal.setText(data.total);
 

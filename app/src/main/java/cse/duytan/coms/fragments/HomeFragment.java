@@ -30,8 +30,12 @@ public class HomeFragment extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         setUp(view);
         setHasOptionsMenu(true);
-
+        initUI();
         return view;
+    }
+
+    private void initUI() {
+        getActivity().setTitle(R.string.title_home);
     }
 
 

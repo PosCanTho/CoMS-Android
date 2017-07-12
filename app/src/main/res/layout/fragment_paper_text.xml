@@ -1,8 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.csepossidemenu.myapplication.Fragment.PaperTextFragment">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -214,14 +213,14 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <ListView
+                <cse.duytan.coms.customviews.NonScrollListView
                     android:id="@+id/lsPaperText"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"></ListView>
+                    android:layout_marginTop="8dp"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -266,14 +265,14 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <ListView
+                <cse.duytan.coms.customviews.NonScrollListView
                     android:id="@+id/lsPaperAbstract"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"></ListView>
+                    android:layout_marginTop="8dp"/>
             </LinearLayout>
 
         </ScrollView>

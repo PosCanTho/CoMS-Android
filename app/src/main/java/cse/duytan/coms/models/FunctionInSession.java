@@ -7,24 +7,24 @@ import android.graphics.Bitmap;
  */
 
 public class FunctionInSession {
-    public Bitmap icon;
+    public int icon;
     public String nameFunction;
     public String total;
 
     public FunctionInSession() {
     }
 
-    public FunctionInSession(Bitmap icon, String nameFunction, String total) {
+    public FunctionInSession(int icon, String nameFunction, String total) {
         this.icon = icon;
         this.nameFunction = nameFunction;
         this.total = total;
     }
 
-    public Bitmap getIcon() {
+    public int getIcon() {
         return icon;
     }
 
-    public void setIcon(Bitmap icon) {
+    public void setIcon(int icon) {
         this.icon = icon;
     }
 

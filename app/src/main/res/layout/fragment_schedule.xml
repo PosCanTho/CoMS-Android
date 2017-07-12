@@ -1,13 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.csepossidemenu.myapplication.Fragment.ScheduleFragment">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layoutSchedule"
@@ -15,27 +14,40 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtCurrentDate"
+            <CalendarView
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="#f2f2f2"
-                android:gravity="center"
-                android:text="Tuesday, march 9"
-                android:textAllCaps="true"
-                android:textSize="18sp" />
+                android:layout_height="300dp">
 
-            <ListView
-                android:id="@+id/lsSchedule"
+            </CalendarView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2">
+
+                <cse.duytan.coms.customviews.CustomTextView
+                    android:id="@+id/txtCurrentDate"
+                    style="@style/tvBlack14"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="@dimen/icon16"
+                    android:background="#f2f2f2"
+                    android:gravity="center_vertical"
+                    android:text="11th Jan, 2017" />
+            </LinearLayout>
+
+            <cse.duytan.coms.customviews.NonScrollListView
+                android:id="@+id/ls_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:divider="@null"
-                android:dividerHeight="0dp"></ListView>
+                android:dividerHeight="0dp"></cse.duytan.coms.customviews.NonScrollListView>
 
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

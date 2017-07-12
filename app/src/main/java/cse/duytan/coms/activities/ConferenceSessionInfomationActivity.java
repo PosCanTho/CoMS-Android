@@ -13,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
@@ -45,18 +43,10 @@ public class ConferenceSessionInfomationActivity extends AppCompatActivity {
     private void setUpFunc() {
         lsFunc = (ListView) findViewById(R.id.lsFunction);
         ArrayList<FunctionInSession> arrayList = new ArrayList<>();
-        Bitmap iconSchedule = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_calendar_menu);
-        Bitmap iconPaper = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_paper);
-        Bitmap iconDownload = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_download);
-        Bitmap iconAttendee = BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                R.drawable.ic_attendee);
-        arrayList.add(new FunctionInSession(iconSchedule, "Lịch trình", ""));
-        arrayList.add(new FunctionInSession(iconPaper, "Bài báo", "16"));
-        arrayList.add(new FunctionInSession(iconDownload, "Tải tài liệu liên quan", "10"));
-        arrayList.add(new FunctionInSession(iconSchedule, "Người tham dự", "300"));
+        arrayList.add(new FunctionInSession(R.drawable.ic_calendar_menu, "Lịch trình", ""));
+        arrayList.add(new FunctionInSession(R.drawable.ic_paper, "Bài báo", "16"));
+        arrayList.add(new FunctionInSession(R.drawable.ic_download, "Tải tài liệu liên quan", "10"));
+        arrayList.add(new FunctionInSession(R.drawable.ic_teamwork, "Người tham dự", "300"));
 
         adapterFunc = new ListFunctionInConferenceSessionAdapter(getApplicationContext(), arrayList);
         lsFunc.setAdapter(adapterFunc);

@@ -6,13 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 
 import java.util.ArrayList;
 
@@ -37,7 +35,12 @@ public class DownloadDocumentFragment extends android.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_download_document, container, false);
         setUp(view);
         setHasOptionsMenu(true);
+        initUI();
         return view;
+    }
+
+    private void initUI() {
+        getActivity().setTitle(R.string.title_download_documents);
     }
 
     public void setUp(View view) {
