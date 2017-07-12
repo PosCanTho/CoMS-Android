@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,8 @@ import cse.duytan.coms.adapters.HomeAdapter;
  */
 public class HomeFragment extends android.app.Fragment {
 
-
+    private TextView tvNameAccount, tvLocation, tvDate;
+    private ArrayList<String> listData;
     public HomeFragment() {
     }
 
@@ -28,21 +30,15 @@ public class HomeFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
         //getActivity().setTitle("Lịch trình");
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        initUI(view);
+        loadData();
         setUp(view);
         setHasOptionsMenu(true);
-        initUI();
         return view;
     }
 
-    private void initUI() {
-        getActivity().setTitle(R.string.title_home);
-    }
-
-
-    private void setUp(View view) {
-        HomeAdapter homeAdapter;
-        ListView list = (ListView) view.findViewById(R.id.lsHome);
-        ArrayList<String> listData = new ArrayList<>();
+    private void loadData() {
+        listData = new ArrayList<>();
         listData.add("1");
         listData.add("2");
         listData.add("1");
@@ -50,6 +46,19 @@ public class HomeFragment extends android.app.Fragment {
         listData.add("1");
         listData.add("1");
         listData.add("1");
+    }
+
+    private void initUI(View view) {
+        getActivity().setTitle(R.string.title_home);
+        tvNameAccount = (TextView) view.findViewById(R.id.tv_name_acccount_home);
+        tvLocation = (TextView) view.findViewById(R.id.tv_location_home);
+        tvDate = (TextView) view.findViewById(R.id.tv_date_home);
+    }
+
+    private void setUp(View view) {
+        HomeAdapter homeAdapter;
+        ListView list = (ListView) view.findViewById(R.id.lsHome);
+
         homeAdapter = new HomeAdapter(getActivity(), listData);
         list.setAdapter(homeAdapter);
     }
