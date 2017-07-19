@@ -11,6 +11,7 @@ public interface Constants {
     /*Config*/
     boolean IS_DEBUG = true;
     String TAG = "OKE";
+    String URL_SERVER = "http://192.168.1.10:8888/api/";
     /*End Config*/
 
     String MESSAGE = "message";
@@ -23,4 +24,13 @@ public interface Constants {
     int ID_DIALOG_CONFIRM_YES = Utils.PROCESS++;
     int ID_DIALOG_CONFIRM_CANCEL = Utils.PROCESS++;
     int ID_DIALOG_CONFIRM_OKE = Utils.PROCESS++;
+
+    /*ID API*/
+    int ID_API_LOGIN = Utils.PROCESS++;
+    int ID_API_REGISTER = Utils.PROCESS++;
+
+    /*URL STRING*/
+    String API_LOGIN = URL_SERVER+"Login";
+    String API_REGISTER = URL_SERVER+"Register";
+
 }

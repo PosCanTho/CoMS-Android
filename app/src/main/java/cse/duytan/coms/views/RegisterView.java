@@ -7,4 +7,6 @@ package cse.duytan.coms.views;
  */
 
 public interface RegisterView {
+    void error(String msg);
+    void success();
 }

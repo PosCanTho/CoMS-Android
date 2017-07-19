@@ -1,8 +1,13 @@
 package cse.duytan.coms.connections;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -37,10 +42,15 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
     private DownloadAsyncTask() {
     }
 
-    public static <T> T GET(final Context context, final int processId, String url, final Class<T> type, boolean showDialog, final DownloadCallback downloadCallback) {
+    public static <T> T GET(@NonNull final Context context, @NonNull final int processId, @NonNull String url, final Class<T> type, boolean showDialog, @NonNull final DownloadCallback downloadCallback) {
         try {
             if (!Utils.isConnectionAvailable(context)) {
-                downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_no_internet));
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_no_internet));
+                    }
+                });
                 return null;
             }
             processDialog = new ProcessDialog(context);
@@ -54,7 +64,7 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_an_has_occurred));
+                    showError(context, processId, downloadCallback);
                     DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.toString());
                 }
 
@@ -63,15 +73,14 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                     processDialog.dismiss();
                     if (response.isSuccessful()) {
                         try {
-                            String json = response.body().string();
-                            String data = json.substring(0, json.length() - 10);
-                            DebugLog.logD(TAG, "DOWNLOAD_RESPONSE: " + data);
-                            downloadCallback.downloadSuccess(processId, new Gson().fromJson(data, type));
+                            final String json = response.body().string();
+                            DebugLog.logD(TAG, "DOWNLOAD_RESPONSE: " + json);
+                            jsonParser(context, json, processId, downloadCallback, type);
                         } catch (Exception e) {
                             DebugLog.logD(TAG, "DOWNLOAD_PARSER_ERROR: " + e.toString() + " (Dữ liệu trả về không giống với đối tượng truyền vào)");
                         }
                     } else {
-                        downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_an_has_occurred));
+                        showError(context, processId, downloadCallback);
                         DebugLog.logD(TAG, "DOWNLOAD_ONRESPONE: " + response.message() + " (Truyền sai tham số)");
                     }
                 }
@@ -84,10 +93,15 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
         }
     }
 
-    public static <T> T POST(final Context context, final int processId, final String url, String body, final Class<T> type, boolean showDialog, final DownloadCallback downloadCallback) {
+    public static <T> T POST(@NonNull final Context context, @NonNull final int processId, @NonNull final String url, String body, final Class<T> type, boolean showDialog, @NonNull final DownloadCallback downloadCallback) {
         try {
             if (!Utils.isConnectionAvailable(context)) {
-                downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_no_internet));
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_no_internet));
+                    }
+                });
                 return null;
             }
             processDialog = new ProcessDialog(context);
@@ -95,12 +109,12 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
             DebugLog.logD(TAG, "URL_REQUEST: " + url);
             client = new OkHttpClient();
 
-            MediaType JSON
-                    = MediaType.parse("application/json; charset=utf-8");
+            MediaType JSON = MediaType.parse("application/json; charset=utf-8");
             RequestBody requestBody = RequestBody.create(JSON, body);
             final Request request = new Request.Builder()
                     .url(url)
-                    .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("Accept", "application/json")
                     .post(requestBody)
                     .build();
 
@@ -108,7 +122,7 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_an_has_occurred));
+                    showError(context, processId, downloadCallback);
                     DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.toString());
                 }
 
@@ -117,15 +131,14 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                     processDialog.dismiss();
                     if (response.isSuccessful()) {
                         try {
-                            String json = response.body().string();
-                            String data = json.substring(0, json.length() - 10);
-                            DebugLog.logD(TAG, "DOWNLOAD_RESPONSE: " + data);
-                            downloadCallback.downloadSuccess(processId, new Gson().fromJson(data, type));
+                            final String json = response.body().string();
+                            DebugLog.logD(TAG, "DOWNLOAD_RESPONSE: " + json);
+                            jsonParser(context, json, processId, downloadCallback, type);
                         } catch (Exception e) {
                             DebugLog.logD(TAG, "DOWNLOAD_PARSER_ERROR: " + e.toString() + " (Dữ liệu trả về không giống với đối tượng truyền vào)");
                         }
                     } else {
-                        downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_an_has_occurred));
+                        showError(context, processId, downloadCallback);
                         DebugLog.logD(TAG, "DOWNLOAD_ONRESPONE: " + response.message() + " (Truyền sai tham số)");
                     }
                 }
@@ -138,5 +151,58 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
         }
     }
 
+    private static void showError(final Context context, final int processId, final DownloadCallback downloadCallback) {
+        ((Activity) context).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                downloadCallback.downloadError(processId, context.getString(R.string.msg_sorry_an_has_occurred));
+            }
+        });
+    }
+
+    private static <T> T jsonParser(Context context, String json, final int processId, final DownloadCallback downloadCallback, final Class<T> type) {
+        try {
+            JSONObject mainData = new JSONObject(json);
+            int errorCode = mainData.has("errorCode") ? mainData.getInt("errorCode") : -1;
+            final String message = mainData.has("message") ? mainData.getString("message") : "";
+            final JSONObject dataObs = mainData.isNull("data") ? null : mainData.getJSONObject("data");
+            final JSONArray dataArrs = mainData.isNull("data") ? null : mainData.getJSONArray("data");
+            if (errorCode == 0 && type != null) {
+                if (dataObs != null) {
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadCallback.downloadSuccess(processId, new Gson().fromJson(dataObs.toString(), type));
+                        }
+                    });
+                } else if (dataArrs != null) {
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadCallback.downloadSuccess(processId, new Gson().fromJson(dataObs.toString(), type));
+                        }
+                    });
+                } else {
+                    ((Activity) context).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            downloadCallback.downloadSuccess(processId, message);
+                        }
+                    });
+                }
+            } else {
+                ((Activity) context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        downloadCallback.downloadError(processId, message);
+                    }
+                });
+            }
+        } catch (Exception e) {
+            DebugLog.logD(TAG, e.getMessage());
+            DebugLog.logD(TAG, "PARSER_JSON: " + "JSON trả về không đúng định dạng");
+        }
+        return null;
+    }
 
 }

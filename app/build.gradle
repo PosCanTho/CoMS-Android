@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
+
     defaultConfig {
         applicationId "cse.duytan.coms"
         minSdkVersion 16
@@ -47,5 +48,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'devs.mulham.horizontalcalendar:horizontalcalendar:1.1.7'
     compile 'com.roughike:bottom-bar:2.3.1'
-
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

@@ -29,12 +29,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activities.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden">
+
+        </activity>
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_register"
@@ -103,6 +104,7 @@
             android:windowSoftInputMode="adjustPan">
 
         </activity>
+
         <provider
             android:name=".helpers.GenericFileProvider"
             android:authorities="${applicationId}.my.package.name.provider"
@@ -110,7 +112,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/external_files"/>
+                android:resource="@xml/external_files" />
         </provider>
     </application>
 

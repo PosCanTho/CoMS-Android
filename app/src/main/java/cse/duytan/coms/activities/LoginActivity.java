@@ -20,10 +20,12 @@ import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
 import cse.duytan.coms.models.User;
 import cse.duytan.coms.presenters.LoginPresenter;
+import cse.duytan.coms.untils.Constants;
+import cse.duytan.coms.untils.DebugLog;
 import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.LoginView;
 
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView, Constants {
 
     @BindView(R.id.etUsername)
     EditText etUsername;
@@ -77,28 +79,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void success() {
-        try {
-            JSONObject postData = new JSONObject();
-            postData.put("username", "huynhbadieu");
-            postData.put("password", "UUNpZzQxYXN5VWY4MHIrL0FNN3hIaEtOU0VvPQ==");
-            postData.put("imei", "");
-            DownloadAsyncTask.POST(this, 1, "http://dev.duytan.edu.vn:8075/ConnectService.asmx/Login", postData.toString(), User.class, true, this);
-        } catch (Exception e) {
-        }
+        new ConfirmOkDialog(this, "Success", this).show();
     }
 
     @Override
     public void downloadSuccess(int processId, Object data) {
         super.downloadSuccess(processId, data);
-        User user = (User) data;
-       // Toast.makeText(context, "Hello, "+user.Table.get(0).getUserName(), Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        //  User user = (User) data;
+        // Toast.makeText(context, "Hello, "+user.Table.get(0).getUserName(), Toast.LENGTH_SHORT).show();
+        /// startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override
-    public void downloadError(int processId, String msg) {
+    public void downloadError(int processId, final String msg) {
         super.downloadError(processId, msg);
-        Log.d(TAG, "downloadError: " + msg);
-        // new ConfirmOkDialog(LoginActivity.this, msg, LoginActivity.this).show();
+
     }
 }

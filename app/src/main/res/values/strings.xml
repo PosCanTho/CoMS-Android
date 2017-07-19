@@ -85,6 +85,13 @@
     <string name="msg_are_you_sure_you_want_to_logout">Are you sure you want to logout.</string>
     <string name="msg_permission_denied_to_write_your_external_storage">Permission denied to write your External storage.</string>
     <string name="msg_permission_denied_to_read_your_external_storage">Permission denied to read your External storage.</string>
+    <string name="msg_please_enter_full_name">Please enter full name.</string>
+    <string name="msg_please_enter_email">Please enter email.</string>
+    <string name="msg_please_enter_confirm_password">Please enter confirm password.</string>
+    <string name="msg_email_invalid">Email invalid.</string>
+    <string name="msg_username_must_not_be_less_than_6_characters">Username must not be less than 6 characters.</string>
+    <string name="msg_password_must_not_be_less_than_6_characters">Password must not be less than 6 characters.</string>
+    <string name="msg_confirm_password_incorrect">Confirm password incorrect.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

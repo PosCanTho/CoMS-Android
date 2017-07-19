@@ -30,15 +30,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
 import cse.duytan.coms.dialogs.ChooseAvatarDialog;
+import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.CropImageDialog;
 import cse.duytan.coms.helpers.ScreenHelper;
 import cse.duytan.coms.models.CircleImageView;
+import cse.duytan.coms.presenters.RegisterPresenter;
 import cse.duytan.coms.untils.CircleTransform;
 import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.PopupCalback;
 import cse.duytan.coms.untils.Utils;
+import cse.duytan.coms.views.LoginView;
+import cse.duytan.coms.views.RegisterView;
 
-public class RegisterActivity extends BaseActivity implements Constants, PopupCalback {
+public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @BindView(R.id.ivAvatar)
     CircleImageView ivAvatar;
@@ -65,6 +69,7 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
 
     private static Context context;
     private File fileAvatar;
+    private RegisterPresenter registerPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
                 new ChooseAvatarDialog(this, this).show();
                 break;
             case R.id.btnRegister:
+                onRegister();
                 break;
             case R.id.tvSignin:
                 finish();
@@ -90,6 +96,7 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
     }
 
     private void initUI() {
+        registerPresenter = new RegisterPresenter(this, this);
         btnRegister.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
     }
 
@@ -105,6 +112,15 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         i.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(RegisterActivity.this, getPackageName() + ".my.package.name.provider", fileAvatar));
         startActivityForResult(i, TAKE_PHOTO);
+    }
+
+    private void onRegister() {
+        String fullName = etFullname.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String userName = etUsername.getText().toString().trim();
+        String passWord = etPassword.getText().toString();
+        String confirmPassword = etConfirmPassword.getText().toString();
+        registerPresenter.register(fullName, email, userName, passWord, confirmPassword);
     }
 
     @Override
@@ -155,5 +171,15 @@ public class RegisterActivity extends BaseActivity implements Constants, PopupCa
                 new CropImageDialog(this, SELECT_PHOTO, data.getData(), this).show();
             }
         }
+    }
+
+    @Override
+    public void error(String msg) {
+        new ConfirmOkDialog(context, msg, null).show();
+    }
+
+    @Override
+    public void success() {
+        new ConfirmOkDialog(context, "Success", null).show();
     }
 }

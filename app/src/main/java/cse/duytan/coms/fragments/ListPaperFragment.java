@@ -130,7 +130,7 @@ public class ListPaperFragment extends ListFragment implements View.OnClickListe
                 if(position !=i ){
                     Animation animation2, animation_abs2;
                     View viewrow = listView.getChildAt(i);
-                    View view = (View) listView.getAdapter().getView(i, viewrow, listView);//listView.getChildAt(i);
+                    View view = listView.getAdapter().getView(i, viewrow, listView);//listView.getChildAt(i);
                     LinearLayout ln2 = (LinearLayout)view.findViewById(R.id.ln_list_paper);
                     LinearLayout ln_func2 = (LinearLayout)view.findViewById(R.id.ln_listfunc_paper);
                     LinearLayout ln_row_abstract2 = (LinearLayout) view.findViewById(R.id.row_paper);

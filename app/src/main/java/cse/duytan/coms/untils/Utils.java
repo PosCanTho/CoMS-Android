@@ -30,6 +30,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Pham Van Thien on 6/15/2017.
@@ -198,11 +200,7 @@ public class Utils implements Constants {
             final NetworkInfo mobile = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
             if (wifi.isAvailable() && wifi.isConnected()) {
                 return true;
-            } else if (mobile.isAvailable() && mobile.isConnected()) {
-                return true;
-            } else {
-                return false;
-            }
+            } else return mobile.isAvailable() && mobile.isConnected();
 
         } catch (Exception e) {
             //e.printStackTrace();
@@ -210,6 +208,7 @@ public class Utils implements Constants {
         return false;
     }
 
+    /*Lấy ảnh trong drawable*/
     public static Bitmap getBitmapFromVectorDrawable(Context context, int drawableId) {
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -223,6 +222,14 @@ public class Utils implements Constants {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    /*Kiểm tra email có đúng định dạng hay không*/
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
 }
