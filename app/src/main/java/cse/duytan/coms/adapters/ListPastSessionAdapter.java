@@ -96,9 +96,9 @@ public class ListPastSessionAdapter extends BaseAdapter {
         }
 
         public void loadData(PastSession pastSession) {
-            tvName.setText(pastSession.getName());
-            tvTime.setText(pastSession.getTime());
-            tvLocation.setText(pastSession.getLocation());
+           // tvName.setText(pastSession.getName());
+           // tvTime.setText(pastSession.getTime());
+           // tvLocation.setText(pastSession.getLocation());
         }
     }
 }

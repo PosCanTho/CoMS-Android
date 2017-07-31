@@ -33,6 +33,10 @@ public class LoginPresenter extends BasePresenter {
             loginView.error(context.getString(R.string.msg_please_enter_username));
         } else if (password.equals("")) {
             loginView.error(context.getString(R.string.msg_please_enter_password));
+        }else if (username.length() < 6) {
+            loginView.error(context.getString(R.string.msg_username_must_not_be_less_than_6_characters));
+        }else if (password.length() < 6) {
+            loginView.error(context.getString(R.string.msg_password_must_not_be_less_than_6_characters));
         } else {
             try {
                 JSONObject postData = new JSONObject();

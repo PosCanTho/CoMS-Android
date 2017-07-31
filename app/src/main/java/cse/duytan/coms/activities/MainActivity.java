@@ -26,12 +26,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
 import cse.duytan.coms.adapters.MenuAdapter;
 import cse.duytan.coms.customviews.NonScrollListView;
 import cse.duytan.coms.dialogs.ConfirmDialog;
+import cse.duytan.coms.fragments.BookmarkFragment;
 import cse.duytan.coms.fragments.ConferenceFragment;
 import cse.duytan.coms.fragments.HomeFragment;
 import cse.duytan.coms.fragments.ListAbstractFragment;
@@ -73,7 +80,6 @@ public class MainActivity extends BaseActivity {
         toggle.syncState();
         initUI();
         setUpMenu();
-
     }
 
     private void initUI() {
@@ -85,6 +91,8 @@ public class MainActivity extends BaseActivity {
         ivAvatar = (ImageView) navigationView.findViewById(R.id.ivAvatar);
 
         ivAvatar.setOnClickListener(this);
+
+        Log.d(TAG, "TOKEN: "+ FirebaseInstanceId.getInstance().getToken());
     }
 
     private void setUpMenu() {
@@ -93,6 +101,7 @@ public class MainActivity extends BaseActivity {
         listMenu.add(new MenuApp(R.drawable.ic_home, "Trang chủ", "5", new HomeFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new ScheduleFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_conference, "Hội nghị", "16", new ConferenceFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_bookmark_menu, "Đánh dấu", "10", new BookmarkFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_review, "Nhắn tin", "16", new MessageFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_notification, "Thông báo", "16", new NotificationFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
@@ -116,9 +125,9 @@ public class MainActivity extends BaseActivity {
                 } else {
                     if (selectItem == (listMenu.size() - 1)) {
                         new ConfirmDialog(MainActivity.this, getString(R.string.msg_are_you_sure_you_want_to_logout), MainActivity.this).show();
-                    }else if (selectItem == (listMenu.size() - 2)) {
-                        startActivity(new Intent(MainActivity.this, PackageActivity.class));
                     }else if (selectItem == (listMenu.size() - 3)) {
+                        startActivity(new Intent(MainActivity.this, PackageActivity.class));
+                    }else if (selectItem == (listMenu.size() - 4)) {
                         startActivity(new Intent(MainActivity.this, MapActivity.class));
                     }
                 }
@@ -146,7 +155,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         switch (selectItem) {
-            case 3:
+            case 4:
                 getMenuInflater().inflate(R.menu.message_menu, menu);
                 break;
             default:

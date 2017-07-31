@@ -1,5 +1,7 @@
 package cse.duytan.coms.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Pham Van Thien on 6/27/2017.
  * Email: pvthiendeveloper@gmail.com
@@ -7,43 +9,69 @@ package cse.duytan.coms.models;
  */
 
 public class PastSession {
-    private String name;
-    private String time;
-    private String location;
+
+    @SerializedName("ConferenceId")
+    private int conferenceId;
+    @SerializedName("ConferenceName")
+    private String conferenceName;
+    @SerializedName("StartDate")
+    private String startDate;
+    @SerializedName("EndDate")
+    private String endDate;
+    @SerializedName("FacilityName")
+    private String facilityName;
     private boolean isSelected;
 
     public PastSession() {
     }
 
-    public PastSession(String name, String time, String location, boolean isSelected) {
-        this.name = name;
-        this.time = time;
-        this.location = location;
+    public PastSession(int conferenceId, String conferenceName, String startDate, String endDate, String facilityName, boolean isSelected) {
+        this.conferenceId = conferenceId;
+        this.conferenceName = conferenceName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.facilityName = facilityName;
         this.isSelected = isSelected;
     }
 
-    public String getName() {
-        return name;
+    public int getConferenceId() {
+        return conferenceId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setConferenceId(int conferenceId) {
+        this.conferenceId = conferenceId;
     }
 
-    public String getTime() {
-        return time;
+    public String getConferenceName() {
+        return conferenceName;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setConferenceName(String conferenceName) {
+        this.conferenceName = conferenceName;
     }
 
-    public String getLocation() {
-        return location;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getFacilityName() {
+        return facilityName;
+    }
+
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
     }
 
     public boolean isSelected() {

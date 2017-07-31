@@ -106,7 +106,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvName"
             style="@style/tvRed12"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
             style="@style/tvBlack16"
             android:textSize="14sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <Button
             android:id="@+id/btnChonchude_see_abs"
@@ -142,7 +142,7 @@
             android:textAllCaps="false"
             android:background="@drawable/shape_btn_choose_red"
             app:layout_constraintLeft_toRightOf="@+id/txtChude_see_abs"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
         <TextView
             android:id="@+id/txterr_chonchude_send_abs"

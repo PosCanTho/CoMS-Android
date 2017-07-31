@@ -2,33 +2,45 @@ package cse.duytan.coms.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cse.duytan.coms.R;
-import cse.duytan.coms.adapters.RecyclerMessageAdapter;
 import cse.duytan.coms.adapters.RecyclerNewMessageAdapter;
-import cse.duytan.coms.models.Conversation;
+import cse.duytan.coms.customviews.CustomTextView;
+import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.models.Account;
+import cse.duytan.coms.presenters.NewMessagaPresenter;
+import cse.duytan.coms.views.NewMessageView;
 
-public class NewMessageActivity extends BaseActivity implements SearchView.OnQueryTextListener {
+public class NewMessageActivity extends BaseActivity implements SearchView.OnQueryTextListener, NewMessageView {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.tvEmpty)
+    CustomTextView tvEmpty;
+    @BindView(R.id.llEmpty)
+    LinearLayout llEmpty;
+    @BindView(R.id.rlContent)
+    RelativeLayout rlContent;
 
     private SearchView searchView;
     private RecyclerNewMessageAdapter newMessageAdapter;
-    private ArrayList<String> list;
+    private ArrayList<Account> listAccount;
+    private NewMessagaPresenter newMessagaPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +52,21 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
 
     private void initUI() {
         showHomeButton();
-        setRvNewMessageAdp();
+        listAccount = new ArrayList<>();
+        empty(false, "", llEmpty, rlContent, tvEmpty);
+
+        newMessagaPresenter = new NewMessagaPresenter(this, this);
+        newMessagaPresenter.getListAccount();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.new_message_menu, menu);
-        MenuItem item = menu.findItem(R.id.search_view);
-        searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(this);
+        if (!listAccount.isEmpty()) {
+            getMenuInflater().inflate(R.menu.new_message_menu, menu);
+            MenuItem item = menu.findItem(R.id.search_view);
+            searchView = (SearchView) item.getActionView();
+            searchView.setOnQueryTextListener(this);
+        }
         return true;
     }
 
@@ -66,27 +84,21 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     }
 
     private void setRvNewMessageAdp() {
-        list = new ArrayList<>();
-        list.add("Steve Jobs");
-        list.add("Steve Jobs 2");
-        list.add("Steve Jobs 3");
-        list.add("Jack Ma");
-        list.add("Jack Ma 2");
-        list.add("Donald Trump");
-        list.add("Donald Trump 2");
-        list.add("Mark Zuckerberg");
-        list.add("Mark Zuckerberg 2");
-        newMessageAdapter = new RecyclerNewMessageAdapter(this, list);
+        newMessageAdapter = new RecyclerNewMessageAdapter(this, listAccount);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(newMessageAdapter);
+        newMessageAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void adpaterCallback(Object data, int processId, int position) {
         if (processId == R.id.clMain) {
-            startActivity(new Intent(NewMessageActivity.this, ChatActivity.class));
+            Intent i = new Intent(NewMessageActivity.this, ChatActivity.class);
+            i.putExtra("personIdFrom", 1);
+            i.putExtra("personIdTo", listAccount.get(position).getPersonId());
+            startActivity(i);
             finish();
         }
     }
@@ -100,5 +112,26 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     public boolean onQueryTextChange(String newText) {
         newMessageAdapter.search(newText);
         return true;
+    }
+
+    @Override
+    public void success(ArrayList<Account> listAccount) {
+        this.listAccount = listAccount;
+        empty(false, "", llEmpty, rlContent, tvEmpty);
+        setRvNewMessageAdp();
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void error(String msg) {
+        new ConfirmOkDialog(this, msg, null).show();
+        empty(true, msg, llEmpty, rlContent, tvEmpty);
+        invalidateOptionsMenu();
+    }
+
+    @Override
+    public void empty() {
+        empty(true, getString(R.string.msg_no_data_person), llEmpty, rlContent, tvEmpty);
+        invalidateOptionsMenu();
     }
 }

@@ -59,6 +59,7 @@
     <string name="title_change_password">Change password</string>
     <string name="title_profile">Profile</string>
     <string name="title_message">Message</string>
+    <string name="title_bookmark">Bookmark</string>
     <string name="title_package">Package</string>
     <string name="title_checkout">Checkout</string>
     <string name="title_settings">Settings</string>
@@ -92,6 +93,11 @@
     <string name="msg_username_must_not_be_less_than_6_characters">Username must not be less than 6 characters.</string>
     <string name="msg_password_must_not_be_less_than_6_characters">Password must not be less than 6 characters.</string>
     <string name="msg_confirm_password_incorrect">Confirm password incorrect.</string>
+    <string name="msg_add_bookmark_success">Add bookmark success.</string>
+    <string name="msg_delete_bookmark_success">Delete bookmark success.</string>
+    <string name="msg_no_data_yet">No data yet.</string>
+    <string name="msg_no_data_bookmark">No data bookmark.</string>
+    <string name="msg_no_data_person">No data person.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>
