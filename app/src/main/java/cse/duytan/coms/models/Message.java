@@ -10,34 +10,43 @@ import com.google.gson.annotations.SerializedName;
 
 public class Message {
 
-    @SerializedName("CONVERSATION_REPLY_ID")
-    public int conversationReply;
-    @SerializedName("MESSAGE")
-    public String message;
-    @SerializedName("TIME")
-    public String time;
-    @SerializedName("PERSON_ID_FROM")
-    public int personIdFrom;
-    @SerializedName("PERSON_ID_TO")
-    public int personIdTo;
+    @SerializedName("ConversationReplyId")
+    private int conversationReplyId;
+    @SerializedName("Message")
+    private String message;
+    @SerializedName("IsMoreThanOneDay")
+    private boolean isMoreThanOneDay;
+    @SerializedName("IsToDay")
+    private boolean isToDay;
+    @SerializedName("TimeFormat")
+    private String timeFormat;
+    @SerializedName("Time")
+    private String time;
+    @SerializedName("PersonIdFrom")
+    private int personIdFrom;
+    @SerializedName("PersonIdTo")
+    private int personIdTo;
 
     public Message() {
     }
 
-    public Message(int conversationReply, String message, String time, int personIdFrom, int personIdTo) {
-        this.conversationReply = conversationReply;
+    public Message(int conversationReplyId, String message, boolean isMoreThanOneDay, boolean isToDay, String timeFormat, String time, int personIdFrom, int personIdTo) {
+        this.conversationReplyId = conversationReplyId;
         this.message = message;
+        this.isMoreThanOneDay = isMoreThanOneDay;
+        this.isToDay = isToDay;
+        this.timeFormat = timeFormat;
         this.time = time;
         this.personIdFrom = personIdFrom;
         this.personIdTo = personIdTo;
     }
 
-    public int getConversationReply() {
-        return conversationReply;
+    public int getConversationReplyId() {
+        return conversationReplyId;
     }
 
-    public void setConversationReply(int conversationReply) {
-        this.conversationReply = conversationReply;
+    public void setConversationReplyId(int conversationReplyId) {
+        this.conversationReplyId = conversationReplyId;
     }
 
     public String getMessage() {
@@ -46,6 +55,22 @@ public class Message {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isMoreThanOneDay() {
+        return isMoreThanOneDay;
+    }
+
+    public void setMoreThanOneDay(boolean moreThanOneDay) {
+        isMoreThanOneDay = moreThanOneDay;
+    }
+
+    public String getTimeFormat() {
+        return timeFormat;
+    }
+
+    public void setTimeFormat(String timeFormat) {
+        this.timeFormat = timeFormat;
     }
 
     public String getTime() {
@@ -70,5 +95,13 @@ public class Message {
 
     public void setPersonIdTo(int personIdTo) {
         this.personIdTo = personIdTo;
+    }
+
+    public boolean isToDay() {
+        return isToDay;
+    }
+
+    public void setToDay(boolean toDay) {
+        isToDay = toDay;
     }
 }

@@ -1,5 +1,7 @@
 package cse.duytan.coms.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Pham Van Thien on 6/27/2017.
  * Email: pvthiendeveloper@gmail.com
@@ -7,17 +9,33 @@ package cse.duytan.coms.models;
  */
 
 public class Conversation {
+
+
+    @SerializedName("PersonId")
+    private int personId;
+    @SerializedName("Name")
     private String name;
+    @SerializedName("Message")
     private String message;
-    private String avatarUrl;
+    @SerializedName("Image")
+    private String image;
 
     public Conversation() {
     }
 
-    public Conversation(String name, String message, String avatarUrl) {
+    public Conversation(int personId, String name, String message, String image) {
+        this.personId = personId;
         this.name = name;
         this.message = message;
-        this.avatarUrl = avatarUrl;
+        this.image = image;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public String getName() {
@@ -36,11 +54,11 @@ public class Conversation {
         this.message = message;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

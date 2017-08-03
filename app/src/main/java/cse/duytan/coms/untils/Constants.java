@@ -11,7 +11,7 @@ public interface Constants {
     /*Config*/
     boolean IS_DEBUG = true;
     String TAG = "OKE";
-    String URL_SERVER = "http://192.168.1.11:8888/api/";
+    String URL_SERVER = "http://192.168.1.15:8888/api/";
     /*End Config*/
 
     String MESSAGE = "message";
@@ -38,6 +38,8 @@ public interface Constants {
     int ID_API_GET_LIST_ACCOUNT = Utils.PROCESS++;
     int ID_API_SEND_MESSAGE = Utils.PROCESS++;
     int ID_API_LIST_MESSAGE = Utils.PROCESS++;
+    int ID_API_DELETE_ALL_MESSAGE = Utils.PROCESS++;
+    int ID_API_LIST_CONVERSATION = Utils.PROCESS++;
 
     /*URL STRING*/
     String API_LOGIN = URL_SERVER + "Login";
@@ -49,5 +51,7 @@ public interface Constants {
     String API_GET_LIST_ACCOUNT = URL_SERVER + "ListAccount";
     String API_SEND_MESSAGE = URL_SERVER + "SendMessage";
     String API_LIST_MESSAGE = URL_SERVER + "ListMessage";
+    String API_DELETE_ALL_MESSAGE = URL_SERVER + "DeleteAllMessage";
+    String API_LIST_CONVERSATION = URL_SERVER + "ListConversation";
 
 }

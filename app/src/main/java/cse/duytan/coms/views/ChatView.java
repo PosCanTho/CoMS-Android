@@ -13,5 +13,6 @@ import cse.duytan.coms.models.Message;
 public interface ChatView {
     void sendMessageSuccess(Message message);
     void listMessage(ArrayList<Message> listMessage);
+    void deleteAllSuccess();
     void error(String msg);
 }

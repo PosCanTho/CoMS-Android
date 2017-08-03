@@ -49,6 +49,7 @@ import cse.duytan.coms.fragments.ReviewsFragment;
 import cse.duytan.coms.fragments.ReviewsPaperFragment;
 import cse.duytan.coms.fragments.ScheduleFragment;
 import cse.duytan.coms.fragments.SettingsFragment;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.MenuApp;
 import cse.duytan.coms.views.MainView;
 
@@ -83,6 +84,18 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initUI() {
+        Intent i = getIntent();
+        if(i != null){
+            Bundle bundle = i.getExtras();
+            if(bundle != null){
+                Log.d(TAG, "initUI: "+bundle.getInt("personIdFrom", -1));
+            }else{
+                Log.d(TAG, "initUI: Bul null");
+
+            }
+        }else{
+            Log.d(TAG, "initUI: NULL");
+        }
         fragmentManager =  getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         switchFragment(new HomeFragment());
@@ -135,6 +148,7 @@ public class MainActivity extends BaseActivity {
             }
         });
     }
+
 
     private void switchFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();

@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 import cse.duytan.coms.R;
 import cse.duytan.coms.models.Conversation;
+import cse.duytan.coms.models.Message;
 import cse.duytan.coms.untils.AdapterCallback;
+import cse.duytan.coms.untils.Constants;
 
 /**
  * Created by Pham Van Thien on 6/27/2017.
@@ -37,13 +39,13 @@ public class RecyclerMessageAdapter extends RecyclerView.Adapter<RecyclerMessage
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final Conversation message = listMessage.get(position);
-        holder.tvName.setText(message.getName());
-        holder.tvMessage.setText(message.getMessage());
+        final Conversation conversation = listMessage.get(position);
+        holder.tvName.setText(conversation.getName());
+        holder.tvMessage.setText(conversation.getMessage());
         holder.clMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapterCallback.adpaterCallback(message, R.id.clMain, position);
+                adapterCallback.adpaterCallback(conversation, R.id.clMain, position);
             }
         });
     }

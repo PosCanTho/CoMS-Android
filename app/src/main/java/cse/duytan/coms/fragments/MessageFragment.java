@@ -1,18 +1,16 @@
 package cse.duytan.coms.fragments;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -21,10 +19,12 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cse.duytan.coms.R;
 import cse.duytan.coms.activities.ChatActivity;
-import cse.duytan.coms.activities.MainActivity;
 import cse.duytan.coms.adapters.RecyclerMessageAdapter;
+import cse.duytan.coms.customviews.CustomTextView;
+import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.models.Conversation;
-import cse.duytan.coms.views.MainView;
+import cse.duytan.coms.presenters.MessagePresenter;
+import cse.duytan.coms.views.MessageView;
 
 /**
  * Created by Pham Van Thien on 6/27/2017.
@@ -32,14 +32,22 @@ import cse.duytan.coms.views.MainView;
  * Phone: 0979477093
  */
 
-public class MessageFragment extends BaseFragment{
+public class MessageFragment extends BaseFragment implements MessageView {
     @BindView(R.id.rvMessage)
     RecyclerView rvMessage;
     Unbinder unbinder;
+    @BindView(R.id.tvEmpty)
+    CustomTextView tvEmpty;
+    @BindView(R.id.llEmpty)
+    LinearLayout llEmpty;
+    @BindView(R.id.rlContent)
+    RelativeLayout rlContent;
 
     private View v;
     private RecyclerMessageAdapter messageAdapter;
     private ArrayList<Conversation> listMessage;
+    private MessagePresenter messagePresenter;
+    private int personId = 1;
 
     @Nullable
     @Override
@@ -52,7 +60,8 @@ public class MessageFragment extends BaseFragment{
 
     private void initUI() {
         getActivity().setTitle(R.string.title_message);
-
+        messagePresenter = new MessagePresenter(getActivity(), this);
+        messagePresenter.getListConversation(personId);
         setRvMessageAdp();
     }
 
@@ -64,9 +73,6 @@ public class MessageFragment extends BaseFragment{
 
     private void setRvMessageAdp() {
         listMessage = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            listMessage.add(new Conversation("Steve Jobs " + i, "Do you want iphone 8.", ""));
-        }
         messageAdapter = new RecyclerMessageAdapter(listMessage, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvMessage.setLayoutManager(mLayoutManager);
@@ -77,7 +83,23 @@ public class MessageFragment extends BaseFragment{
     @Override
     public void adpaterCallback(Object data, int processId, int position) {
         if (processId == R.id.clMain) {
-            startActivity(new Intent(getActivity(), ChatActivity.class));
+            Conversation conversation = (Conversation) data;
+            Intent i = new Intent(getActivity(), ChatActivity.class);
+            i.putExtra("personIdFrom", personId);
+            i.putExtra("personIdTo", conversation.getPersonId());
+            i.putExtra("name", conversation.getName());
+            startActivity(i);
         }
+    }
+
+    @Override
+    public void onSuccess(ArrayList<Conversation> list) {
+        listMessage.addAll(list);
+        messageAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void error(String msg) {
+        new ConfirmOkDialog(getActivity(), msg, null).show();
     }
 }

@@ -16,7 +16,7 @@ import cse.duytan.coms.views.ChatView;
  * Phone: 0979477093
  */
 
-public class ChatPresenter extends BasePresenter {
+public class ChatPresenter extends BasePresenter  {
     private Context context;
     private ChatView chatView;
 
@@ -25,8 +25,17 @@ public class ChatPresenter extends BasePresenter {
         this.chatView = chatView;
     }
 
-    public void getListMessage(int personId) {
-        DownloadAsyncTask.GET(context, ID_API_LIST_MESSAGE, API_LIST_MESSAGE, Message.class, false, this);
+    public void getListMessage(int personIdFrom, int personIdTo, int page, int pageSize) {
+        try {
+            JSONObject postData = new JSONObject();
+            postData.put("Page", page);
+            postData.put("PageSize", pageSize);
+            postData.put("PersonIdFrom", personIdFrom);
+            postData.put("PersonIdTo", personIdTo);
+            DownloadAsyncTask.POST(context, ID_API_LIST_MESSAGE, API_LIST_MESSAGE, postData.toString(), Message.class, false, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void sendMessage(String msg, int personIdFrom, int personIdTo, String sound, String priority) {
@@ -41,8 +50,19 @@ public class ChatPresenter extends BasePresenter {
             data.put("PersonIdTo", personIdTo);
 
             postData.put("data", data);
-            DownloadAsyncTask.POST(context, ID_API_SEND_MESSAGE, API_SEND_MESSAGE, postData.toString(), null, true, this);
+            DownloadAsyncTask.POST(context, ID_API_SEND_MESSAGE, API_SEND_MESSAGE, postData.toString(), Message.class, false, this);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAllMessage(int personIdDelete, int personIdFrom, int personIdTo) {
+        try {
+            JSONObject postData = new JSONObject();
+            postData.put("PersonIdFrom", personIdFrom);
+            postData.put("PersonIdTo", personIdTo);
+            DownloadAsyncTask.POST(context, ID_API_DELETE_ALL_MESSAGE, API_DELETE_ALL_MESSAGE + "?personIdDelete=" + personIdDelete, postData.toString(), Message.class, true, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,6 +75,8 @@ public class ChatPresenter extends BasePresenter {
             chatView.listMessage((ArrayList<Message>) data);
         } else if (processId == ID_API_SEND_MESSAGE) {
             chatView.sendMessageSuccess((Message) data);
+        } else if (processId == ID_API_DELETE_ALL_MESSAGE) {
+            chatView.deleteAllSuccess();
         }
     }
 

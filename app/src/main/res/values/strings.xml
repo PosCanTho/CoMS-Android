@@ -98,6 +98,7 @@
     <string name="msg_no_data_yet">No data yet.</string>
     <string name="msg_no_data_bookmark">No data bookmark.</string>
     <string name="msg_no_data_person">No data person.</string>
+    <string name="msg_are_you_sure_you_want_to_delete_all_message">Are you sure you want to delete all message.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>
@@ -141,6 +142,31 @@
     <string name="tab_feedback">Feedback</string>
     <string name="tab_reject">reject</string>
     <string name="tab_accept">Accept</string>
+
+    <!-- Date Util -->
+    <string name="date_util_term_less">less than</string>
+    <string name="date_util_term_a">a</string>
+    <string name="date_util_term_an">an</string>
+
+    <string name="date_util_unit_second">second</string>
+    <string name="date_util_unit_seconds">seconds</string>
+    <string name="date_util_unit_minute">minute</string>
+    <string name="date_util_unit_minutes">minutes</string>
+    <string name="date_util_unit_hour">hour</string>
+    <string name="date_util_unit_hours">hours</string>
+    <string name="date_util_unit_day">day</string>
+    <string name="date_util_unit_days">days</string>
+    <string name="date_util_unit_month">month</string>
+    <string name="date_util_unit_months">months</string>
+    <string name="date_util_unit_year">year</string>
+    <string name="date_util_unit_years">years</string>
+
+    <string name="date_util_prefix_lt">less than a</string>
+    <string name="date_util_prefix_about">about</string>
+    <string name="date_util_prefix_over">over</string>
+    <string name="date_util_prefix_almost">almost</string>
+
+    <string name="date_util_suffix">ago</string>
     <!--END THIEN-->
 
     <!-- dũng -->

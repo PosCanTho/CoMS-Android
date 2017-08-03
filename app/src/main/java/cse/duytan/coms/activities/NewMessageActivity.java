@@ -98,6 +98,7 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
             Intent i = new Intent(NewMessageActivity.this, ChatActivity.class);
             i.putExtra("personIdFrom", 1);
             i.putExtra("personIdTo", listAccount.get(position).getPersonId());
+            i.putExtra("name", listAccount.get(position).getName());
             startActivity(i);
             finish();
         }

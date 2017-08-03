@@ -11,11 +11,11 @@ import com.google.gson.annotations.SerializedName;
 public class Account {
 
     @SerializedName("PersonId")
-    public int personId;
+    private int personId;
     @SerializedName("Name")
-    public String name;
+    private String name;
     @SerializedName("Image")
-    public String image;
+    private String image;
 
     public Account() {
     }

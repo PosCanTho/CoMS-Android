@@ -9,9 +9,13 @@ import java.util.List;
 
 import cse.duytan.coms.R;
 import cse.duytan.coms.connections.DownloadAsyncTask;
+import cse.duytan.coms.connections.DownloadCallback;
 import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.DebugLog;
 import cse.duytan.coms.views.LoginView;
+
+import static cse.duytan.coms.untils.Constants.API_LOGIN;
+import static cse.duytan.coms.untils.Constants.ID_API_LOGIN;
 
 /**
  * Created by Pham Van Thien on 6/15/2017.
@@ -33,9 +37,9 @@ public class LoginPresenter extends BasePresenter {
             loginView.error(context.getString(R.string.msg_please_enter_username));
         } else if (password.equals("")) {
             loginView.error(context.getString(R.string.msg_please_enter_password));
-        }else if (username.length() < 6) {
+        } else if (username.length() < 6) {
             loginView.error(context.getString(R.string.msg_username_must_not_be_less_than_6_characters));
-        }else if (password.length() < 6) {
+        } else if (password.length() < 6) {
             loginView.error(context.getString(R.string.msg_password_must_not_be_less_than_6_characters));
         } else {
             try {
