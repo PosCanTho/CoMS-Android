@@ -18,7 +18,7 @@ import cse.duytan.coms.R;
 
 public class DateTimeFormater {
     public static final String HH_MM = "HH:mm";
-    public static final String HH_MM_DD_MM_YY = "HH:mm dd/MM/yyyy";
+    public static final String HH_MM_DD_MM_YY = "HH:mm dd/MM/yyyy";//
 
     public static String stringToTime(String dateTime, String outFormat) {
         try {
