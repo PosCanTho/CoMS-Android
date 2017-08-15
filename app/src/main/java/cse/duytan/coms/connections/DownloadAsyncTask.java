@@ -176,9 +176,9 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
     private static <T> T jsonParser(Context context, String json, final int processId, final DownloadCallback downloadCallback, final Class<T> type) {
         try {
             JSONObject mainData = new JSONObject(json);
-            int errorCode = mainData.has("errorCode") ? mainData.getInt("errorCode") : -1;
-            final String message = mainData.has("message") ? mainData.getString("message") : "";
-            final Object data = mainData.isNull("data") ? null : mainData.get("data");
+            int errorCode = mainData.has(ERROR_CODE) ? mainData.getInt(ERROR_CODE) : -1;
+            final String message = mainData.has(MESSAGE) ? mainData.getString(MESSAGE) : "";
+            final Object data = mainData.isNull(DATA) ? null : mainData.get(DATA);
             if (errorCode == 0) {
                 if (data != null && data instanceof JSONObject && type != null) {
                     ((Activity) context).runOnUiThread(new Runnable() {
