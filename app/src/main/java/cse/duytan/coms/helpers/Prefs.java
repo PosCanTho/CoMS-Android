@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import cse.duytan.coms.activities.CoMSApplication;
 import cse.duytan.coms.models.Account;
 import cse.duytan.coms.models.ChatPrefs;
+import cse.duytan.coms.models.Token;
 
 /**
  * Created by Pham Van Thien on 6/15/2017.
@@ -24,6 +25,7 @@ public class Prefs {
     private static final String PREFERENCE_ENGLISH = "pref.English";
     private static final String PREFERENCE_ACCOUNT = "pref.Account";
     private static final String PREFERENCE_CHAT_PREFS = "pref.ChatPrefs";
+    private static final String PREFERENCE_TOKEN = "pref.Token";
 
     private static SharedPreferences getPrefs() {
         return CoMSApplication.getInstance().getSharedPreferences(PREFERENCES_HELPER, Context.MODE_PRIVATE);
@@ -73,6 +75,18 @@ public class Prefs {
         String obs = getPrefs().getString(PREFERENCE_CHAT_PREFS, "");
         if (!TextUtils.isEmpty(obs)) {
             return new Gson().fromJson(obs, ChatPrefs.class);
+        }
+        return null;
+    }
+
+    public static void setToken(Token token) {
+        getPrefs().edit().putString(PREFERENCE_TOKEN, new Gson().toJson(token, Token.class)).commit();
+    }
+
+    public static Token getToken() {
+        String obs = getPrefs().getString(PREFERENCE_TOKEN, "");
+        if (!TextUtils.isEmpty(obs)) {
+            return new Gson().fromJson(obs, Token.class);
         }
         return null;
     }

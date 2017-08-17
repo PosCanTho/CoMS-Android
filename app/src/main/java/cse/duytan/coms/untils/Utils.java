@@ -27,6 +27,7 @@ import android.widget.TextView;
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -232,4 +233,9 @@ public class Utils implements Constants {
         return matcher.matches();
     }
 
+    /*Chuyển số thành kiểu tiền VND*/
+    public static String formatPrice(long price){
+        DecimalFormat format = new DecimalFormat("###,###,###");
+        return format.format(price);
+    }
 }

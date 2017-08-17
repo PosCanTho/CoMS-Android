@@ -14,4 +14,5 @@ import cse.duytan.coms.models.Message;
 public interface MessageView {
     void onSuccess(ArrayList<Conversation> list);
     void error(String msg);
+    void empty();
 }

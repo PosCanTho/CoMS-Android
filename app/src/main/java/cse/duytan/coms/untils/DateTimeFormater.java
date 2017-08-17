@@ -18,11 +18,26 @@ import cse.duytan.coms.R;
 
 public class DateTimeFormater {
     public static final String HH_MM = "HH:mm";
-    public static final String HH_MM_DD_MM_YY = "HH:mm dd/MM/yyyy";//
+    public static final String HH_MM_DD_MM_YY = "HH:mm dd/MM/yyyy";
+    public static final String DD_MM_YY = "dd/MM/yyyy";
+    public static final String YYYY_MM_DD_T_HH_MM_SS_SSS = "yyyy-MM-dd'T'HH:mm:ss.SSS";
+    public static final String YYYY_MM_DD_T_HH_MM_SS_SS = "yyyy-MM-dd'T'HH:mm:ss";
+    public static final String HH_DD_DD_MM_YYYY = "hh:mm dd-MM-yyyy";
+    public static final String MMMMM_DD_YY = "EE, dd-MM-yy";
 
     public static String stringToTime(String dateTime, String outFormat) {
         try {
-            Date date = DateTimeFormater.stringToDate(dateTime);
+            Date date = DateTimeFormater.stringToDate(dateTime, YYYY_MM_DD_T_HH_MM_SS_SSS);
+            return dateToTime(date, outFormat);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public static String stringToTime(String dateTime, String inputFormat, String outFormat) {
+        try {
+            Date date = DateTimeFormater.stringToDate(dateTime, inputFormat);
             return dateToTime(date, outFormat);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,8 +58,8 @@ public class DateTimeFormater {
     }
 
     /*Chuyển chuỗi thành ngày*/
-    public static Date stringToDate(String time) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    public static Date stringToDate(String time, String inputFormat) {
+        SimpleDateFormat format = new SimpleDateFormat(inputFormat);
         try {
             Date date = format.parse(time);
             return date;

@@ -31,7 +31,12 @@ public class MessagePresenter extends BasePresenter {
     @Override
     public void downloadSuccess(int processId, Object data) {
         super.downloadSuccess(processId, data);
-        messageView.onSuccess((ArrayList<Conversation>)data);
+        ArrayList<Conversation> list = (ArrayList<Conversation>)data;
+        if(list.isEmpty()){
+            messageView.empty();
+        }else{
+            messageView.onSuccess(list);
+        }
     }
 
     @Override

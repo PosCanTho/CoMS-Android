@@ -1,10 +1,9 @@
 package cse.duytan.coms.activities;
 
-import android.graphics.Bitmap;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +11,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,7 +26,6 @@ import cse.duytan.coms.adapters.ListPopupWindownAdapter;
 import cse.duytan.coms.adapters.RecyclerPaymentAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.models.PaymentMethod;
-import cse.duytan.coms.untils.AdapterCallback;
 import cse.duytan.coms.untils.Utils;
 
 public class CheckoutActivity extends BaseActivity {
@@ -59,6 +56,8 @@ public class CheckoutActivity extends BaseActivity {
     EditText etCard3;
     @BindView(R.id.etCard4)
     EditText etCard4;
+    @BindView(R.id.tvName)
+    CustomTextView tvName;
 
     private ListPopupWindownAdapter roleAdapter, monthAdapter, yearAdapter;
     private ListPopupWindow popupYear, popupRole, popupMonth;
@@ -66,6 +65,12 @@ public class CheckoutActivity extends BaseActivity {
 
     private RecyclerPaymentAdapter paymentAdapter;
     private ArrayList<PaymentMethod> listPayment;
+
+    /*Intent truyền qua*/
+    private String name;
+    private int packageId;
+    private int price;
+    private String uomName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,8 @@ public class CheckoutActivity extends BaseActivity {
 
     private void initUI() {
         Utils.getChangeFont(this, clMain, R.string.font_nunito_regular);
+        tvTotal.setTypeface(Utils.getFonts(this,R.string.font_nunito_bold));
+        getMyIntent();
 
         etCard1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,20 +140,16 @@ public class CheckoutActivity extends BaseActivity {
         setTvYearAdp();
     }
 
-    @OnClick({R.id.tvRole, R.id.tvMonth, R.id.tvYear, R.id.btnConfirm})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tvRole:
-                popupRole.show();
-                break;
-            case R.id.tvMonth:
-                popupMonth.show();
-                break;
-            case R.id.tvYear:
-                popupYear.show();
-                break;
-            case R.id.btnConfirm:
-                break;
+    private void getMyIntent() {
+        Intent i = getIntent();
+        if (i != null) {
+            name = i.getStringExtra("name");
+            packageId = i.getIntExtra("packageId", -1);
+            price = i.getIntExtra("price", 0);
+            uomName = i.getStringExtra("uomName");
+
+            tvName.setText(getString(R.string.lbl_package_name) + ": " + name);
+            tvTotal.setText(Utils.formatPrice(price) + " " + uomName);
         }
     }
 
@@ -212,6 +215,23 @@ public class CheckoutActivity extends BaseActivity {
         });
     }
 
+    @OnClick({R.id.tvRole, R.id.tvMonth, R.id.tvYear, R.id.btnConfirm})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvRole:
+                popupRole.show();
+                break;
+            case R.id.tvMonth:
+                popupMonth.show();
+                break;
+            case R.id.tvYear:
+                popupYear.show();
+                break;
+            case R.id.btnConfirm:
+                break;
+        }
+    }
+
     @Override
     public void adpaterCallback(Object data, int processId, int position) {
         super.adpaterCallback(data, processId, position);
@@ -219,7 +239,7 @@ public class CheckoutActivity extends BaseActivity {
             PaymentMethod item = (PaymentMethod) data;
             int size = listPayment.size();
             for (int i = 0; i < size; i++) {
-                if (i != position){
+                if (i != position) {
                     listPayment.get(i).setSelected(false);
                 }
             }

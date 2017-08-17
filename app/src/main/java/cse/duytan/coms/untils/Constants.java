@@ -40,6 +40,8 @@ public interface Constants {
     int ID_API_LIST_MESSAGE = Utils.PROCESS++;
     int ID_API_DELETE_ALL_MESSAGE = Utils.PROCESS++;
     int ID_API_LIST_CONVERSATION = Utils.PROCESS++;
+    int ID_API_LIST_PACKAGE = Utils.PROCESS++;
+    int ID_API_GET_TOKEN = Utils.PROCESS++;
 
     /*URL STRING*/
     String API_LOGIN = URL_SERVER + "Login";
@@ -53,5 +55,7 @@ public interface Constants {
     String API_LIST_MESSAGE = URL_SERVER + "ListMessage";
     String API_DELETE_ALL_MESSAGE = URL_SERVER + "DeleteAllMessage";
     String API_LIST_CONVERSATION = URL_SERVER + "ListConversation";
+    String API_LIST_PACKAGE = URL_SERVER + "ListPackage";
+    String API_GET_TOKEN = URL_SERVER + "token";
 
 }

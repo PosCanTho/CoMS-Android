@@ -27,6 +27,7 @@ import cse.duytan.coms.adapters.ListChatAdapter;
 import cse.duytan.coms.customviews.CustomEditText;
 import cse.duytan.coms.dialogs.ConfirmDialog;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.models.Message;
 import cse.duytan.coms.presenters.ChatPresenter;
 import cse.duytan.coms.views.ChatView;
@@ -138,6 +139,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
                 startActivity(new Intent(ChatActivity.this, ProfileActivity.class));
                 break;
             case android.R.id.home:
+                postEvent(new EventBusInfo(ID_EVENT_REFRESH));
                 finish();
                 break;
             default:

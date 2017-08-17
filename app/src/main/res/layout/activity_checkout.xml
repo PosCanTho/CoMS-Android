@@ -13,10 +13,21 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/clMain"
         android:layout_width="match_parent"
-
         android:layout_height="match_parent"
         android:background="@color/white"
         tools:context="cse.duytan.coms.activities.CheckoutActivity">
+
+        <cse.duytan.coms.customviews.CustomTextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/lbl_package_name"
+            style="@style/tvBlack16"
+            app:typeFace="@string/font_nunito_regular"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <cse.duytan.coms.customviews.CustomTextView
             android:id="@+id/textView36"
@@ -24,10 +35,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/lbl_total"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
             app:typeFace="@string/font_nunito_regular" />
 
         <cse.duytan.coms.customviews.CustomTextView
@@ -49,6 +60,7 @@
             style="@style/tvBlack16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="16dp"
             android:text="@string/lbl_select_your_payment_method"
             app:layout_constraintLeft_toLeftOf="@+id/textView36"
@@ -329,6 +341,7 @@
             app:layout_constraintLeft_toLeftOf="@+id/clPaymentMethod"
             app:layout_constraintRight_toRightOf="@+id/clPaymentMethod"
             app:layout_constraintTop_toBottomOf="@+id/clPaymentMethod" />
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

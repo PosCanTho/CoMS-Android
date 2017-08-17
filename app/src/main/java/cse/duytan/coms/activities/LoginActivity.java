@@ -18,6 +18,8 @@ import cse.duytan.coms.R;
 import cse.duytan.coms.connections.DownloadAsyncTask;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
+import cse.duytan.coms.helpers.Prefs;
+import cse.duytan.coms.models.Token;
 import cse.duytan.coms.models.User;
 import cse.duytan.coms.presenters.LoginPresenter;
 import cse.duytan.coms.untils.Constants;
@@ -68,6 +70,7 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
 
     private void initUI() {
         loginPresenter = new LoginPresenter(this, this);
+        loginPresenter.checkIsLogin();
         btnSignin.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
     }
 
@@ -79,20 +82,8 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
 
     @Override
     public void success() {
-        new ConfirmOkDialog(this, "Success", this).show();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
-    @Override
-    public void downloadSuccess(int processId, Object data) {
-        super.downloadSuccess(processId, data);
-        //  User user = (User) data;
-        // Toast.makeText(context, "Hello, "+user.Table.get(0).getUserName(), Toast.LENGTH_SHORT).show();
-        /// startActivity(new Intent(LoginActivity.this, MainActivity.class));
-    }
-
-    @Override
-    public void downloadError(int processId, final String msg) {
-        super.downloadError(processId, msg);
-
-    }
 }

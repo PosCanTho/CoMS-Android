@@ -194,6 +194,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void popupCalback(int processId, Object data) {
         if (processId == ID_DIALOG_CONFIRM_YES) {
+            Prefs.setToken(null);
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
             finish();
         }

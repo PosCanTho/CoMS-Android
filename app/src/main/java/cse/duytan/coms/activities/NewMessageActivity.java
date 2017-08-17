@@ -23,6 +23,7 @@ import cse.duytan.coms.adapters.RecyclerNewMessageAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.models.Account;
+import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.presenters.NewMessagaPresenter;
 import cse.duytan.coms.views.NewMessageView;
 
@@ -75,6 +76,7 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
+                postEvent(new EventBusInfo(ID_EVENT_REFRESH));
                 finish();
                 break;
             default:

@@ -50,6 +50,9 @@
     <string name="lbl_conference_name">Đề xuất những sáng kiến về Ung thư và Y học tái tạo</string>
     <string name="lbl_field_of_study">Field of Study</string>
     <string name="lbl_type_of_study">Type of Study</string>
+    <string name="lbl_from_date">From date</string>
+    <string name="lbl_thru_date">Thru date</string>
+    <string name="lbl_package_name">Package name</string>
 
     <!--Title-->
     <string name="title_forgot_password">Forgot password</string>
@@ -99,6 +102,10 @@
     <string name="msg_no_data_bookmark">No data bookmark.</string>
     <string name="msg_no_data_person">No data person.</string>
     <string name="msg_are_you_sure_you_want_to_delete_all_message">Are you sure you want to delete all message.</string>
+    <string name="msg_no_data_message">No data message.</string>
+    <string name="msg_no_data_package">No data package.</string>
+    <string name="msg_please_log_in_again">Please sign in again.</string>
+    <string name="msg_connection_timed_please_log_in_again">Connection timed. Please login again.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

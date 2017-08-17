@@ -76,12 +76,6 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
         rvBookmark.setAdapter(bookmarkAdapter);
     }
 
-    private void empty(String msg) {
-        rvBookmark.setVisibility(View.GONE);
-        llEmpty.setVisibility(View.VISIBLE);
-        tvEmpty.setText(msg);
-    }
-
     @Override
     public void onEvent(EventBusInfo eventBusInfo) {
         super.onEvent(eventBusInfo);
@@ -116,7 +110,7 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(getActivity(), msg, null).show();
-        empty(true, getString(R.string.msg_sorry_no_internet), llEmpty, rlContent, tvEmpty);
+        empty(true, msg, llEmpty, rlContent, tvEmpty);
 
     }
 

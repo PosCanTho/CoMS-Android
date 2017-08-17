@@ -23,6 +23,7 @@ import cse.duytan.coms.adapters.RecyclerMessageAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.models.Conversation;
+import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.presenters.MessagePresenter;
 import cse.duytan.coms.views.MessageView;
 
@@ -54,12 +55,14 @@ public class MessageFragment extends BaseFragment implements MessageView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_message, container, false);
         unbinder = ButterKnife.bind(this, v);
+        registerEvent();
         initUI();
         return v;
     }
 
     private void initUI() {
         getActivity().setTitle(R.string.title_message);
+        empty(false, "", llEmpty, rlContent, tvEmpty);
         messagePresenter = new MessagePresenter(getActivity(), this);
         messagePresenter.getListConversation(personId);
         setRvMessageAdp();
@@ -69,6 +72,7 @@ public class MessageFragment extends BaseFragment implements MessageView {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        unregisterEvent();
     }
 
     private void setRvMessageAdp() {
@@ -78,6 +82,14 @@ public class MessageFragment extends BaseFragment implements MessageView {
         rvMessage.setLayoutManager(mLayoutManager);
         rvMessage.setItemAnimator(new DefaultItemAnimator());
         rvMessage.setAdapter(messageAdapter);
+    }
+
+    @Override
+    public void onEvent(EventBusInfo eventBusInfo) {
+        super.onEvent(eventBusInfo);
+        if (eventBusInfo.getProcessId() == ID_EVENT_REFRESH) {
+            messagePresenter.getListConversation(personId);
+        }
     }
 
     @Override
@@ -94,12 +106,20 @@ public class MessageFragment extends BaseFragment implements MessageView {
 
     @Override
     public void onSuccess(ArrayList<Conversation> list) {
+        listMessage.clear();
         listMessage.addAll(list);
         messageAdapter.notifyDataSetChanged();
+        empty(false, "", llEmpty, rlContent, tvEmpty);
     }
 
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(getActivity(), msg, null).show();
+        empty(true, msg, llEmpty, rlContent, tvEmpty);
+    }
+
+    @Override
+    public void empty() {
+        empty(true, getString(R.string.msg_no_data_message), llEmpty, rlContent, tvEmpty);
     }
 }
