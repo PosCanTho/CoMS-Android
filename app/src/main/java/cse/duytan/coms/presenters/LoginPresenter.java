@@ -13,6 +13,7 @@ import cse.duytan.coms.connections.DownloadAsyncTask;
 import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.Account;
 import cse.duytan.coms.models.Token;
+import cse.duytan.coms.models.User;
 import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.DebugLog;
 import cse.duytan.coms.views.LoginView;
@@ -66,7 +67,7 @@ public class LoginPresenter extends BasePresenter {
                 JSONObject postData = new JSONObject();
                 postData.put("Username", username);
                 postData.put("Password", password);
-                DownloadAsyncTask.POST(context, ID_API_LOGIN, API_LOGIN, postData.toString(), Account.class, true, this);
+                DownloadAsyncTask.POST(context, ID_API_LOGIN, API_LOGIN, postData.toString(), User.class, true, this);
             } catch (Exception e) {
                 DebugLog.logD(TAG, e.toString());
             }
@@ -91,6 +92,11 @@ public class LoginPresenter extends BasePresenter {
         super.downloadSuccess(processId, data);
         if (processId == ID_API_LOGIN) {
             getToken(username, password);
+            User user = (User) data;
+            if (user != null) {
+                Log.d(TAG, "downloadSuccess: " + user.getFullname());
+                Prefs.setUser(user);
+            }
         } else if (processId == ID_API_GET_TOKEN) {
             Token token = (Token) data;
             Prefs.setToken(token);

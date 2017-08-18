@@ -2,8 +2,6 @@ package cse.duytan.coms.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
  * Created by Pham Van Thien on 7/6/2017.
  * Email: pvthiendeveloper@gmail.com
@@ -11,103 +9,88 @@ import java.util.List;
  */
 
 public class User {
-    @SerializedName("Table")
-    public List<Table> Table;
 
-    public static class Table {
-        @SerializedName("USER_ID")
-        public String USER_ID;
-        @SerializedName("UserName")
-        public String UserName;
-        @SerializedName("STUDENT_ID_NUMBER")
-        public String STUDENT_ID_NUMBER;
-        @SerializedName("INSTRUCTOR_ID_NUMBER")
-        public String INSTRUCTOR_ID_NUMBER;
-        @SerializedName("CURRENT_LAST_NAME")
-        public String CURRENT_LAST_NAME;
-        @SerializedName("CURRENT_MIDDLE_NAME")
-        public String CURRENT_MIDDLE_NAME;
-        @SerializedName("CURRENT_FIRST_NAME")
-        public String CURRENT_FIRST_NAME;
-        @SerializedName("ROLE_TYPE")
-        public String ROLE_TYPE;
+    @SerializedName("PersonId")
+    private int personId;
+    @SerializedName("Fullname")
+    private String fullname;
+    @SerializedName("Email")
+    private String email;
+    @SerializedName("PhoneNumber")
+    private String phoneNumber;
+    @SerializedName("BirthDay")
+    private String birthDay;
+    @SerializedName("Gender")
+    private int gender;
+    @SerializedName("Image")
+    private String Image;
 
-        public Table() {
-        }
+    public User() {
+    }
 
-        public Table(String USER_ID, String userName, String STUDENT_ID_NUMBER, String INSTRUCTOR_ID_NUMBER, String CURRENT_LAST_NAME, String CURRENT_MIDDLE_NAME, String CURRENT_FIRST_NAME, String ROLE_TYPE) {
-            this.USER_ID = USER_ID;
-            UserName = userName;
-            this.STUDENT_ID_NUMBER = STUDENT_ID_NUMBER;
-            this.INSTRUCTOR_ID_NUMBER = INSTRUCTOR_ID_NUMBER;
-            this.CURRENT_LAST_NAME = CURRENT_LAST_NAME;
-            this.CURRENT_MIDDLE_NAME = CURRENT_MIDDLE_NAME;
-            this.CURRENT_FIRST_NAME = CURRENT_FIRST_NAME;
-            this.ROLE_TYPE = ROLE_TYPE;
-        }
+    public User(int personId, String fullname, String email, String phoneNumber, String birthDay, int gender, String image) {
+        this.personId = personId;
+        this.fullname = fullname;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.birthDay = birthDay;
+        this.gender = gender;
+        Image = image;
+    }
 
-        public String getUSER_ID() {
-            return USER_ID;
-        }
+    public int getPersonId() {
+        return personId;
+    }
 
-        public void setUSER_ID(String USER_ID) {
-            this.USER_ID = USER_ID;
-        }
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
 
-        public String getUserName() {
-            return UserName;
-        }
+    public String getFullname() {
+        return fullname;
+    }
 
-        public void setUserName(String userName) {
-            UserName = userName;
-        }
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
-        public String getSTUDENT_ID_NUMBER() {
-            return STUDENT_ID_NUMBER;
-        }
+    public String getEmail() {
+        return email;
+    }
 
-        public void setSTUDENT_ID_NUMBER(String STUDENT_ID_NUMBER) {
-            this.STUDENT_ID_NUMBER = STUDENT_ID_NUMBER;
-        }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-        public String getINSTRUCTOR_ID_NUMBER() {
-            return INSTRUCTOR_ID_NUMBER;
-        }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-        public void setINSTRUCTOR_ID_NUMBER(String INSTRUCTOR_ID_NUMBER) {
-            this.INSTRUCTOR_ID_NUMBER = INSTRUCTOR_ID_NUMBER;
-        }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-        public String getCURRENT_LAST_NAME() {
-            return CURRENT_LAST_NAME;
-        }
+    public String getBirthDay() {
+        return birthDay;
+    }
 
-        public void setCURRENT_LAST_NAME(String CURRENT_LAST_NAME) {
-            this.CURRENT_LAST_NAME = CURRENT_LAST_NAME;
-        }
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
 
-        public String getCURRENT_MIDDLE_NAME() {
-            return CURRENT_MIDDLE_NAME;
-        }
+    public int getGender() {
+        return gender;
+    }
 
-        public void setCURRENT_MIDDLE_NAME(String CURRENT_MIDDLE_NAME) {
-            this.CURRENT_MIDDLE_NAME = CURRENT_MIDDLE_NAME;
-        }
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
 
-        public String getCURRENT_FIRST_NAME() {
-            return CURRENT_FIRST_NAME;
-        }
+    public String getImage() {
+        return Image;
+    }
 
-        public void setCURRENT_FIRST_NAME(String CURRENT_FIRST_NAME) {
-            this.CURRENT_FIRST_NAME = CURRENT_FIRST_NAME;
-        }
-
-        public String getROLE_TYPE() {
-            return ROLE_TYPE;
-        }
-
-        public void setROLE_TYPE(String ROLE_TYPE) {
-            this.ROLE_TYPE = ROLE_TYPE;
-        }
+    public void setImage(String image) {
+        Image = image;
     }
 }

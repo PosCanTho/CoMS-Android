@@ -80,8 +80,12 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
-                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.toString());
+                    if(e.getMessage().equals("timeout")){
+                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                    }else{
+                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    }
+                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
                 @Override
@@ -96,9 +100,9 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                             DebugLog.logD(TAG, "DOWNLOAD_PARSER_ERROR: " + e.toString() + " (Dữ liệu trả về không giống với đối tượng truyền vào)");
                         }
                     } else {
-                        if(response.message().equals("Unauthorized")){
+                        if (response.message().equals("Unauthorized")) {
                             showError(context, processId, context.getString(R.string.msg_connection_timed_please_log_in_again), downloadCallback);
-                        }else{
+                        } else {
                             showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
                         }
                         DebugLog.logD(TAG, "DOWNLOAD_ONRESPONE: " + response.message() + " (Truyền sai tham số)");
@@ -145,8 +149,12 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
-                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.toString());
+                    if (e.getMessage().equals("timeout")) {
+                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                    } else {
+                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    }
+                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
                 @Override
@@ -161,9 +169,9 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                             DebugLog.logD(TAG, "DOWNLOAD_PARSER_ERROR: " + e.toString() + " (Dữ liệu trả về không giống với đối tượng truyền vào)");
                         }
                     } else {
-                        if(response.message().equals("Unauthorized")){
+                        if (response.message().equals("Unauthorized")) {
                             showError(context, processId, context.getString(R.string.msg_connection_timed_please_log_in_again), downloadCallback);
-                        }else{
+                        } else {
                             showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
                         }
                         DebugLog.logD(TAG, "DOWNLOAD_ONRESPONE: " + response.message() + " (Truyền sai tham số)");
@@ -193,8 +201,12 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
-                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.toString());
+                    if (e.getMessage().equals("timeout")) {
+                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                    } else {
+                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    }
+                    DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
                 @Override
@@ -209,9 +221,9 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                             DebugLog.logD(TAG, "DOWNLOAD_PARSER_ERROR: " + e.toString() + " (Dữ liệu trả về không giống với đối tượng truyền vào)");
                         }
                     } else {
-                        if(response.message().equals("Unauthorized")){
+                        if (response.message().equals("Unauthorized")) {
                             showError(context, processId, context.getString(R.string.msg_connection_timed_please_log_in_again), downloadCallback);
-                        }else{
+                        } else {
                             showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
                         }
                         DebugLog.logD(TAG, "DOWNLOAD_ONRESPONE: " + response.message() + " (Truyền sai tham số)");

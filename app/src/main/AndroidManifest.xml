@@ -45,8 +45,10 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.MyProfileActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|locale"
             android:label="@string/title_my_profile"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
         <activity android:name=".activities.BaseActivity" />
         <activity
             android:name=".activities.ProfileActivity"

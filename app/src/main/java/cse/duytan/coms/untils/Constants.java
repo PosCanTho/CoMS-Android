@@ -42,6 +42,10 @@ public interface Constants {
     int ID_API_LIST_CONVERSATION = Utils.PROCESS++;
     int ID_API_LIST_PACKAGE = Utils.PROCESS++;
     int ID_API_GET_TOKEN = Utils.PROCESS++;
+    int ID_API_GET_MY_PROFILE = Utils.PROCESS++;
+    int ID_API_EDIT_PROFILE = Utils.PROCESS++;
+    int ID_API_FORGOT_PASSWORD = Utils.PROCESS++;
+
 
     /*URL STRING*/
     String API_LOGIN = URL_SERVER + "Login";
@@ -57,5 +61,8 @@ public interface Constants {
     String API_LIST_CONVERSATION = URL_SERVER + "ListConversation";
     String API_LIST_PACKAGE = URL_SERVER + "ListPackage";
     String API_GET_TOKEN = URL_SERVER + "token";
+    String API_GET_MY_PROFILE = URL_SERVER + "MyProfile";
+    String API_EDIT_PROFILE = URL_SERVER + "EditProfile";
+    String API_FORGOT_PASSWORD = URL_SERVER + "ForgotPassword";
 
 }

@@ -90,6 +90,9 @@
     <string name="msg_permission_denied_to_write_your_external_storage">Permission denied to write your External storage.</string>
     <string name="msg_permission_denied_to_read_your_external_storage">Permission denied to read your External storage.</string>
     <string name="msg_please_enter_full_name">Please enter full name.</string>
+    <string name="msg_please_enter_phone_number">Please enter phone number.</string>
+    <string name="msg_please_enter_birth_day">Please enter birth day.</string>
+    <string name="msg_please_select_gender">Please select gender.</string>
     <string name="msg_please_enter_email">Please enter email.</string>
     <string name="msg_please_enter_confirm_password">Please enter confirm password.</string>
     <string name="msg_email_invalid">Email invalid.</string>
@@ -105,7 +108,10 @@
     <string name="msg_no_data_message">No data message.</string>
     <string name="msg_no_data_package">No data package.</string>
     <string name="msg_please_log_in_again">Please sign in again.</string>
-    <string name="msg_connection_timed_please_log_in_again">Connection timed. Please login again.</string>
+    <string name="msg_connection_timed_please_log_in_again">Connection time out. Please login again.</string>
+    <string name="msg_connection_time_out_please_try_again">Connection time out. Please try again.</string>
+    <string name="msg_birth_date_is_not_greater_than_the">Birth date is not greater than the current date.</string>
+    <string name="msg_your_password_has_been_changed">Your password has been changed. Please check your email.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

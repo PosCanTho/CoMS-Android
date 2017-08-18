@@ -72,6 +72,9 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
         loginPresenter = new LoginPresenter(this, this);
         loginPresenter.checkIsLogin();
         btnSignin.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
+
+        etUsername.setText("pvthiendeveloper");
+        etPassword.setText("123456");
     }
 
 
