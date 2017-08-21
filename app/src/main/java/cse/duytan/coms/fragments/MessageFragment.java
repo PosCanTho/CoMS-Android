@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ import cse.duytan.coms.activities.ChatActivity;
 import cse.duytan.coms.adapters.RecyclerMessageAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.Conversation;
 import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.presenters.MessagePresenter;
@@ -48,7 +50,7 @@ public class MessageFragment extends BaseFragment implements MessageView {
     private RecyclerMessageAdapter messageAdapter;
     private ArrayList<Conversation> listMessage;
     private MessagePresenter messagePresenter;
-    private int personId = 1;
+    private int personId = -1;
 
     @Nullable
     @Override
@@ -61,6 +63,7 @@ public class MessageFragment extends BaseFragment implements MessageView {
     }
 
     private void initUI() {
+        personId = Prefs.getUser().getPersonId();
         getActivity().setTitle(R.string.title_message);
         empty(false, "", llEmpty, rlContent, tvEmpty);
         messagePresenter = new MessagePresenter(getActivity(), this);
@@ -97,7 +100,6 @@ public class MessageFragment extends BaseFragment implements MessageView {
         if (processId == R.id.clMain) {
             Conversation conversation = (Conversation) data;
             Intent i = new Intent(getActivity(), ChatActivity.class);
-            i.putExtra("personIdFrom", personId);
             i.putExtra("personIdTo", conversation.getPersonId());
             i.putExtra("name", conversation.getName());
             startActivity(i);

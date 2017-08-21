@@ -37,7 +37,7 @@ make sure to save what you need."
         android:layout_marginTop="0dp" />
 
     <cse.duytan.coms.customviews.CustomTextView
-        android:id="@+id/tvTime"
+        android:id="@+id/tvStartDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
@@ -58,7 +58,7 @@ make sure to save what you need."
         android:layout_marginLeft="0dp"
         android:layout_marginTop="16dp"
         android:background="@color/gray_line"
-        app:layout_constraintTop_toBottomOf="@+id/tvTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvStartDate"
         app:layout_constraintLeft_toRightOf="@+id/ivAvatar"
         android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="@+id/tvName" />

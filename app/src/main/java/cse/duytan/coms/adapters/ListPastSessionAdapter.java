@@ -11,11 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import cse.duytan.coms.R;
-import cse.duytan.coms.models.PastSession;
+import cse.duytan.coms.models.PastConference;
 import cse.duytan.coms.untils.AdapterCallback;
+import cse.duytan.coms.untils.DateTimeFormater;
 
 /**
  * Created by Pham Van Thien on 6/27/2017.
@@ -25,10 +24,10 @@ import cse.duytan.coms.untils.AdapterCallback;
 
 public class ListPastSessionAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<PastSession> list;
+    private ArrayList<PastConference> list;
     private AdapterCallback adapterCallback;
 
-    public ListPastSessionAdapter(Context context, ArrayList<PastSession> list, AdapterCallback adapterCallback) {
+    public ListPastSessionAdapter(Context context, ArrayList<PastConference> list, AdapterCallback adapterCallback) {
         this.context = context;
         this.list = list;
         this.adapterCallback = adapterCallback;
@@ -60,7 +59,7 @@ public class ListPastSessionAdapter extends BaseAdapter {
         } else {
             oneItem = (OneItem) v.getTag();
         }
-        final PastSession pastSession = list.get(i);
+        final PastConference pastSession = list.get(i);
         oneItem.checkSavePast(pastSession);
         oneItem.loadData(pastSession);
         oneItem.flSave.setOnClickListener(new View.OnClickListener() {
@@ -74,20 +73,19 @@ public class ListPastSessionAdapter extends BaseAdapter {
 
     class OneItem {
         TextView tvName;
-        TextView tvTime;
-        TextView tvLocation;
+        TextView tvStartDate, tvThruDate;
         ImageView ivSave;
         FrameLayout flSave;
 
         public OneItem(View v) {
             tvName = (TextView) v.findViewById(R.id.tvName);
-            tvTime = (TextView) v.findViewById(R.id.tvTime);
-            tvLocation = (TextView) v.findViewById(R.id.tvLocation);
+            tvStartDate = (TextView) v.findViewById(R.id.tvStartDate);
+            tvThruDate = (TextView) v.findViewById(R.id.tvThruDate);
             ivSave = (ImageView) v.findViewById(R.id.ivSave);
             flSave = (FrameLayout) v.findViewById(R.id.flSave);
         }
 
-        public void checkSavePast(PastSession pastSession) {
+        public void checkSavePast(PastConference pastSession) {
             if (pastSession.isSelected()) {
                 ivSave.setImageResource(R.drawable.ic_calendar_plus);
             } else {
@@ -95,10 +93,10 @@ public class ListPastSessionAdapter extends BaseAdapter {
             }
         }
 
-        public void loadData(PastSession pastSession) {
-           // tvName.setText(pastSession.getName());
-           // tvTime.setText(pastSession.getTime());
-           // tvLocation.setText(pastSession.getLocation());
+        public void loadData(PastConference pastSession) {
+            tvName.setText(pastSession.getCONFERENCE_NAME());
+            tvStartDate.setText(DateTimeFormater.stringToTime(pastSession.getFROM_DATE(),DateTimeFormater.YYYY_MM_DD_T_HH_MM_SS_SS,DateTimeFormater.MMM_d_YYYY));
+            tvThruDate.setText(DateTimeFormater.stringToTime(pastSession.getTHRU_DATE(),DateTimeFormater.YYYY_MM_DD_T_HH_MM_SS_SS,DateTimeFormater.MMM_d_YYYY));
         }
     }
 }

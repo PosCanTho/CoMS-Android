@@ -34,7 +34,7 @@ public class ListChatAdapter extends RecyclerView.Adapter<ListChatAdapter.ViewHo
     public ListChatAdapter(Context context, ArrayList<Message> list) {
         this.context = context;
         this.list = list;
-        // this.personId = Prefs.getAccount().getPersonId();
+         this.personId = Prefs.getUser().getPersonId();
     }
 
     public void update() {

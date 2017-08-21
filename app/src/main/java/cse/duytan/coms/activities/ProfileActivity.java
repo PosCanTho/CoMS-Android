@@ -9,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -21,9 +19,10 @@ import cse.duytan.coms.adapters.ListPastSessionAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.customviews.NonScrollListView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.CircleImageView;
 import cse.duytan.coms.models.EventBusInfo;
-import cse.duytan.coms.models.PastSession;
+import cse.duytan.coms.models.PastConference;
 import cse.duytan.coms.models.Profile;
 import cse.duytan.coms.presenters.ProfilePresenter;
 import cse.duytan.coms.views.ProfileView;
@@ -33,7 +32,7 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     @BindView(R.id.ivFacebook)
     ImageView ivFacebook;
     @BindView(R.id.lvPastSession)
-    NonScrollListView lvPastSession;
+    NonScrollListView lvPastConference;
     @BindView(R.id.ivAvatar)
     CircleImageView ivAvatar;
     @BindView(R.id.tvName)
@@ -42,10 +41,10 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     CustomTextView tvDescription;
 
     private ListPastSessionAdapter pastSessionAdp;
-    private ArrayList<PastSession> listPastSession;
+    private ArrayList<PastConference> listPastConference;
     private boolean isBookmark = false;
     private int personIdBookmark;
-    private int personId = 1;
+    private int personId = -1;
     private ProfilePresenter profilePresenter;
 
     @Override
@@ -71,23 +70,30 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     }
 
     private void initUI() {
+        personId = Prefs.getUser().getPersonId();
+        listPastConference = new ArrayList<>();
+
         getMyIntent();
         showHomeButton();
-        profilePresenter = new ProfilePresenter(this, this);
-        profilePresenter.getProfile(personId, personIdBookmark);
+
+
+        setLvPastConferenceAdp();
     }
 
     private void getMyIntent() {
         Intent i = getIntent();
         if (i != null) {
-            personIdBookmark = i.getIntExtra("personIdBookmark", -1);
+            personIdBookmark = i.getIntExtra("PersonIdBookmark", -1);
+
+            profilePresenter = new ProfilePresenter(this, this);
+            profilePresenter.getProfile(personId, personIdBookmark);
         }
     }
 
-    private void setLvPastSessionAdp() {
-        pastSessionAdp = new ListPastSessionAdapter(this, listPastSession, this);
-        lvPastSession.setAdapter(pastSessionAdp);
-        lvPastSession.setFocusable(false);
+    private void setLvPastConferenceAdp() {
+        pastSessionAdp = new ListPastSessionAdapter(this, listPastConference, this);
+        lvPastConference.setAdapter(pastSessionAdp);
+        lvPastConference.setFocusable(false);
     }
 
     @Override
@@ -99,8 +105,8 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
     public void adpaterCallback(Object data, int processId, int position) {
         super.adpaterCallback(data, processId, position);
         if (processId == R.id.flSave) {
-            PastSession pastSession = (PastSession) data;
-            listPastSession.get(position).setSelected(!pastSession.isSelected());
+            PastConference pastSession = (PastConference) data;
+            listPastConference.get(position).setSelected(!pastSession.isSelected());
             pastSessionAdp.notifyDataSetChanged();
         }
     }
@@ -114,7 +120,11 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
                 finish();
                 break;
             case R.id.actionChat:
-                startActivity(new Intent(ProfileActivity.this, ChatActivity.class));
+                Intent i = new Intent(this, ChatActivity.class);
+                i.putExtra("personIdFrom", personId);
+                i.putExtra("personIdTo", personIdBookmark);
+                i.putExtra("name", tvName.getText().toString().trim());
+                startActivity(i);
                 finish();
                 break;
             case R.id.actionBookmark:
@@ -132,11 +142,14 @@ public class ProfileActivity extends BaseActivity implements ProfileView {
 
     @Override
     public void success(Profile profile) {
-        isBookmark = profile.isBookmark;
+        isBookmark = profile.isBookmark();
         invalidateOptionsMenu();
 
         tvName.setText(profile.getName());
         tvDescription.setText(profile.getDescription());
+
+        listPastConference.addAll(profile.getListPastConference());
+        pastSessionAdp.notifyDataSetChanged();
     }
 
     @Override

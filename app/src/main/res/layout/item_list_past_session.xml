@@ -52,7 +52,7 @@
 
             <cse.duytan.coms.customviews.CustomTextView
                 app:typeFace="@string/font_nunito_semibold"
-                android:id="@+id/tvTime"
+                android:id="@+id/tvStartDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding10"
@@ -73,17 +73,17 @@
                 android:id="@+id/imageView7"
                 android:layout_width="@dimen/icon16"
                 android:layout_height="@dimen/icon16"
-                app:srcCompat="@drawable/ic_pin" />
+                app:srcCompat="@drawable/ic_time" />
 
             <cse.duytan.coms.customviews.CustomTextView
-                app:typeFace="@string/font_nunito_semibold"
-                android:id="@+id/tvLocation"
+                android:id="@+id/tvThruDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/padding10"
                 android:layout_weight="1"
                 android:text="Grand Ballroom"
-                android:textSize="@dimen/size12" />
+                android:textSize="@dimen/size12"
+                app:typeFace="@string/font_nunito_semibold" />
         </LinearLayout>
 
     </LinearLayout>

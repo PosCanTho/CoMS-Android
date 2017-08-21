@@ -45,6 +45,7 @@ public interface Constants {
     int ID_API_GET_MY_PROFILE = Utils.PROCESS++;
     int ID_API_EDIT_PROFILE = Utils.PROCESS++;
     int ID_API_FORGOT_PASSWORD = Utils.PROCESS++;
+    int ID_API_CHANGE_PASSWORD = Utils.PROCESS++;
 
 
     /*URL STRING*/
@@ -64,5 +65,6 @@ public interface Constants {
     String API_GET_MY_PROFILE = URL_SERVER + "MyProfile";
     String API_EDIT_PROFILE = URL_SERVER + "EditProfile";
     String API_FORGOT_PASSWORD = URL_SERVER + "ForgotPassword";
+    String API_CHANGE_PASSWORD = URL_SERVER + "ChangePassword";
 
 }

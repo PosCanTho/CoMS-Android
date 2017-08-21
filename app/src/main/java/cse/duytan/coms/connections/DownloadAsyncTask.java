@@ -68,7 +68,6 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
             map.put("Accept", "application/json");
             if (token != null) {
                 map.put("authorization", token.getToken_type() + " " + token.getAccess_token());
-                Log.d(TAG, "GET: " + token.getToken_type() + " " + token.getAccess_token());
             }
             Headers headers = Headers.of(map);
 

@@ -20,7 +20,7 @@
     <string name="lbl_female">Female</string>
     <string name="lbl_old_password">Old password</string>
     <string name="lbl_new_password">New password</string>
-    <string name="lbl_past_session">Past session</string>
+    <string name="lbl_past_conference">Past conference</string>
     <string name="lbl_total">Total:</string>
     <string name="lbl_select_your_payment_method">1. Select your Payment method</string>
     <string name="lbl_select_role">2. Select role</string>
@@ -112,6 +112,7 @@
     <string name="msg_connection_time_out_please_try_again">Connection time out. Please try again.</string>
     <string name="msg_birth_date_is_not_greater_than_the">Birth date is not greater than the current date.</string>
     <string name="msg_your_password_has_been_changed">Your password has been changed. Please check your email.</string>
+    <string name="msg_change_password_sucess">Change password success.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

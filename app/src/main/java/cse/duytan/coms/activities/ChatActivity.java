@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -27,6 +28,7 @@ import cse.duytan.coms.adapters.ListChatAdapter;
 import cse.duytan.coms.customviews.CustomEditText;
 import cse.duytan.coms.dialogs.ConfirmDialog;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.models.Message;
 import cse.duytan.coms.presenters.ChatPresenter;
@@ -45,7 +47,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
 
     private ListChatAdapter chatAdapter;
     private ArrayList<Message> listMessage;
-    private int personIdFrom, personIdTo, personId;
+    private int personIdTo = -1, personId = -1;
     private int page = 1, pageSize = 10;
     private String name;
     private ChatPresenter chatPresenter;
@@ -59,14 +61,12 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     }
 
     private void initUI() {
+        personId = Prefs.getUser().getPersonId();
         getMyIntent();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        chatPresenter = new ChatPresenter(this, this);
-        chatPresenter.getListMessage(personIdFrom, personIdTo, page, pageSize);
+        showHomeButton();
+
         listMessage = new ArrayList<>();
         setRvChatAdp();
-
         swipeRefresh.setOnRefreshListener(this);
 
     }
@@ -74,11 +74,12 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     private void getMyIntent() {
         Intent i = getIntent();
         if (i != null) {
-            personIdFrom = i.getIntExtra("personIdFrom", -1);
             personIdTo = i.getIntExtra("personIdTo", -1);
             name = i.getStringExtra("name");
-            personId = 1;
             setTitle(name);
+
+            chatPresenter = new ChatPresenter(this, this);
+            chatPresenter.getListMessage(personId, personIdTo, page, pageSize);
         }
     }
 
@@ -101,7 +102,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
                 listMessage.add(message);
                 chatAdapter.notifyDataSetChanged();
                 rvChat.scrollToPosition(listMessage.size() - 1);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -136,7 +137,10 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
                 new ConfirmDialog(this, getString(R.string.msg_are_you_sure_you_want_to_delete_all_message), this).show();
                 break;
             case R.id.actionProfile:
-                startActivity(new Intent(ChatActivity.this, ProfileActivity.class));
+                Intent i = new Intent(ChatActivity.this, ProfileActivity.class);
+                i.putExtra("PersonIdBookmark", personIdTo);
+                startActivity(i);
+                finish();
                 break;
             case android.R.id.home:
                 postEvent(new EventBusInfo(ID_EVENT_REFRESH));
@@ -151,8 +155,8 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     @OnClick(R.id.ibtnSend)
     public void onViewClicked() {
         String message = etTypeMessage.getText().toString();
-        if (!TextUtils.isEmpty(message) && (personIdFrom != -1) && (personIdTo != -1)) {
-            chatPresenter.sendMessage(message, personIdFrom, personIdTo, "default", "high");
+        if (!TextUtils.isEmpty(message) && (personIdTo != -1)) {
+            chatPresenter.sendMessage(message, personId, personIdTo, "default", "high");
             etTypeMessage.setText("");
         }
     }
@@ -161,7 +165,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     public void popupCalback(int processId, Object data) {
         super.popupCalback(processId, data);
         if (processId == ID_DIALOG_CONFIRM_YES) {
-            chatPresenter.deleteAllMessage(personId, personIdFrom, personIdTo);
+            chatPresenter.deleteAllMessage(personId, personId, personIdTo);
         }
     }
 
@@ -174,7 +178,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
 
     @Override
     public void listMessage(ArrayList<Message> listMessage) {
-        if (listMessage.isEmpty()){
+        if (listMessage.isEmpty()) {
             swipeRefresh.setEnabled(false);
         }
         ArrayList<Message> list = new ArrayList<>();
@@ -204,6 +208,6 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     @Override
     public void onRefresh() {
         page++;
-        chatPresenter.getListMessage(personIdFrom, personIdTo, page, pageSize);
+        chatPresenter.getListMessage(personId, personIdTo, page, pageSize);
     }
 }

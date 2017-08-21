@@ -22,6 +22,7 @@ import cse.duytan.coms.activities.ProfileActivity;
 import cse.duytan.coms.adapters.RecyclerBookmarkAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.Bookmark;
 import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.presenters.BookmarkPresenter;
@@ -48,7 +49,7 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
     private RecyclerBookmarkAdapter bookmarkAdapter;
     private BookmarkPresenter bookmarkPresenter;
     private ArrayList<Bookmark> listBookmark;
-    private int personId = 1;
+    private int personId = -1;
 
 
     @Nullable
@@ -64,6 +65,8 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
     private void initUI() {
         getActivity().setTitle(R.string.title_bookmark);
         empty(false, "", llEmpty, rlContent, tvEmpty);
+        personId = Prefs.getUser().getPersonId();
+
         bookmarkPresenter = new BookmarkPresenter(getActivity(), this);
         bookmarkPresenter.getListBookmark(personId);
     }
@@ -95,7 +98,7 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
     public void adpaterCallback(Object data, int processId, int position) {
         if (processId == R.id.clMain) {
             Intent i = new Intent(getActivity(), ProfileActivity.class);
-            i.putExtra("personIdBookmark", listBookmark.get(position).getPersonIdBookmark());
+            i.putExtra("PersonIdBookmark", listBookmark.get(position).getPersonIdBookmark());
             startActivity(i);
         }
     }

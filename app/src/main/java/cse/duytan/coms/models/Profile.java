@@ -2,7 +2,7 @@ package cse.duytan.coms.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Pham Van Thien on 7/28/2017.
@@ -13,119 +13,119 @@ import java.util.List;
 public class Profile {
 
     @SerializedName("PersonId")
-    public int personId;
+    private int PersonId;
     @SerializedName("PersonIdBookmark")
-    public int personIdBookmark;
+    private int PersonIdBookmark;
     @SerializedName("Image")
-    public String image;
+    private String Image;
     @SerializedName("Name")
-    public String name;
+    private String Name;
     @SerializedName("Description")
-    public String description;
+    private String Description;
     @SerializedName("FacebookUrl")
-    public String facebookUrl;
+    private String FacebookUrl;
     @SerializedName("TwitterUrl")
-    public String twitterUrl;
+    private String TwitterUrl;
     @SerializedName("Instagram")
-    public String instagram;
+    private String Instagram;
     @SerializedName("IsBookmark")
-    public boolean isBookmark;
-    @SerializedName("ListPastSession")
-    public List<PastSession> listPastSession;
+    private boolean IsBookmark;
+    @SerializedName("ListPastConference")
+    private ArrayList<PastConference> ListPastConference;
+
+    public int getPersonId() {
+        return PersonId;
+    }
+
+    public void setPersonId(int personId) {
+        PersonId = personId;
+    }
+
+    public int getPersonIdBookmark() {
+        return PersonIdBookmark;
+    }
+
+    public void setPersonIdBookmark(int personIdBookmark) {
+        PersonIdBookmark = personIdBookmark;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
+    public String getFacebookUrl() {
+        return FacebookUrl;
+    }
+
+    public void setFacebookUrl(String facebookUrl) {
+        FacebookUrl = facebookUrl;
+    }
+
+    public String getTwitterUrl() {
+        return TwitterUrl;
+    }
+
+    public void setTwitterUrl(String twitterUrl) {
+        TwitterUrl = twitterUrl;
+    }
+
+    public String getInstagram() {
+        return Instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        Instagram = instagram;
+    }
+
+    public boolean isBookmark() {
+        return IsBookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        IsBookmark = bookmark;
+    }
+
+    public ArrayList<PastConference> getListPastConference() {
+        return ListPastConference;
+    }
+
+    public void setListPastConference(ArrayList<PastConference> listPastConference) {
+        ListPastConference = listPastConference;
+    }
 
     public Profile() {
     }
 
-    public Profile(int personId, int personIdBookmark, String image, String name, String description, String facebookUrl, String twitterUrl, String instagram, boolean isBookmark, List<PastSession> listPastSession) {
-        this.personId = personId;
-        this.personIdBookmark = personIdBookmark;
-        this.image = image;
-        this.name = name;
-        this.description = description;
-        this.facebookUrl = facebookUrl;
-        this.twitterUrl = twitterUrl;
-        this.instagram = instagram;
-        this.isBookmark = isBookmark;
-        this.listPastSession = listPastSession;
-    }
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
-    public int getPersonIdBookmark() {
-        return personIdBookmark;
-    }
-
-    public void setPersonIdBookmark(int personIdBookmark) {
-        this.personIdBookmark = personIdBookmark;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getFacebookUrl() {
-        return facebookUrl;
-    }
-
-    public void setFacebookUrl(String facebookUrl) {
-        this.facebookUrl = facebookUrl;
-    }
-
-    public String getTwitterUrl() {
-        return twitterUrl;
-    }
-
-    public void setTwitterUrl(String twitterUrl) {
-        this.twitterUrl = twitterUrl;
-    }
-
-    public String getInstagram() {
-        return instagram;
-    }
-
-    public void setInstagram(String instagram) {
-        this.instagram = instagram;
-    }
-
-    public boolean isBookmark() {
-        return isBookmark;
-    }
-
-    public void setBookmark(boolean bookmark) {
-        isBookmark = bookmark;
-    }
-
-    public List<PastSession> getListPastSession() {
-        return listPastSession;
-    }
-
-    public void setListPastSession(List<PastSession> listPastSession) {
-        this.listPastSession = listPastSession;
+    public Profile(int personId, int personIdBookmark, String image, String name, String description, String facebookUrl, String twitterUrl, String instagram, boolean isBookmark, ArrayList<PastConference> listPastConference) {
+        PersonId = personId;
+        PersonIdBookmark = personIdBookmark;
+        Image = image;
+        Name = name;
+        Description = description;
+        FacebookUrl = facebookUrl;
+        TwitterUrl = twitterUrl;
+        Instagram = instagram;
+        IsBookmark = isBookmark;
+        ListPastConference = listPastConference;
     }
 }

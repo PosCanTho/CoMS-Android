@@ -22,6 +22,7 @@ import cse.duytan.coms.R;
 import cse.duytan.coms.adapters.RecyclerNewMessageAdapter;
 import cse.duytan.coms.customviews.CustomTextView;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
+import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.Account;
 import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.presenters.NewMessagaPresenter;
@@ -98,7 +99,7 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     public void adpaterCallback(Object data, int processId, int position) {
         if (processId == R.id.clMain) {
             Intent i = new Intent(NewMessageActivity.this, ChatActivity.class);
-            i.putExtra("personIdFrom", 1);
+            i.putExtra("personIdFrom", Prefs.getUser().getPersonId());
             i.putExtra("personIdTo", listAccount.get(position).getPersonId());
             i.putExtra("name", listAccount.get(position).getName());
             startActivity(i);
