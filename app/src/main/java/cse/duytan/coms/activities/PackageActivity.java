@@ -72,7 +72,7 @@ public class PackageActivity extends BaseActivity implements DiscreteScrollView.
         listPackage = new ArrayList<>();
         showHomeButton();
         setDsvPackageAdp();
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(true, false, "", llEmpty, rlContent, tvEmpty);
         packagePresenter = new PackagePresenter(this, this);
         packagePresenter.getListPackage(conferenceId);
     }
@@ -100,10 +100,10 @@ public class PackageActivity extends BaseActivity implements DiscreteScrollView.
     @OnClick(R.id.fabCheckout)
     public void onViewClicked() {
         Intent i = new Intent(PackageActivity.this, CheckoutActivity.class);
-        i.putExtra("packageId",item.getCONFERENCE_REGISTRATION_PACKAGE_ID());
-        i.putExtra("name",item.getCONFERENCE_REGISTRATION_PACKAGE_NAME());
-        i.putExtra("price",item.getCONFERENCE_REGISTRATION_PACKAGE_PRICE());
-        i.putExtra("uomName",item.getCONFERENCE_REGISTRATION_PACKAGE_PRICE_CURRENCY_UOM_NAME());
+        i.putExtra("packageId", item.getCONFERENCE_REGISTRATION_PACKAGE_ID());
+        i.putExtra("name", item.getCONFERENCE_REGISTRATION_PACKAGE_NAME());
+        i.putExtra("price", item.getCONFERENCE_REGISTRATION_PACKAGE_PRICE());
+        i.putExtra("uomName", item.getCONFERENCE_REGISTRATION_PACKAGE_PRICE_CURRENCY_UOM_NAME());
         startActivity(i);
     }
 
@@ -120,17 +120,17 @@ public class PackageActivity extends BaseActivity implements DiscreteScrollView.
     public void success(ArrayList<Package> listPackage) {
         this.listPackage.addAll(listPackage);
         infiniteAdapter.notifyDataSetChanged();
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, true, "", llEmpty, rlContent, tvEmpty);
     }
 
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(this, msg, null).show();
-        empty(true, msg, llEmpty, rlContent, tvEmpty);
+        empty(true, true, msg, llEmpty, rlContent, tvEmpty);
     }
 
     @Override
     public void empty() {
-        empty(true, getString(R.string.msg_no_data_package), llEmpty, rlContent, tvEmpty);
+        empty(true, true, getString(R.string.msg_no_data_package), llEmpty, rlContent, tvEmpty);
     }
 }

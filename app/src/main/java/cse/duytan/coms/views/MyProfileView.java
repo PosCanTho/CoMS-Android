@@ -9,6 +9,8 @@ import cse.duytan.coms.models.User;
  */
 
 public interface MyProfileView {
-    void success(User user);
-    void error(String msg);
+    void getProfileSuccess(User user);
+    void updateProfileSucess();
+    void getProfileError(String msg);
+    void updateProfileError(String msg);
 }

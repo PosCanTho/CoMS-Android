@@ -21,6 +21,7 @@ import cse.duytan.coms.models.User;
 public class Prefs {
     private static final String PREFERENCES_HELPER = "prefhelper";
 
+    private static final String PREFERENCE_FIRST_INSTALL = "pref.Firs_install";
     private static final String PREFERENCE_FRESH_APP_DATA = "pref.fresh_app_data";
     private static final String PREFERENCE_NOTIFICATION = "pref.Notification";
     private static final String PREFERENCE_ENGLISH = "pref.English";
@@ -28,9 +29,18 @@ public class Prefs {
     private static final String PREFERENCE_CHAT_PREFS = "pref.ChatPrefs";
     private static final String PREFERENCE_TOKEN = "pref.Token";
     private static final String PREFERENCE_USER = "pref.User";
+    private static final String PREFERENCE_ID_CURRENT_READ = "pref.id_current_read";
 
     private static SharedPreferences getPrefs() {
         return CoMSApplication.getInstance().getSharedPreferences(PREFERENCES_HELPER, Context.MODE_PRIVATE);
+    }
+
+    public static void setFirstInstall(boolean firstInstall) {
+        getPrefs().edit().putBoolean(PREFERENCE_FIRST_INSTALL, firstInstall).commit();
+    }
+
+    public static boolean getFirstInstall() {
+        return getPrefs().getBoolean(PREFERENCE_FIRST_INSTALL, false);
     }
 
     public static void setFreshAppData(boolean fresh) {
@@ -46,7 +56,7 @@ public class Prefs {
     }
 
     public static boolean getNotification() {
-        return getPrefs().getBoolean(PREFERENCE_NOTIFICATION, false);
+        return getPrefs().getBoolean(PREFERENCE_NOTIFICATION, true);
     }
 
     public static void setEnglish(boolean english) {
@@ -54,7 +64,7 @@ public class Prefs {
     }
 
     public static boolean getEnglish() {
-        return getPrefs().getBoolean(PREFERENCE_ENGLISH, false);
+        return getPrefs().getBoolean(PREFERENCE_ENGLISH, true);
     }
 
     public static void setAccount(Account account) {
@@ -103,6 +113,14 @@ public class Prefs {
             return new Gson().fromJson(obs, User.class);
         }
         return null;
+    }
+
+    public static void setIdCurrentRead(int idCurrentRead) {
+        getPrefs().edit().putInt(PREFERENCE_ID_CURRENT_READ, idCurrentRead).commit();
+    }
+
+    public static int getIdCurrentRead() {
+        return getPrefs().getInt(PREFERENCE_ID_CURRENT_READ, -1);
     }
 
 }

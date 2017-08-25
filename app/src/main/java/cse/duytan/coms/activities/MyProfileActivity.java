@@ -162,10 +162,10 @@ public class MyProfileActivity extends BaseActivity implements MyProfileView, Da
                 break;
             case R.id.etBirth:
                 calendar = Calendar.getInstance();
-                 year = calendar.get(Calendar.YEAR);
-                 month = calendar.get(Calendar.MONTH);
-                 day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog dialog = new DatePickerDialog(this, this, year, month, day);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog dialog = new DatePickerDialog(this, MyProfileActivity.this, year, month, day);
                 dialog.show();
                 break;
             default:
@@ -194,7 +194,7 @@ public class MyProfileActivity extends BaseActivity implements MyProfileView, Da
                 if (rBtnFemale.isChecked() == false && rBtnMale.isChecked() == false) {
                     user.setGender(-1);
                 } else {
-                    user.setGender(rBtnMale.isChecked() ? 0 : 1);
+                    user.setGender(rBtnMale.isChecked() ? 1 : 0);
                 }
                 myProfilePresenter.editUser(user);
                 break;
@@ -259,12 +259,17 @@ public class MyProfileActivity extends BaseActivity implements MyProfileView, Da
     }
 
     @Override
-    public void success(User user) {
+    public void updateProfileSucess() {
+        new ConfirmOkDialog(this, getString(R.string.msg_update_profile_success), null).show();
+    }
+
+    @Override
+    public void getProfileSuccess(User user) {
         etFullname.setText(user.getFullname());
         etEmail.setText(user.getEmail());
         etPhone.setText(user.getPhoneNumber());
         etBirth.setText(DateTimeFormater.stringToTime(user.getBirthDay(), DateTimeFormater.YYYY_MM_DD_T_HH_MM_SS_SS, DateTimeFormater.MMM_d_YYYY));
-        if (user.getGender() == 0) {
+        if (user.getGender() == 1) {
             rBtnMale.setChecked(true);
         } else {
             rBtnFemale.setChecked(true);
@@ -272,16 +277,24 @@ public class MyProfileActivity extends BaseActivity implements MyProfileView, Da
     }
 
     @Override
-    public void error(String msg) {
+    public void getProfileError(String msg) {
+        new ConfirmOkDialog(this, msg, null).show();
+    }
+
+    @Override
+    public void updateProfileError(String msg) {
+        IS_EDIT = true;
+        invalidateOptionsMenu();
+        onEdit();
         new ConfirmOkDialog(this, msg, null).show();
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String stringDate = year + "-" + (month+1) + "-" + dayOfMonth;
-        if(DateTimeFormater.stringToDate(stringDate,DateTimeFormater.YYYY_MM_DD).after(DateTimeFormater.currentDate())){
-            new ConfirmOkDialog(this,getString(R.string.msg_birth_date_is_not_greater_than_the),null).show();
-        }else{
+        String stringDate = year + "-" + ((month + 1) < 10 ? "0" + (month + 1) : (month + 1)) + "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+        if (DateTimeFormater.stringToDate(stringDate, DateTimeFormater.YYYY_MM_DD).after(DateTimeFormater.currentDate())) {
+            new ConfirmOkDialog(MyProfileActivity.this, getString(R.string.msg_birth_date_is_not_greater_than_the), null).show();
+        } else {
             etBirth.setText(DateTimeFormater.stringToTime(stringDate, DateTimeFormater.YYYY_MM_DD, DateTimeFormater.MMM_d_YYYY));
             user.setBirthDay(stringDate);
         }

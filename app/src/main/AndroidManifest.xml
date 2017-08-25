@@ -41,7 +41,6 @@
         <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_register"
-            android:parentActivityName=".activities.LoginActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activities.MyProfileActivity"
@@ -61,11 +60,12 @@
             android:label="@string/title_checkout"
             android:parentActivityName=".activities.PackageActivity" />
         <activity
-            android:name=".activities.ChatActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleInstance"
-            android:taskAffinity="">
+            android:name=".activities.ChatActivity">
+            <intent-filter>
+                <action android:name="cse.duytan.coms.activities.ChatActivity" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activities.NewMessageActivity"
@@ -136,6 +136,8 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <service android:name=".fcm.MyService"/>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

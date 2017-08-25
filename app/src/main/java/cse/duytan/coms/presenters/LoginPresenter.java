@@ -45,7 +45,8 @@ public class LoginPresenter extends BasePresenter {
 
     public void checkIsLogin() {
         Token token = Prefs.getToken();
-        if (token != null) {
+        User user = Prefs.getUser();
+        if (token != null && user != null) {
             loginView.success();
         }
     }
@@ -94,7 +95,6 @@ public class LoginPresenter extends BasePresenter {
             getToken(username, password);
             User user = (User) data;
             if (user != null) {
-                Log.d(TAG, "downloadSuccess: " + user.getFullname());
                 Prefs.setUser(user);
             }
         } else if (processId == ID_API_GET_TOKEN) {

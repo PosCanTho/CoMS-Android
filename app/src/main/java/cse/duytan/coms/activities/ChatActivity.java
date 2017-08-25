@@ -11,9 +11,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -49,7 +52,7 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     private ArrayList<Message> listMessage;
     private int personIdTo = -1, personId = -1;
     private int page = 1, pageSize = 10;
-    private String name;
+    private String name, task;
     private ChatPresenter chatPresenter;
 
     @Override
@@ -69,6 +72,16 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
         setRvChatAdp();
         swipeRefresh.setOnRefreshListener(this);
 
+        etTypeMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    onSend();
+                }
+                return false;
+            }
+        });
+
     }
 
     private void getMyIntent() {
@@ -76,7 +89,11 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
         if (i != null) {
             personIdTo = i.getIntExtra("personIdTo", -1);
             name = i.getStringExtra("name");
+            task = i.getStringExtra("task");
             setTitle(name);
+
+            Prefs.setIdCurrentRead(personIdTo);
+            Toast.makeText(this, "personRead: "+personIdTo+" personPrefs: "+Prefs.getIdCurrentRead(), Toast.LENGTH_SHORT).show();
 
             chatPresenter = new ChatPresenter(this, this);
             chatPresenter.getListMessage(personId, personIdTo, page, pageSize);
@@ -99,14 +116,24 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
             try {
                 String data = intent.getStringExtra("message");
                 Message message = new Gson().fromJson(data, Message.class);
-                listMessage.add(message);
-                chatAdapter.notifyDataSetChanged();
-                rvChat.scrollToPosition(listMessage.size() - 1);
+                if(message.getPersonIdFrom() == personIdTo){
+                    listMessage.add(message);
+                    chatAdapter.notifyDataSetChanged();
+                    rvChat.scrollToPosition(listMessage.size() - 1);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     };
+
+    private void onSend() {
+        String message = etTypeMessage.getText().toString();
+        if (!TextUtils.isEmpty(message) && (personIdTo != -1)) {
+            chatPresenter.sendMessage(message, personId, personIdTo, "default", "high");
+            etTypeMessage.setText("");
+        }
+    }
 
 
     @Override
@@ -121,6 +148,13 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
     protected void onStop() {
         super.onStop();
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        Prefs.setIdCurrentRead(-1);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Prefs.setIdCurrentRead(-1);
     }
 
     @Override
@@ -143,8 +177,13 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
                 finish();
                 break;
             case android.R.id.home:
-                postEvent(new EventBusInfo(ID_EVENT_REFRESH));
-                finish();
+                if (TextUtils.isEmpty(task)) {
+                    postEvent(new EventBusInfo(ID_EVENT_REFRESH));
+                    finish();
+                } else {
+                    startActivity(new Intent(this, MainActivity.class));
+                    finish();
+                }
                 break;
             default:
                 break;
@@ -154,12 +193,9 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
 
     @OnClick(R.id.ibtnSend)
     public void onViewClicked() {
-        String message = etTypeMessage.getText().toString();
-        if (!TextUtils.isEmpty(message) && (personIdTo != -1)) {
-            chatPresenter.sendMessage(message, personId, personIdTo, "default", "high");
-            etTypeMessage.setText("");
-        }
+        onSend();
     }
+
 
     @Override
     public void popupCalback(int processId, Object data) {

@@ -5,11 +5,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -40,75 +45,117 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
             "cse.duytan.coms.fcm.ACTION_MESSAGE_READ";
     public static int NOTIFICATION_ID = 1111;
     private LocalBroadcastManager broadcastManager;
-    private Intent intent;
-    private RemoteMessage remoteMessage;
-    private Message message;
+
+    private Handler handler;
+    private static final int MESSAGE_DONE = 101;
 
     @Override
     public void onCreate() {
         super.onCreate();
         broadcastManager = LocalBroadcastManager.getInstance(this);
+        handler = new Handler(){
+            @Override
+            public void handleMessage(android.os.Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case MESSAGE_DONE:
+                        Toast.makeText(MyFirebaseMessagingService.this, "DONE", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        this.remoteMessage = remoteMessage;
         String data = remoteMessage.getData().toString();
         try {
             JSONObject json = new JSONObject(data);
             String jsonData = json.getString("Data");
             Intent i = new Intent("Message");
             i.putExtra("message", jsonData);
-            message = new Gson().fromJson(jsonData, Message.class);
-            sendNotification(remoteMessage.getNotification(), message);
+            Message message = new Gson().fromJson(jsonData, Message.class);
             broadcastManager.sendBroadcast(i);
-
+            Log.d(TAG, "getIdCurrentRead: " + Prefs.getIdCurrentRead());
+            Log.d(TAG, "getPersonIdFrom: " + message.getPersonIdFrom());
+            if (Prefs.getNotification() && (Prefs.getIdCurrentRead() != message.getPersonIdFrom())) {
+//                sendNotification(remoteMessage.getNotification(), message);
+                pushNotification(remoteMessage.getNotification(), message);
+            } else {
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                r.play();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private Intent getMessageReadIntent() {
-        return new Intent()
-                .addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                .setAction(READ_ACTION);
     }
 
     @Override
     public void handleIntent(Intent intent) {
         super.handleIntent(intent);
+        // Intent i = new Intent(this, MyService.class);
+        //  startService(i);
+//        Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
     }
 
     private void sendNotification(RemoteMessage.Notification notificationData, Message message) {
-
-        intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("personIdFrom", 1);
+        Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("personIdTo", message.getPersonIdFrom());
         intent.putExtra("name", notificationData.getTitle());
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("task", "New");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder noticationBuilder = null;
-        try {
-            noticationBuilder = new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.ic_chat)
-                    .setContentTitle(notificationData.getTitle())
-                    .setContentText(notificationData.getBody())
-                    .setAutoCancel(true)
-                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                    .setContentIntent(pendingIntent);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        NotificationCompat.Builder noticationBuilder = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_chat)
+                .setContentTitle(notificationData.getTitle())
+                .setContentText(notificationData.getBody())
+                .setAutoCancel(true)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                .setContentIntent(pendingIntent);
 
         if (noticationBuilder != null) {
             NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             Notification notification = noticationBuilder.build();
             notificationManager.notify(NOTIFICATION_ID, notification);
         }
+    }
+
+    private void pushNotification(final RemoteMessage.Notification notificationData, final Message message) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                Intent intent = new Intent(MyFirebaseMessagingService.this, ChatActivity.class);
+                intent.putExtra("personIdTo", message.getPersonIdFrom());
+                intent.putExtra("name", notificationData.getTitle());
+                intent.putExtra("task", "New");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                NotificationCompat.Builder noticationBuilder = new NotificationCompat.Builder(MyFirebaseMessagingService.this)
+                        .setSmallIcon(R.drawable.ic_chat)
+                        .setContentTitle(notificationData.getTitle())
+                        .setContentText(notificationData.getBody())
+                        .setAutoCancel(true)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+                        .setContentIntent(pendingIntent);
+
+                if (noticationBuilder != null) {
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    Notification notification = noticationBuilder.build();
+                    notificationManager.notify(NOTIFICATION_ID, notification);
+                }
+                handler.sendEmptyMessage(MESSAGE_DONE);
+            }
+        };
+        thread.start();
 
     }
+
+
 }

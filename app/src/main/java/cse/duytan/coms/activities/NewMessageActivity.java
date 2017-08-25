@@ -55,7 +55,7 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     private void initUI() {
         showHomeButton();
         listAccount = new ArrayList<>();
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, false, "", llEmpty, rlContent, tvEmpty);
 
         newMessagaPresenter = new NewMessagaPresenter(this, this);
         newMessagaPresenter.getListAccount();
@@ -121,7 +121,7 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     @Override
     public void success(ArrayList<Account> listAccount) {
         this.listAccount = listAccount;
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, true, "", llEmpty, rlContent, tvEmpty);
         setRvNewMessageAdp();
         invalidateOptionsMenu();
     }
@@ -129,13 +129,13 @@ public class NewMessageActivity extends BaseActivity implements SearchView.OnQue
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(this, msg, null).show();
-        empty(true, msg, llEmpty, rlContent, tvEmpty);
+        empty(true, true, msg, llEmpty, rlContent, tvEmpty);
         invalidateOptionsMenu();
     }
 
     @Override
     public void empty() {
-        empty(true, getString(R.string.msg_no_data_person), llEmpty, rlContent, tvEmpty);
+        empty(true, true, getString(R.string.msg_no_data_person), llEmpty, rlContent, tvEmpty);
         invalidateOptionsMenu();
     }
 }

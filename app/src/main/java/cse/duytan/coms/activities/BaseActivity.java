@@ -69,10 +69,12 @@ public class BaseActivity extends AppCompatActivity implements Constants, View.O
         EventBus.getDefault().post(eventBusInfo);
     }
 
-    protected void empty(boolean isEmpty, String msg, LinearLayout llEmpty, RelativeLayout rlContent, TextView tvEmpty) {
+    protected void empty(boolean isEmpty, boolean showLayoutEmpty, String msg, LinearLayout llEmpty, RelativeLayout rlContent, TextView tvEmpty) {
         if (isEmpty) {
             rlContent.setVisibility(View.GONE);
-            llEmpty.setVisibility(View.VISIBLE);
+            if(showLayoutEmpty){
+                llEmpty.setVisibility(View.VISIBLE);
+            }
             tvEmpty.setText(msg);
         } else {
             rlContent.setVisibility(View.VISIBLE);

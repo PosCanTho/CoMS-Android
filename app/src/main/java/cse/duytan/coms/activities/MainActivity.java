@@ -2,133 +2,109 @@ package cse.duytan.coms.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cse.duytan.coms.R;
 import cse.duytan.coms.adapters.MenuAdapter;
 import cse.duytan.coms.customviews.NonScrollListView;
 import cse.duytan.coms.dialogs.ConfirmDialog;
-import cse.duytan.coms.fragments.BookmarkFragment;
-import cse.duytan.coms.fragments.ConferenceFragment;
 import cse.duytan.coms.fragments.HomeFragment;
-import cse.duytan.coms.fragments.ListAbstractFragment;
-import cse.duytan.coms.fragments.ListPaperFragment;
-import cse.duytan.coms.fragments.MessageFragment;
-import cse.duytan.coms.fragments.NotificationFragment;
-import cse.duytan.coms.fragments.ReviewsFragment;
-import cse.duytan.coms.fragments.ReviewsPaperFragment;
-import cse.duytan.coms.fragments.ScheduleFragment;
-import cse.duytan.coms.fragments.SettingsFragment;
 import cse.duytan.coms.helpers.Prefs;
+import cse.duytan.coms.models.CircleImageView;
 import cse.duytan.coms.models.MenuApp;
+import cse.duytan.coms.models.User;
+import cse.duytan.coms.presenters.MainPresenter;
 import cse.duytan.coms.views.MainView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainView {
 
-    private NonScrollListView menu;
+    @BindView(R.id.ivAvatar)
+    CircleImageView ivAvatar;
+    @BindView(R.id.tvName)
+    TextView tvName;
+    @BindView(R.id.tvEmail)
+    TextView tvEmail;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.frame)
+    FrameLayout frame;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+    @BindView(R.id.lsMenu)
+    NonScrollListView lsMenu;
     private MenuAdapter menuAdapter;
 
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
-    private ImageView ivAvatar;
+
     private int selectItem;
     private ArrayList<MenuApp> listMenu;
-    public MainView mainView;
     private FragmentManager fragmentManager;
-    private  FragmentTransaction fragmentTransaction;
+
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        ButterKnife.bind(this);
         initUI();
-        setUpMenu();
     }
 
     private void initUI() {
-        Intent i = getIntent();
-        if(i != null){
-            Bundle bundle = i.getExtras();
-            if(bundle != null){
-                Log.d(TAG, "initUI: "+bundle.getInt("personIdFrom", -1));
-            }else{
-                Log.d(TAG, "initUI: Bul null");
+        //Khởi tạo
+        fragmentManager = getFragmentManager();
+        listMenu = new ArrayList<>();
 
-            }
-        }else{
-            Log.d(TAG, "initUI: NULL");
-        }
-        fragmentManager =  getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+        setUpActionbar();
+        setUpHeader();
+        setUpMenu();
+
         switchFragment(new HomeFragment());
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        ivAvatar = (ImageView) navigationView.findViewById(R.id.ivAvatar);
+        mainPresenter = new MainPresenter(this, this);
+        mainPresenter.getListMenu();
 
-        ivAvatar.setOnClickListener(this);
 
-        Log.d(TAG, "TOKEN: "+ FirebaseInstanceId.getInstance().getToken());
+        Prefs.setIdCurrentRead(-1);
+
+        Log.d(TAG, "TOKEN: " + FirebaseInstanceId.getInstance().getToken());
     }
 
-    private void setUpMenu() {
-        menu = (NonScrollListView) findViewById(R.id.lsMenu);
-        listMenu = new ArrayList<>();
-        listMenu.add(new MenuApp(R.drawable.ic_home, "Trang chủ", "5", new HomeFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new ScheduleFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_conference, "Hội nghị", "16", new ConferenceFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_bookmark_menu, "Đánh dấu", "10", new BookmarkFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_review, "Nhắn tin", "16", new MessageFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_notification, "Thông báo", "16", new NotificationFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài báo", "20", new ListPaperFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài tóm tắt", "4", new ReviewsFragment()));//ReviewsPaperFragment
-        listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài báo", "2", new ReviewsPaperFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_map_location, "Bản đồ", "", null));
-        listMenu.add(new MenuApp(R.drawable.ic_package, "Mua gói", "", null));
-        listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_logout, "Đăng xuất", "", null));
+    private void setUpActionbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+         drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+    }
 
+
+    private void setUpMenu() {
         menuAdapter = new MenuAdapter(getApplicationContext(), listMenu);
-        menu.setAdapter(menuAdapter);
-        menu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lsMenu.setAdapter(menuAdapter);
+        lsMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 selectItem = position;
@@ -138,9 +114,9 @@ public class MainActivity extends BaseActivity {
                 } else {
                     if (selectItem == (listMenu.size() - 1)) {
                         new ConfirmDialog(MainActivity.this, getString(R.string.msg_are_you_sure_you_want_to_logout), MainActivity.this).show();
-                    }else if (selectItem == (listMenu.size() - 3)) {
+                    } else if (selectItem == (listMenu.size() - 3)) {
                         startActivity(new Intent(MainActivity.this, PackageActivity.class));
-                    }else if (selectItem == (listMenu.size() - 4)) {
+                    } else if (selectItem == (listMenu.size() - 4)) {
                         startActivity(new Intent(MainActivity.this, MapActivity.class));
                     }
                 }
@@ -149,10 +125,21 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    private void setUpHeader() {
+        User user = Prefs.getUser();
+        if (user == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        } else {
+            tvName.setText(user.getFullname());
+            tvEmail.setText(user.getEmail());
+        }
+    }
 
-    private void switchFragment(Fragment fragment){
+
+    private void switchFragment(Fragment fragment) {
         getFragmentManager().beginTransaction().replace(R.id.frame, fragment).commit();
-        drawer.closeDrawer(GravityCompat.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
         invalidateOptionsMenu();
     }
 
@@ -201,14 +188,18 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.ivAvatar:
-                startActivity(new Intent(MainActivity.this, MyProfileActivity.class));
-                break;
-            default:
-                break;
-        }
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @OnClick(R.id.ivAvatar)
+    public void onViewClicked() {
+        startActivity(new Intent(MainActivity.this, MyProfileActivity.class));
+    }
+
+    @Override
+    public void listMenu(ArrayList<MenuApp> listMenu) {
+        this.listMenu.addAll(listMenu);
+        menuAdapter.notifyDataSetChanged();
     }
 }

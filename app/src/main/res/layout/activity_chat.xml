@@ -47,6 +47,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:imeOptions="actionSend"
         app:layout_constraintRight_toLeftOf="@+id/ibtnSend"
         app:typeFace="@string/font_nunito_regular" />
 

@@ -11,13 +11,12 @@
 
     <cse.duytan.coms.models.CircleImageView
         android:id="@+id/ivAvatar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="5dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:gravity="center"
         android:src="@drawable/ic_test"
         android:textColor="@android:color/white"
-        android:textSize="35dp" />
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -29,17 +28,17 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Steve Jobs"
+            android:text=""
             android:maxLines="2"
             android:ellipsize="end"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/size22" />
+            android:textSize="@dimen/size18" />
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="stevejobs@gmail.com"
+            android:text=""
             android:textSize="@dimen/size12" />
 
     </LinearLayout>

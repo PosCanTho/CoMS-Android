@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +29,7 @@ import cse.duytan.coms.untils.DebugLog;
 import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.LoginView;
 
-public class LoginActivity extends BaseActivity implements LoginView, Constants {
+public class LoginActivity extends BaseActivity implements LoginView, Constants, EditText.OnEditorActionListener {
 
     @BindView(R.id.etUsername)
     EditText etUsername;
@@ -57,13 +59,14 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnSignin:
-                loginPresenter.login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim());
+                onLogin();
                 break;
             case R.id.tvForgot:
                 new ForgotPasswordDialog(LoginActivity.this).show();
                 break;
             case R.id.tvSignup:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                finish();
                 break;
         }
     }
@@ -75,6 +78,12 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
 
         etUsername.setText("pvthiendeveloper");
         etPassword.setText("123456");
+
+        etPassword.setOnEditorActionListener(this);
+    }
+
+    private void onLogin(){
+        loginPresenter.login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim());
     }
 
 
@@ -89,4 +98,11 @@ public class LoginActivity extends BaseActivity implements LoginView, Constants 
         finish();
     }
 
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if(actionId == EditorInfo.IME_ACTION_GO){
+            onLogin();
+        }
+        return false;
+    }
 }

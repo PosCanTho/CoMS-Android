@@ -36,17 +36,17 @@ public class MyProfilePresenter extends BasePresenter {
 
     public void editUser(User user) {
         if (TextUtils.isEmpty(user.getFullname())) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_please_enter_full_name), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_please_enter_full_name));
         } else if (TextUtils.isEmpty(user.getEmail())) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_please_enter_email), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_please_enter_email));
         } else if (!Utils.isEmailValid(user.getEmail())) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_email_invalid), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_email_invalid));
         } else if (TextUtils.isEmpty(user.getPhoneNumber())) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_please_enter_phone_number), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_please_enter_phone_number));
         } else if (TextUtils.isEmpty(user.getBirthDay())) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_please_enter_birth_day), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_please_enter_birth_day));
         } else if (user.getGender() == -1) {
-            new ConfirmOkDialog(context, context.getString(R.string.msg_please_select_gender), null).show();
+            myProfileView.updateProfileError(context.getString(R.string.msg_please_select_gender));
         }else{
             DownloadAsyncTask.POST(context, ID_API_EDIT_PROFILE, API_EDIT_PROFILE, new Gson().toJson(user), null, true, this);
         }
@@ -58,15 +58,19 @@ public class MyProfilePresenter extends BasePresenter {
         if (processId == ID_API_GET_MY_PROFILE) {
             User user = (User) data;
             Prefs.setUser(user);
-            myProfileView.success(user);
+            myProfileView.getProfileSuccess(user);
         } else if (processId == ID_API_EDIT_PROFILE) {
-
+            myProfileView.updateProfileSucess();
         }
     }
 
     @Override
     public void downloadError(int processId, String msg) {
         super.downloadError(processId, msg);
-        myProfileView.error(msg);
+        if(processId == ID_API_GET_MY_PROFILE){
+            myProfileView.getProfileError(msg);
+        }else if(processId == ID_API_EDIT_PROFILE){
+            myProfileView.updateProfileError(msg);
+        }
     }
 }

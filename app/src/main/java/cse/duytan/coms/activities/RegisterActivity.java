@@ -11,17 +11,14 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.*;
 
 import java.io.File;
 
@@ -32,14 +29,9 @@ import cse.duytan.coms.R;
 import cse.duytan.coms.dialogs.ChooseAvatarDialog;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.CropImageDialog;
-import cse.duytan.coms.helpers.ScreenHelper;
 import cse.duytan.coms.models.CircleImageView;
 import cse.duytan.coms.presenters.RegisterPresenter;
-import cse.duytan.coms.untils.CircleTransform;
-import cse.duytan.coms.untils.Constants;
-import cse.duytan.coms.untils.PopupCalback;
 import cse.duytan.coms.untils.Utils;
-import cse.duytan.coms.views.LoginView;
 import cse.duytan.coms.views.RegisterView;
 
 public class RegisterActivity extends BaseActivity implements RegisterView {
@@ -68,6 +60,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     private final String TAG = this.getClass().getSimpleName();
 
     private static Context context;
+    @BindView(R.id.rBtnMale)
+    RadioButton rBtnMale;
+    @BindView(R.id.rBtnFemale)
+    RadioButton rBtnFemale;
     private File fileAvatar;
     private RegisterPresenter registerPresenter;
 
@@ -80,24 +76,14 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         initUI();
     }
 
-    @OnClick({R.id.ibtnChooseAvatar, R.id.btnRegister, R.id.tvSignin})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.ibtnChooseAvatar:
-                new ChooseAvatarDialog(this, this).show();
-                break;
-            case R.id.btnRegister:
-                onRegister();
-                break;
-            case R.id.tvSignin:
-                finish();
-                break;
-        }
-    }
 
     private void initUI() {
+        showHomeButton();
+
         registerPresenter = new RegisterPresenter(this, this);
         btnRegister.setTypeface(Utils.getFonts(this, R.string.font_nunito_regular));
+        rBtnMale.setTypeface(Utils.getFonts(this, R.string.font_roboto_regular));
+        rBtnFemale.setTypeface(Utils.getFonts(this, R.string.font_roboto_regular));
     }
 
     private void openAlbum() {
@@ -120,7 +106,44 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         String userName = etUsername.getText().toString().trim();
         String passWord = etPassword.getText().toString();
         String confirmPassword = etConfirmPassword.getText().toString();
-        registerPresenter.register(fullName, email, userName, passWord, confirmPassword);
+        int gender;
+        if (rBtnFemale.isChecked() == false && rBtnMale.isChecked() == false) {
+            gender = -1;
+        } else {
+            gender = rBtnMale.isChecked() ? 1 : 0;
+        }
+        registerPresenter.register(fullName, email, gender, userName, passWord, confirmPassword);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick({R.id.ibtnChooseAvatar, R.id.btnRegister, R.id.tvSignin})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ibtnChooseAvatar:
+                new ChooseAvatarDialog(this, this).show();
+                break;
+            case R.id.btnRegister:
+                onRegister();
+                break;
+            case R.id.tvSignin:
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -180,6 +203,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     public void success() {
-        new ConfirmOkDialog(context, "Success", null).show();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
+
 }

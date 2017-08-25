@@ -3,6 +3,7 @@ package cse.duytan.coms.connections;
 import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -79,11 +80,17 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    if(e.getMessage().equals("timeout")){
-                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
-                    }else{
-                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    if(e != null){
+                        String message = e.getMessage();
+                        if(!TextUtils.isEmpty(message)){
+                            if(message.equals("timeout")){
+                                showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                                return;
+                            }
+                        }
                     }
+                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+
                     DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
@@ -126,6 +133,7 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
             processDialog = new ProcessDialog(context);
             if (showDialog) processDialog.show();
             DebugLog.logD(TAG, "URL_REQUEST: " + url);
+            DebugLog.logD(TAG, "POST_VALUE: " + body);
             client = new OkHttpClient();
 
             Map<String, String> map = new HashMap<>();
@@ -148,11 +156,16 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    if (e.getMessage().equals("timeout")) {
-                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
-                    } else {
-                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    if(e != null){
+                        String message = e.getMessage();
+                        if(!TextUtils.isEmpty(message)){
+                            if(message.equals("timeout")){
+                                showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                                return;
+                            }
+                        }
                     }
+                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
                     DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
@@ -194,17 +207,24 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
             processDialog = new ProcessDialog(context);
             if (showDialog) processDialog.show();
             DebugLog.logD(TAG, "URL_REQUEST: " + url);
+            DebugLog.logD(TAG, "POST_VALUE: " + request.toString());
             client = new OkHttpClient();
 
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
                     processDialog.dismiss();
-                    if (e.getMessage().equals("timeout")) {
-                        showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
-                    } else {
-                        showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+                    if(e != null){
+                        String message = e.getMessage();
+                        if(!TextUtils.isEmpty(message)){
+                            if(message.equals("timeout")){
+                                showError(context, processId, context.getString(R.string.msg_connection_time_out_please_try_again), downloadCallback);
+                                return;
+                            }
+                        }
                     }
+                    showError(context, processId, context.getString(R.string.msg_sorry_an_has_occurred), downloadCallback);
+
                     DebugLog.logD(TAG, "DOWNLOAD_ONFAILURE: " + e.getMessage());
                 }
 
