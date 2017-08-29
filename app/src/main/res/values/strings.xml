@@ -77,6 +77,7 @@
     <string name="title_paper_text">Paper Text</string>
     <string name="title_download_documents">Download Documents</string>
     <string name="title_attendee">Attendee</string>
+    <string name="title_floor_map">Floor Map</string>
 
     <!--Conversation-->
     <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
@@ -107,6 +108,7 @@
     <string name="msg_are_you_sure_you_want_to_delete_all_message">Are you sure you want to delete all message.</string>
     <string name="msg_no_data_message">No data message.</string>
     <string name="msg_no_data_package">No data package.</string>
+    <string name="msg_no_data_map">No data map.</string>
     <string name="msg_please_log_in_again">Please sign in again.</string>
     <string name="msg_connection_timed_please_log_in_again">Connection time out. Please login again.</string>
     <string name="msg_connection_time_out_please_try_again">Connection time out. Please try again.</string>
@@ -114,6 +116,7 @@
     <string name="msg_your_password_has_been_changed">Your password has been changed. Please check your email.</string>
     <string name="msg_change_password_sucess">Change password success.</string>
     <string name="msg_update_profile_success">Update profile success.</string>
+    <string name="msg_can_not_load_map">Can not load map.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>

@@ -22,8 +22,10 @@ import cse.duytan.coms.untils.AdapterCallback;
 import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.untils.PopupCalback;
 
-public class BaseActivity extends AppCompatActivity implements Constants, View.OnClickListener, PopupCalback, AdapterCallback, ListView.OnItemClickListener,
+public abstract class BaseActivity extends AppCompatActivity implements Constants, View.OnClickListener, PopupCalback, AdapterCallback, ListView.OnItemClickListener,
         DownloadCallback {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

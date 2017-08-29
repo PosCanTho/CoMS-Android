@@ -3,7 +3,6 @@ package cse.duytan.coms.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -11,21 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.json.JSONObject;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cse.duytan.coms.R;
-import cse.duytan.coms.connections.DownloadAsyncTask;
 import cse.duytan.coms.dialogs.ConfirmOkDialog;
 import cse.duytan.coms.dialogs.ForgotPasswordDialog;
-import cse.duytan.coms.helpers.Prefs;
-import cse.duytan.coms.models.Token;
-import cse.duytan.coms.models.User;
 import cse.duytan.coms.presenters.LoginPresenter;
 import cse.duytan.coms.untils.Constants;
-import cse.duytan.coms.untils.DebugLog;
 import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.LoginView;
 

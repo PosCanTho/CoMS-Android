@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity implements MainView {
                     } else if (selectItem == (listMenu.size() - 3)) {
                         startActivity(new Intent(MainActivity.this, PackageActivity.class));
                     } else if (selectItem == (listMenu.size() - 4)) {
-                        startActivity(new Intent(MainActivity.this, MapActivity.class));
+                        startActivity(new Intent(MainActivity.this, ListMapActivity.class));
                     }
                 }
 

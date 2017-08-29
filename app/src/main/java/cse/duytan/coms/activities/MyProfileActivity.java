@@ -94,7 +94,7 @@ public class MyProfileActivity extends BaseActivity implements MyProfileView, Da
         myProfilePresenter = new MyProfilePresenter(this, this);
         myProfilePresenter.getMyProfile(Prefs.getUser().getPersonId());
     }
-
+    
     private void onEdit() {
         if (IS_EDIT) {
             ibtnChooseAvatar.setVisibility(View.VISIBLE);

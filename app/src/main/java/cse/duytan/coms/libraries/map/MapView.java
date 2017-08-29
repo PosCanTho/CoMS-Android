@@ -22,13 +22,13 @@ import cse.duytan.coms.libraries.map.utils.MapMath;
 import cse.duytan.coms.libraries.map.utils.MapUtils;
 
 /**
- * MapView
+ * ListMapView
  *
  * @author: onlylemi
  */
 public class MapView extends SurfaceView implements SurfaceHolder.Callback {
 
-    private static final String TAG = "MapView";
+    private static final String TAG = "ListMapView";
 
     private SurfaceHolder holder;
     private MapViewListener mapViewListener = null;
@@ -273,7 +273,7 @@ public class MapView extends SurfaceView implements SurfaceHolder.Callback {
                         currentMatrix.postScale(scale, scale, mid.x, mid.y);
                         refresh();
                         break;
-                   /* case MapView.TOUCH_STATE_ROTATE:
+                   /* case ListMapView.TOUCH_STATE_ROTATE:
                         currentMatrix.set(saveMatrix);
                         newDegree = rotation(event, mid);
                         float rotate = newDegree - oldDegree;

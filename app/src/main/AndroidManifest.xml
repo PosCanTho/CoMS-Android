@@ -26,7 +26,6 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-
         </activity>
         <activity
             android:name=".activities.LoginActivity"
@@ -47,7 +46,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
             android:label="@string/title_my_profile"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
         <activity android:name=".activities.BaseActivity" />
         <activity
             android:name=".activities.ProfileActivity"
@@ -59,8 +57,7 @@
             android:name=".activities.CheckoutActivity"
             android:label="@string/title_checkout"
             android:parentActivityName=".activities.PackageActivity" />
-        <activity
-            android:name=".activities.ChatActivity">
+        <activity android:name=".activities.ChatActivity">
             <intent-filter>
                 <action android:name="cse.duytan.coms.activities.ChatActivity" />
 
@@ -80,10 +77,7 @@
             android:parentActivityName=".activities.ConferenceInfomationActivity" />
         <activity
             android:name=".activities.MapActivity"
-            android:label="@string/title_map"
-            android:parentActivityName=".activities.MainActivity">
-
-        </activity>
+            android:label="@string/title_map"></activity>
         <activity
             android:name=".activities.SendPaperActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
@@ -104,16 +98,14 @@
             android:screenOrientation="portrait"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.SeeReviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|locale"
             android:screenOrientation="portrait"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <provider
             android:name=".helpers.GenericFileProvider"
@@ -130,19 +122,18 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".fcm.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-        <service android:name=".fcm.MyService"/>
+        <service android:name=".fcm.MyService" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_chat" />
 
+        <activity android:name=".activities.ListMapActivity"></activity>
     </application>
 
 </manifest>

@@ -3,43 +3,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cse.duytan.coms.activities.MapActivity">
+    android:layout_height="match_parent">
 
-    <cse.duytan.coms.libraries.map.MapView
-        android:id="@+id/mapview"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
-
-    <LinearLayout
+    <include
+        layout="@layout/include_layout_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:orientation="vertical"
-        android:background="@color/red"
-        android:padding="@dimen/line0.25"
-        app:layout_constraintLeft_toLeftOf="@+id/mapview"
-        app:layout_constraintTop_toTopOf="@+id/mapview">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/ivZoomIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/padding5"
-            app:srcCompat="@drawable/ic_plus_black" />
+    <RelativeLayout
+        android:id="@+id/rlContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/ivZoomOut"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/line0.25"
-            android:background="@color/white"
-            android:padding="@dimen/padding5"
-            app:srcCompat="@drawable/ic_minus" />
-    </LinearLayout>
+            android:layout_height="match_parent">
+
+            <cse.duytan.coms.libraries.map.MapView
+                android:id="@+id/mapview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginTop="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/red"
+                android:orientation="vertical"
+                android:padding="@dimen/line0.25"
+                app:layout_constraintLeft_toLeftOf="@+id/mapview"
+                app:layout_constraintTop_toTopOf="@+id/mapview">
+
+                <ImageButton
+                    android:id="@+id/ivZoomIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:padding="@dimen/padding5"
+                    app:srcCompat="@drawable/ic_plus_black" />
+
+                <ImageButton
+                    android:id="@+id/ivZoomOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/line0.25"
+                    android:background="@color/white"
+                    android:padding="@dimen/padding5"
+                    app:srcCompat="@drawable/ic_minus" />
+            </LinearLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
+
