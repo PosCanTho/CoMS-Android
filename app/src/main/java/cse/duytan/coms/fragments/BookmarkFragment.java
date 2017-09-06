@@ -64,7 +64,7 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
 
     private void initUI() {
         getActivity().setTitle(R.string.title_bookmark);
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, false, "", llEmpty, rlContent, tvEmpty);
         personId = Prefs.getUser().getPersonId();
 
         bookmarkPresenter = new BookmarkPresenter(getActivity(), this);
@@ -106,20 +106,20 @@ public class BookmarkFragment extends BaseFragment implements BookmarkView {
     @Override
     public void success(ArrayList<Bookmark> listBookmark) {
         this.listBookmark = listBookmark;
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, false, "", llEmpty, rlContent, tvEmpty);
         setRvBookmarkAdapter();
     }
 
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(getActivity(), msg, null).show();
-        empty(true, msg, llEmpty, rlContent, tvEmpty);
+        empty(true, true, msg, llEmpty, rlContent, tvEmpty);
 
     }
 
     @Override
     public void empty() {
-        empty(true, getString(R.string.msg_no_data_bookmark), llEmpty, rlContent, tvEmpty);
+        empty(true, true, getString(R.string.msg_no_data_bookmark), llEmpty, rlContent, tvEmpty);
     }
 
 

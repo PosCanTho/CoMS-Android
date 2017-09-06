@@ -8,17 +8,18 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/llConSessInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_marginBottom="8dp"
+            android:id="@+id/scrollViewInSess"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp">
 
             <LinearLayout
+                android:id="@+id/llConSessInfomation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -30,6 +31,8 @@
                     android:background="#f2f2f2">
 
                     <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvNameConSess"
+                        app:typeFace="@string/font_nunito_regular"
                         style="@style/tvBlack16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -37,7 +40,6 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="Conference Session 1"
                         android:textAllCaps="true" />
                 </RelativeLayout>
 
@@ -46,25 +48,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Giờ bắt đầu:" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginLeft="16dp"
-                        android:text="Giờ kết thúc" />
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_start_datetime" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvStartTimeInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_end_datetime" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvEndTimeInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
-
-                <ListView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,32 +99,102 @@
                     android:layout_marginRight="16dp"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Số phiên trình bày:" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_number_of_presentation" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvTotalPresentationInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Chủ đề của tiểu bang:" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_conference_session_topic" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvTopicInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Chủ đề chính: " />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_conference_main_theme" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvMainTopicInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Miêu tả:" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_description" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvDesInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_marginLeft="4dp"
+                            style="@style/tvBlack14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Diễn giả chính:" />
+                        android:layout_height="wrap_content">
 
-                    <TextView
+                        <cse.duytan.coms.customviews.CustomTextView
+                            app:typeFace="@string/font_nunito_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lbl_venue" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvVenue"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp" />
+                    </LinearLayout>
+
+                    <cse.duytan.coms.customviews.CustomTextView
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:layout_marginLeft="5dp"
@@ -107,22 +203,215 @@
                         android:background="#b4aeae" />
                 </LinearLayout>
 
-                <cse.duytan.coms.customviews.NonScrollListView
-                    android:id="@+id/lsFunction"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginRight="16dp"
-                    android:divider="@null"
-                    android:dividerHeight="0dp" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llSchedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/icScheduleInSess"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_calendar_menu" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvScheduleInSess"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:text="@string/lbl_schedule"
+                            app:typeFace="@string/font_nunito_regular" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="right">
+
+                            <cse.duytan.coms.customviews.CustomTextView
+                                app:typeFace="@string/font_nunito_regular"
+                                android:id="@+id/tvTotalScheduleInSess"
+                                style="@style/tvBlack14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:text="15" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#b4aeae" />
+                    <LinearLayout
+                        android:id="@+id/llPaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/icPaperInSess"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_paper" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvPaperInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:text="@string/lbl_paper_text" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="right">
+
+                            <cse.duytan.coms.customviews.CustomTextView
+                                app:typeFace="@string/font_nunito_regular"
+                                android:id="@+id/tvTotalPaperInSession"
+                                style="@style/tvBlack14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:text="15" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#b4aeae" />
+                    <LinearLayout
+                        android:id="@+id/llDonwload"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/icDownloadInSess"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_download" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvDownloadInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:text="@string/lbl_download" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="right">
+
+                            <cse.duytan.coms.customviews.CustomTextView
+                                app:typeFace="@string/font_nunito_regular"
+                                android:id="@+id/tvTotalDownloadInSession"
+                                style="@style/tvBlack14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:text="15" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:background="#b4aeae" />
+                    <LinearLayout
+                        android:id="@+id/llAttendee"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/icAttendeeInSess"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_teamwork" />
+
+                        <cse.duytan.coms.customviews.CustomTextView
+                            android:id="@+id/tvAttendeeInSess"
+                            app:typeFace="@string/font_nunito_regular"
+                            style="@style/tvBlack14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="16dp"
+                            android:text="@string/lbl_attendee" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="right">
+
+                            <cse.duytan.coms.customviews.CustomTextView
+                                app:typeFace="@string/font_nunito_regular"
+                                android:id="@+id/tvTotalAttendeeInSession"
+                                style="@style/tvBlack14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="16dp"
+                                android:text="15" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginRight="21dp"
+                        android:background="#b4aeae" />
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
                     android:background="#f2f2f2">
 
                     <cse.duytan.coms.customviews.CustomTextView
+                        app:typeFace="@string/font_nunito_regular"
                         style="@style/tvBlack16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -133,114 +422,115 @@
                         android:layout_marginLeft="14dp"
                         android:layout_marginStart="14dp"
                         android:layout_marginTop="8dp"
-                        android:text="Phiên trình bày"
+                        android:text="@string/lbl_presentation_slot"
                         android:textAllCaps="true" />
                 </RelativeLayout>
 
-                <cse.duytan.coms.customviews.NonScrollListView
-                    android:id="@+id/lsPresentationSlot"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPresentationSlot"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp" />
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:background="#b4aeae">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="1dp"
-                        android:background="@android:color/white"
-                        android:orientation="vertical">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_margin="1dp"-->
+                        <!--android:background="@android:color/white"-->
+                        <!--android:orientation="vertical">-->
 
-                        <cse.duytan.coms.customviews.CustomTextView
-                            style="@style/tvBlack14"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginTop="6dp"
-                            android:text="Feedback" />
+                        <!--<cse.duytan.coms.customviews.CustomTextView-->
+                            <!--style="@style/tvBlack14"-->
+                            <!--app:typeFace="@string/font_nunito_regular"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="16dp"-->
+                            <!--android:layout_marginTop="6dp"-->
+                            <!--android:text="@string/lbl_feedback" />-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginTop="6dp"
-                            android:background="#b4aeae" />
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="0.5dp"-->
+                            <!--android:layout_marginBottom="8dp"-->
+                            <!--android:layout_marginLeft="5dp"-->
+                            <!--android:layout_marginRight="5dp"-->
+                            <!--android:layout_marginTop="6dp"-->
+                            <!--android:background="#b4aeae" />-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:gravity="center_vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="8dp"-->
+                            <!--android:gravity="center_vertical">-->
 
-                            <cse.duytan.coms.customviews.CustomTextView
-                                android:id="@+id/textView5"
-                                style="@style/tvGray14"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp"
-                                android:gravity="center"
-                                android:text="@string/lbl_rate" />
+                            <!--<cse.duytan.coms.customviews.CustomTextView-->
+                                <!--android:id="@+id/tVRate"-->
+                                <!--app:typeFace="@string/font_nunito_regular"-->
+                                <!--style="@style/tvGray14"-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginLeft="16dp"-->
+                                <!--android:gravity="center"-->
+                                <!--android:text="@string/lbl_rate" />-->
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="16dp"
-                                android:gravity="center">
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginLeft="16dp"-->
+                                <!--android:gravity="center">-->
 
-                                <RatingBar
-                                    android:id="@+id/ratingBar"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-                        </LinearLayout>
+                                <!--<RatingBar-->
+                                    <!--android:id="@+id/ratingBar"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content" />-->
+                            <!--</LinearLayout>-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:background="#b4aeae">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginBottom="16dp"-->
+                            <!--android:layout_marginLeft="16dp"-->
+                            <!--android:layout_marginRight="16dp"-->
+                            <!--android:background="#b4aeae">-->
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="1dp"
-                                android:background="@android:color/white"
-                                android:orientation="horizontal">
+                            <!--<LinearLayout-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="match_parent"-->
+                                <!--android:layout_margin="1dp"-->
+                                <!--android:background="@android:color/white"-->
+                                <!--android:orientation="horizontal">-->
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="8dp"
-                                    android:layout_marginLeft="16dp"
-                                    android:layout_marginRight="16dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="Phản hồi:" />
+                                <!--<cse.duytan.coms.customviews.CustomTextView-->
+                                    <!--app:typeFace="@string/font_nunito_regular"-->
+                                    <!--android:layout_width="wrap_content"-->
+                                    <!--android:layout_height="wrap_content"-->
+                                    <!--android:layout_marginBottom="8dp"-->
+                                    <!--android:layout_marginLeft="16dp"-->
+                                    <!--android:layout_marginRight="16dp"-->
+                                    <!--android:layout_marginTop="8dp"-->
+                                    <!--android:text="@string/lbl_comment" />-->
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                <!--<LinearLayout-->
+                                    <!--android:layout_width="match_parent"-->
+                                    <!--android:layout_height="match_parent">-->
 
-                                    <EditText
-                                        android:id="@+id/editText"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" />
-                                </LinearLayout>
+                                    <!--<EditText-->
+                                        <!--android:id="@+id/etFeedback"-->
+                                        <!--android:layout_width="match_parent"-->
+                                        <!--android:layout_height="wrap_content" />-->
+                                <!--</LinearLayout>-->
 
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
+                            <!--</LinearLayout>-->
+                        <!--</LinearLayout>-->
+                    <!--</LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

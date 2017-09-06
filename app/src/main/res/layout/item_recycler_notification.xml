@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <cse.duytan.coms.customviews.CustomTextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvMessage"
         style="@style/tvBlack14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,18 +22,18 @@ download the next three months, please
 make sure to save what you need."
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/ivAvatar"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:typeFace="@string/font_roboto_regular"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:typeFace="@string/font_roboto_regular" />
 
     <cse.duytan.coms.models.CircleImageView
         android:id="@+id/ivAvatar"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:src="@drawable/ic_test"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvName"
+        app:layout_constraintTop_toTopOf="@+id/tvMessage"
         android:layout_marginTop="0dp" />
 
     <cse.duytan.coms.customviews.CustomTextView
@@ -47,8 +47,8 @@ make sure to save what you need."
         android:text="30 day ago."
         android:textSize="@dimen/size12"
         android:textColor="#757575"
-        app:layout_constraintLeft_toLeftOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintLeft_toLeftOf="@+id/tvMessage"
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage"
         app:typeFace="@string/font_roboto_regular" />
 
     <TextView
@@ -61,6 +61,6 @@ make sure to save what you need."
         app:layout_constraintTop_toBottomOf="@+id/tvStartDate"
         app:layout_constraintLeft_toRightOf="@+id/ivAvatar"
         android:layout_marginRight="0dp"
-        app:layout_constraintRight_toRightOf="@+id/tvName" />
+        app:layout_constraintRight_toRightOf="@+id/tvMessage" />
 
 </android.support.constraint.ConstraintLayout>

@@ -24,8 +24,8 @@ public class MessagePresenter extends BasePresenter {
         this.messageView = messageView;
     }
 
-    public void getListConversation(int personId) {
-        DownloadAsyncTask.GET(context, ID_API_LIST_CONVERSATION, API_LIST_CONVERSATION + "?personId=" + personId, Conversation.class, true, this);
+    public void getListConversation(int personId, boolean showDialog) {
+        DownloadAsyncTask.GET(context, ID_API_LIST_CONVERSATION, API_LIST_CONVERSATION + "?personId=" + personId, Conversation.class, showDialog, this);
     }
 
     @Override

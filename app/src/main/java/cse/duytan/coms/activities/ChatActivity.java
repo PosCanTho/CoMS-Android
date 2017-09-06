@@ -93,7 +93,6 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
             setTitle(name);
 
             Prefs.setIdCurrentRead(personIdTo);
-            Toast.makeText(this, "personRead: "+personIdTo+" personPrefs: "+Prefs.getIdCurrentRead(), Toast.LENGTH_SHORT).show();
 
             chatPresenter = new ChatPresenter(this, this);
             chatPresenter.getListMessage(personId, personIdTo, page, pageSize);
@@ -114,12 +113,14 @@ public class ChatActivity extends BaseActivity implements ChatView, SwipeRefresh
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String data = intent.getStringExtra("message");
-                Message message = new Gson().fromJson(data, Message.class);
-                if(message.getPersonIdFrom() == personIdTo){
-                    listMessage.add(message);
-                    chatAdapter.notifyDataSetChanged();
-                    rvChat.scrollToPosition(listMessage.size() - 1);
+                String data = intent.getStringExtra("data");
+                if(!TextUtils.isEmpty(data)){
+                    Message message = new Gson().fromJson(data, Message.class);
+                    if(message.getPersonIdFrom() == personIdTo){
+                        listMessage.add(message);
+                        chatAdapter.notifyDataSetChanged();
+                        rvChat.scrollToPosition(listMessage.size() - 1);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -9,7 +9,7 @@ import cse.duytan.coms.untils.Constants;
  * Phone: 0979477093
  */
 
-public class BasePresenter implements Constants, DownloadCallback {
+public abstract class BasePresenter implements Constants, DownloadCallback {
     @Override
     public void downloadSuccess(int processId, Object data) {
 

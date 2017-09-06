@@ -5,8 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.constraint.ConstraintLayout;
@@ -30,7 +33,9 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -234,8 +239,31 @@ public class Utils implements Constants {
     }
 
     /*Chuyển số thành kiểu tiền VND*/
-    public static String formatPrice(long price){
+    public static String formatPrice(long price) {
         DecimalFormat format = new DecimalFormat("###,###,###");
         return format.format(price);
+    }
+
+    /*Thông báo*/
+    public static void ringTone(Context context, int type) {
+        Uri notification = RingtoneManager.getDefaultUri(type);
+        Ringtone r = RingtoneManager.getRingtone(context, notification);
+        r.play();
+    }
+
+    public static ArrayList<Date> getDaysBetweenDates(Date startdate, Date enddate)
+    {
+        ArrayList<Date> dates = new ArrayList<Date>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startdate);
+
+        while (calendar.getTime().before(enddate))
+        {
+            Date result = calendar.getTime();
+            dates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        dates.add(enddate);
+        return dates;
     }
 }

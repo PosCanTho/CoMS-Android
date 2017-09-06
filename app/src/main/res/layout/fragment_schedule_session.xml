@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.csepossidemenu.myapplication.Fragment.AttendeeFragment">
+    tools:context="cse.duytan.coms.fragments.ScheduleSessionFragment">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvScheduleSession"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="16dp"
-        android:id="@+id/lsAttendee"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
 </FrameLayout>

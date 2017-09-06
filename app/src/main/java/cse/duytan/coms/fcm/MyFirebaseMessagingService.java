@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,12 +27,15 @@ import cse.duytan.coms.R;
 import cse.duytan.coms.activities.ChatActivity;
 import cse.duytan.coms.activities.MainActivity;
 import cse.duytan.coms.activities.MapActivity;
+import cse.duytan.coms.activities.MyProfileActivity;
 import cse.duytan.coms.helpers.Prefs;
 import cse.duytan.coms.models.ChatBody;
 import cse.duytan.coms.models.Message;
 import cse.duytan.coms.presenters.ChatPresenter;
 import cse.duytan.coms.untils.Constants;
+import cse.duytan.coms.untils.Utils;
 import cse.duytan.coms.views.ChatView;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 /**
  * Created by Pham Van Thien on 7/25/2017.
@@ -53,13 +57,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
     public void onCreate() {
         super.onCreate();
         broadcastManager = LocalBroadcastManager.getInstance(this);
-        handler = new Handler(){
+        handler = new Handler() {
             @Override
             public void handleMessage(android.os.Message msg) {
                 super.handleMessage(msg);
-                switch (msg.what){
+                switch (msg.what) {
                     case MESSAGE_DONE:
-                        Toast.makeText(MyFirebaseMessagingService.this, "DONE", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -73,19 +76,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         try {
             JSONObject json = new JSONObject(data);
             String jsonData = json.getString("Data");
-            Intent i = new Intent("Message");
-            i.putExtra("message", jsonData);
             Message message = new Gson().fromJson(jsonData, Message.class);
-            broadcastManager.sendBroadcast(i);
-            Log.d(TAG, "getIdCurrentRead: " + Prefs.getIdCurrentRead());
-            Log.d(TAG, "getPersonIdFrom: " + message.getPersonIdFrom());
-            if (Prefs.getNotification() && (Prefs.getIdCurrentRead() != message.getPersonIdFrom())) {
-//                sendNotification(remoteMessage.getNotification(), message);
-                pushNotification(remoteMessage.getNotification(), message);
-            } else {
-                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-                r.play();
+
+            if (message.getConversationReplyId() != 0) {//Khi đây là tin nhắn
+                if (Prefs.getNotification() && (Prefs.getIdCurrentRead() != message.getPersonIdFrom())) {
+                    pushNotification(remoteMessage.getNotification(), message);
+                } else {
+                    if (Prefs.getNotification())
+                        Utils.ringTone(getApplicationContext(), RingtoneManager.TYPE_NOTIFICATION);
+
+                    Intent i = new Intent("Message");
+                    i.putExtra("data", jsonData);
+                    broadcastManager.sendBroadcast(i);
+                }
+            } else {//Khi đây là thông báo
+                if (Prefs.getNotification() && !Prefs.getViewNotification()) {
+                    pushNotification(remoteMessage.getNotification(), message);
+                } else {
+                    if (Prefs.getNotification())
+                        Utils.ringTone(getApplicationContext(), RingtoneManager.TYPE_NOTIFICATION);
+                }
+
+                cse.duytan.coms.models.Notification notification = new Gson().fromJson(jsonData, cse.duytan.coms.models.Notification.class);
+                ShortcutBadger.applyCount(this, notification.getNumberUnread());
+
+                Intent i = new Intent("Notification");
+                i.putExtra("data", jsonData);
+                broadcastManager.sendBroadcast(i);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,45 +112,26 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
     @Override
     public void handleIntent(Intent intent) {
         super.handleIntent(intent);
-        // Intent i = new Intent(this, MyService.class);
-        //  startService(i);
-//        Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
-    }
-
-    private void sendNotification(RemoteMessage.Notification notificationData, Message message) {
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("personIdTo", message.getPersonIdFrom());
-        intent.putExtra("name", notificationData.getTitle());
-        intent.putExtra("task", "New");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        NotificationCompat.Builder noticationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_chat)
-                .setContentTitle(notificationData.getTitle())
-                .setContentText(notificationData.getBody())
-                .setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                .setContentIntent(pendingIntent);
-
-        if (noticationBuilder != null) {
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification notification = noticationBuilder.build();
-            notificationManager.notify(NOTIFICATION_ID, notification);
-        }
     }
 
     private void pushNotification(final RemoteMessage.Notification notificationData, final Message message) {
-        Thread thread = new Thread() {
+        final Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
-                Intent intent = new Intent(MyFirebaseMessagingService.this, ChatActivity.class);
-                intent.putExtra("personIdTo", message.getPersonIdFrom());
-                intent.putExtra("name", notificationData.getTitle());
-                intent.putExtra("task", "New");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent;
+                if (message.getConversationReplyId() != 0) {
+                    intent = new Intent(MyFirebaseMessagingService.this, ChatActivity.class);
+                    intent.putExtra("personIdTo", message.getPersonIdFrom());
+                    intent.putExtra("name", notificationData.getTitle());
+                    intent.putExtra("task", "New");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                } else {
+                    intent = new Intent(MyFirebaseMessagingService.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("personIdTo", message.getPersonIdTo());
+                }
 
                 PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -148,8 +146,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
                 if (noticationBuilder != null) {
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     Notification notification = noticationBuilder.build();
-                    notificationManager.notify(NOTIFICATION_ID, notification);
+                    notificationManager.notify(message.getPersonIdFrom(), notification);
                 }
+
                 handler.sendEmptyMessage(MESSAGE_DONE);
             }
         };

@@ -48,11 +48,52 @@
     <string name="lbl_location">Location</string>
     <string name="lbl_rate">Rate</string>
     <string name="lbl_conference_name">Đề xuất những sáng kiến về Ung thư và Y học tái tạo</string>
-    <string name="lbl_field_of_study">Field of Study</string>
     <string name="lbl_type_of_study">Type of Study</string>
-    <string name="lbl_from_date">From date</string>
-    <string name="lbl_thru_date">Thru date</string>
     <string name="lbl_package_name">Package name</string>
+    <string name="lbl_time">Time:</string>
+
+    <string name="lbl_conference_type">- Conferecne Type:</string>
+    <string name="lbl_field_of_study">- Field of study:</string>
+    <string name="lbl_main_theme">- Conference main theme:</string>
+    <string name="lbl_con_sess_chair">- Conference session chair:</string>
+    <string name="lbl_from_date">- From Date:</string>
+    <string name="lbl_thru_date">- Thru Date:</string>
+    <string name="lbl_orgazination">Orgazination</string>
+    <string name="lbl_orgazination_name">Orgazination Name:</string>
+    <string name="lbl_orgazination_code">Orgazination Code:</string>
+    <string name="lbl_telephone">Telephone:</string>
+    <string name="lbl_emaill">Email:</string>
+    <string name="lbl_address">Address:</string>
+    <string name="lbl_website">Website:</string>
+    <string name="lbl_list_session">List Session</string>
+    <string name="lbl_role">Role:</string>
+    <string name="lbl_number_of_presentation">- Number of Presentation:</string>
+    <string name="lbl_conference_session_topic">- Conference Session Topic:</string>
+    <string name="lbl_conference_main_theme">- Conference Main Theme:</string>
+    <string name="lbl_description">- Description:</string>
+    <string name="lbl_start_datetime">- Start Datetime:</string>
+    <string name="lbl_end_datetime">- End Datetime:</string>
+    <string name="lbl_venue">- Room:</string>
+    <string name="lbl_paper_text_widthdraw">Paper text widthdraw</string>
+    <string name="lbl_paper_text_widthdraw_date">Paper text widthdraw date:</string>
+    <string name="lbl_paper_text_widthdraw_note">Paper text width draw note:</string>
+    <string name="lbl_final_approval_or_rejection">Final approval or rejection of paper text</string>
+    <string name="lbl_final_approval_or_rejection_date">Final Approval or Rejection Paper Text Date:</string>
+    <string name="lbl_final_assigned_con_sess_topic">Final Assigned Conference Session Topic:</string>
+    <string name="lbl_final_approval_type_of_study_name">Final Approval Type of Study Name:</string>
+    <string name="lbl_reviewer_name">Reviewer Name:</string>name
+    <string name="lbl_presenter_name">Presenter Name:</string>
+    <string name="lbl_paper_abstract_widthdraw">Paper abstract</string>
+    <string name="lbl_paper_text">Paper text</string>
+    <string name="lbl_start">Start:</string>
+    <string name="lbl_end">End:</string>
+    <string name="lbl_presentation_slot">Presentation Slot</string>
+    <string name="lbl_feedback">Feedback</string>
+    <string name="lbl_comment">Write feedback:</string>
+    <string name="lbl_room">Room:</string>
+    <string name="lbl_download">Download</string>
+    <string name="lbl_attendee">Attendee</string>
+    <string name="lbl_des">Description: </string>
 
     <!--Title-->
     <string name="title_forgot_password">Forgot password</string>
@@ -78,6 +119,7 @@
     <string name="title_download_documents">Download Documents</string>
     <string name="title_attendee">Attendee</string>
     <string name="title_floor_map">Floor Map</string>
+    <string name="title_notification">Notification</string>
 
     <!--Conversation-->
     <string name="msg_to_reset_your_password">To reset your password, type the email address your use login to CoMS.</string>
@@ -106,6 +148,7 @@
     <string name="msg_no_data_bookmark">No data bookmark.</string>
     <string name="msg_no_data_person">No data person.</string>
     <string name="msg_are_you_sure_you_want_to_delete_all_message">Are you sure you want to delete all message.</string>
+    <string name="msg_are_you_sure_you_want_to_delete_all_notification">Are you sure you want to delete all notification.</string>
     <string name="msg_no_data_message">No data message.</string>
     <string name="msg_no_data_package">No data package.</string>
     <string name="msg_no_data_map">No data map.</string>
@@ -117,6 +160,7 @@
     <string name="msg_change_password_sucess">Change password success.</string>
     <string name="msg_update_profile_success">Update profile success.</string>
     <string name="msg_can_not_load_map">Can not load map.</string>
+    <string name="msg_no_data_notification">No data notification.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>
@@ -138,6 +182,7 @@
     <string name="menu_clear_all">Clear all</string>
     <string name="menu_view_profile">View profile</string>
     <string name="menu_search">Search</string>
+    <string name="menu_delete_notification">Delete notification</string>
 
     <!--Font-->
     <string name="font_nunito_bold">Nunito-Bold.ttf</string>

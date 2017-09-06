@@ -18,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
 }
 
 allprojects {
@@ -54,5 +60,9 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile "me.leolin:ShortcutBadger:1.1.18@aar"
+    compile 'com.github.omadahealth:swipy:1.2.3@aar'
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 }
 apply plugin: 'com.google.gms.google-services'

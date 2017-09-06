@@ -1,49 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        android:id="@+id/tvColor"
         android:background="@color/colorPrimary"
         android:layout_width="4dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
+
     <RelativeLayout
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp">
 
         <cse.duytan.coms.models.CircleImageView
+            android:id="@+id/imgAvatarAttendee"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/bg_line_circle"
             android:src="@drawable/ic_test" />
 
-        <!--<TextView-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:background="@drawable/bg_circle_red"-->
-            <!--android:gravity="center"-->
-            <!--android:text="AVATAR"-->
-            <!--android:textColor="@android:color/white"-->
-            <!--android:textSize="10sp"-->
-            <!--android:textStyle="bold" />-->
+        <cse.duytan.coms.customviews.CustomTextView
+            app:typeFace="@string/font_nunito_regular"
+            android:id="@+id/tvAvatarAttendee"
+            style="@style/tvWhite16"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_circle_red"
+            android:gravity="center"
+            android:text="AVATAR" />
     </RelativeLayout>
+
     <LinearLayout
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <cse.duytan.coms.customviews.CustomTextView
+            app:typeFace="@string/font_nunito_regular"
+            android:id="@+id/tvNameAttendee"
             style="@style/tvBlack16"
             android:text="Taylor Lautner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <cse.duytan.coms.customviews.CustomTextView
-            style="@style/tvGray14"
-            android:text="Role: Author"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <cse.duytan.coms.customviews.CustomTextView
+                app:typeFace="@string/font_nunito_regular"
+                style="@style/tvGray14"
+                android:text="@string/lbl_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvRoleAttendee"
+                app:typeFace="@string/font_nunito_regular"
+                style="@style/tvBlack14"
+                android:layout_marginLeft="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

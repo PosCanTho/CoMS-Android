@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp">
+
+    <ImageView
+        android:id="@+id/imLogo1"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_orgazination_name"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationName1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_orgazination_code"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationCode1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_telephone"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationTelephone1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_emaill"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationEmail1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_address"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationAddress1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_website"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationWebsite1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvGray12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_des"
+                app:typeFace="@string/font_nunito_regular" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvOrganizationDescription1"
+                android:layout_marginLeft="4dp"
+                style="@style/tvBlack12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:typeFace="@string/font_nunito_regular" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -16,139 +16,157 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:layout_marginBottom="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2"
                 android:gravity="center">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="#f2f2f2" />
-
                 <cse.duytan.coms.customviews.CustomTextView
+                    android:id="@+id/tvNameConInAc"
                     style="@style/tvBlack16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center|left"
-                    android:text="@string/lbl_conference_name"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    app:typeFace="@string/font_nunito_regular" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lbl_field_of_study" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Type of Study: " />
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_conference_type"
+                        app:typeFace="@string/font_nunito_regular" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Conference Session Chair: " />
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvConferenceTpye"
+                        style="@style/tvBlack14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        app:typeFace="@string/font_nunito_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_field_of_study"
+                        app:typeFace="@string/font_nunito_regular" />
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvFieldOfStudy"
+                        style="@style/tvBlack14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        app:typeFace="@string/font_nunito_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_main_theme"
+                        app:typeFace="@string/font_nunito_regular" />
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvMainTheme"
+                        style="@style/tvBlack14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <cse.duytan.coms.customviews.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="From Date: " />
+                        android:text="@string/lbl_from_date"
+                        app:typeFace="@string/font_nunito_regular" />
 
-                    <TextView
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvFromDateInAc"
+                        style="@style/tvBlack14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
-                        android:text="Thru Date: " />
+                        android:layout_marginLeft="4dp"
+                        app:typeFace="@string/font_nunito_regular" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#f2f2f2">
-
-                <cse.duytan.coms.customviews.CustomTextView
-                    style="@style/tvBlack16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Đơn vị tổ chức"
-                    android:textAllCaps="true" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginLeft="16dp"
-                    android:src="@drawable/logo" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_thru_date"
+                        app:typeFace="@string/font_nunito_regular" />
+
+                    <cse.duytan.coms.customviews.CustomTextView
+                        android:id="@+id/tvThruDateInAc"
+                        style="@style/tvBlack14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        app:typeFace="@string/font_nunito_regular" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2">
+
+                <cse.duytan.coms.customviews.CustomTextView
+                    style="@style/tvBlack16"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="8dp"
+                    android:text="@string/lbl_orgazination"
+                    android:textAllCaps="true"
+                    app:typeFace="@string/font_nunito_regular" />
+            </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Tên đơn vị tổ chức:" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mã đơn vị tổ chức:" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Số điện thoại:" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Email:" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Địa chỉ:" />
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Website:" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mô tả:" />
-                </LinearLayout>
-            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOrganization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="-1dp"/>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -163,12 +181,13 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Danh sách tiểu ban"
-                    android:textAllCaps="true" />
+                    android:text="@string/lbl_list_session"
+                    android:textAllCaps="true"
+                    app:typeFace="@string/font_nunito_regular" />
             </RelativeLayout>
 
-            <cse.duytan.coms.customviews.NonScrollListView
-                android:id="@+id/lsConferenceSession"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvConSess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

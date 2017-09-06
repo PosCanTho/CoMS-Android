@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginBottom="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
 
         <cse.duytan.coms.customviews.CustomTextView
-            android:id="@+id/txtime"
+            android:id="@+id/tvTimes"
             style="@style/tvWhite14"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
             android:background="@drawable/bg_circle_red"
             android:gravity="center"
             android:text="28th June"
-            android:textColor="@android:color/white" />
-
-        <ImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center" />
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            app:typeFace="@string/font_nunito_regular" />
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginBottom="12dp"
-        android:layout_marginTop="12dp"
         android:layout_marginLeft="16dp"
+        android:layout_gravity="center_vertical"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <cse.duytan.coms.customviews.CustomTextView
-            android:id="@+id/txtNameCon"
+            app:typeFace="@string/font_nunito_regular"
+            android:id="@+id/tvNameCons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lbl_conference_name"
             style="@style/tvBlack16" />
 
         <cse.duytan.coms.customviews.CustomTextView
-            android:id="@+id/txtOri"
-            android:text="Đại học Duy Tân"
-            style="@style/tvGray14"
+            android:id="@+id/tvOrgs"
+            app:typeFace="@string/font_nunito_regular"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/tvGray14" />
     </LinearLayout>
 </LinearLayout>

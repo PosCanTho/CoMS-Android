@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <cse.duytan.coms.customviews.CustomTextView
+                style="@style/tvBlack16"
+                app:typeFace="@string/font_nunito_regular"
+                android:gravity="center"
+                android:background="@drawable/bg_circle_red"
+                android:id="@+id/tvTimeStart"
+                android:text="adsada"
+                android:layout_width="64dp"
+                android:layout_height="64dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvNameConference"
+                app:typeFace="@string/font_nunito_regular"
+                style="@style/tvBlack18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <cse.duytan.coms.customviews.CustomTextView
+                android:id="@+id/tvNameConferenceEn"
+                app:typeFace="@string/font_nunito_regular"
+                style="@style/tvBlack18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

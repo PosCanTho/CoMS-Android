@@ -2,9 +2,15 @@ package cse.duytan.coms.presenters;
 
 import android.content.Context;
 
+import com.activeandroid.ActiveAndroid;
+import com.activeandroid.Configuration;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
+import cse.duytan.coms.connections.DownloadAsyncTask;
 import cse.duytan.coms.fragments.BookmarkFragment;
 import cse.duytan.coms.fragments.ConferenceFragment;
 import cse.duytan.coms.fragments.HomeFragment;
@@ -12,11 +18,15 @@ import cse.duytan.coms.fragments.ListAbstractFragment;
 import cse.duytan.coms.fragments.ListPaperFragment;
 import cse.duytan.coms.fragments.MessageFragment;
 import cse.duytan.coms.fragments.NotificationFragment;
+import cse.duytan.coms.fragments.OnScheduleFragment;
 import cse.duytan.coms.fragments.ReviewsFragment;
 import cse.duytan.coms.fragments.ReviewsPaperFragment;
 import cse.duytan.coms.fragments.ScheduleFragment;
 import cse.duytan.coms.fragments.SettingsFragment;
+import cse.duytan.coms.helpers.Prefs;
+import cse.duytan.coms.models.Device;
 import cse.duytan.coms.models.MenuApp;
+import cse.duytan.coms.untils.Constants;
 import cse.duytan.coms.views.MainView;
 
 /**
@@ -34,10 +44,10 @@ public class MainPresenter extends BasePresenter {
         this.mainView = mainView;
     }
 
-    public void getListMenu(){
+    public void getListMenu() {
         ArrayList<MenuApp> listMenu = new ArrayList<>();
         listMenu.add(new MenuApp(R.drawable.ic_home, "Trang chủ", "5", new HomeFragment()));
-        listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new ScheduleFragment()));
+        listMenu.add(new MenuApp(R.drawable.ic_calendar_menu, "Lịch trình", "16", new OnScheduleFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_conference, "Hội nghị", "16", new ConferenceFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_bookmark_menu, "Đánh dấu", "10", new BookmarkFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_review, "Nhắn tin", "16", new MessageFragment()));
@@ -53,4 +63,30 @@ public class MainPresenter extends BasePresenter {
         mainView.listMenu(listMenu);
     }
 
+    public void UpdateToken(int personId, String token) {
+        try {
+            JSONObject postData = new JSONObject();
+            postData.put("PersonId", personId);
+            postData.put("DeviceToken", token);
+            DownloadAsyncTask.POST(context, ID_API_ADD_TOKEN, API_ADD_TOKEN, postData.toString(), Device.class, false, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initalSqlite(){
+        Configuration dbConfiguration = new Configuration.Builder(context).setDatabaseName(DATABASE_NAME).create();
+        ActiveAndroid.initialize(dbConfiguration);
+        ActiveAndroid.initialize(context);
+    }
+
+    @Override
+    public void downloadSuccess(int processId, Object data) {
+        super.downloadSuccess(processId, data);
+    }
+
+    @Override
+    public void downloadError(int processId, String msg) {
+        super.downloadError(processId, msg);
+    }
 }

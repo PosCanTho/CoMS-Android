@@ -14,6 +14,7 @@ import cse.duytan.coms.connections.DownloadCallback;
 import cse.duytan.coms.models.EventBusInfo;
 import cse.duytan.coms.untils.AdapterCallback;
 import cse.duytan.coms.untils.Constants;
+import cse.duytan.coms.untils.PopupCalback;
 
 /**
  * Created by Pham Van Thien on 7/7/2017.
@@ -21,7 +22,7 @@ import cse.duytan.coms.untils.Constants;
  * Phone: 0979477093
  */
 
-public class BaseFragment extends Fragment implements Constants, View.OnClickListener, DownloadCallback, AdapterCallback {
+public class BaseFragment extends Fragment implements Constants, View.OnClickListener, DownloadCallback, AdapterCallback, PopupCalback {
 
     protected void registerEvent(){
         EventBus.getDefault().register(this);
@@ -40,10 +41,12 @@ public class BaseFragment extends Fragment implements Constants, View.OnClickLis
         EventBus.getDefault().post(eventBusInfo);
     }
 
-    protected void empty(boolean isEmpty, String msg, LinearLayout llEmpty, RelativeLayout rlContent, TextView tvEmpty) {
+    protected void empty(boolean isEmpty, boolean showLayoutEmpty, String msg, LinearLayout llEmpty, RelativeLayout rlContent, TextView tvEmpty) {
         if (isEmpty) {
             rlContent.setVisibility(View.GONE);
-            llEmpty.setVisibility(View.VISIBLE);
+            if(showLayoutEmpty){
+                llEmpty.setVisibility(View.VISIBLE);
+            }
             tvEmpty.setText(msg);
         } else {
             rlContent.setVisibility(View.VISIBLE);
@@ -68,6 +71,11 @@ public class BaseFragment extends Fragment implements Constants, View.OnClickLis
 
     @Override
     public void adpaterCallback(Object data, int processId, int position) {
+
+    }
+
+    @Override
+    public void popupCalback(int processId, Object data) {
 
     }
 }

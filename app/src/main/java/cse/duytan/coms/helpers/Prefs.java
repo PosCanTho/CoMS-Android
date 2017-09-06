@@ -30,6 +30,8 @@ public class Prefs {
     private static final String PREFERENCE_TOKEN = "pref.Token";
     private static final String PREFERENCE_USER = "pref.User";
     private static final String PREFERENCE_ID_CURRENT_READ = "pref.id_current_read";
+    private static final String PREFERENCE_VIEW_NOTIFICATION = "pref.view_notification";
+    private static final String PREFERENCE_NOTIFICATION_UNREAD = "pref.notification_unread";
 
     private static SharedPreferences getPrefs() {
         return CoMSApplication.getInstance().getSharedPreferences(PREFERENCES_HELPER, Context.MODE_PRIVATE);
@@ -121,6 +123,22 @@ public class Prefs {
 
     public static int getIdCurrentRead() {
         return getPrefs().getInt(PREFERENCE_ID_CURRENT_READ, -1);
+    }
+
+    public static void setViewNotification(boolean isRead) {
+        getPrefs().edit().putBoolean(PREFERENCE_VIEW_NOTIFICATION, isRead).commit();
+    }
+
+    public static boolean getViewNotification() {
+        return getPrefs().getBoolean(PREFERENCE_VIEW_NOTIFICATION, false);
+    }
+
+    public static void setNotificationUnread(int number) {
+        getPrefs().edit().putInt(PREFERENCE_NOTIFICATION_UNREAD, number).commit();
+    }
+
+    public static int getNotificationUnread() {
+        return getPrefs().getInt(PREFERENCE_ID_CURRENT_READ, 0);
     }
 
 }

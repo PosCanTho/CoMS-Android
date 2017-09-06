@@ -65,9 +65,9 @@ public class MessageFragment extends BaseFragment implements MessageView {
     private void initUI() {
         personId = Prefs.getUser().getPersonId();
         getActivity().setTitle(R.string.title_message);
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, false, "", llEmpty, rlContent, tvEmpty);
         messagePresenter = new MessagePresenter(getActivity(), this);
-        messagePresenter.getListConversation(personId);
+        messagePresenter.getListConversation(personId, false);
         setRvMessageAdp();
     }
 
@@ -91,7 +91,7 @@ public class MessageFragment extends BaseFragment implements MessageView {
     public void onEvent(EventBusInfo eventBusInfo) {
         super.onEvent(eventBusInfo);
         if (eventBusInfo.getProcessId() == ID_EVENT_REFRESH) {
-            messagePresenter.getListConversation(personId);
+            messagePresenter.getListConversation(personId, false);
         }
     }
 
@@ -111,17 +111,17 @@ public class MessageFragment extends BaseFragment implements MessageView {
         listMessage.clear();
         listMessage.addAll(list);
         messageAdapter.notifyDataSetChanged();
-        empty(false, "", llEmpty, rlContent, tvEmpty);
+        empty(false, false, "", llEmpty, rlContent, tvEmpty);
     }
 
     @Override
     public void error(String msg) {
         new ConfirmOkDialog(getActivity(), msg, null).show();
-        empty(true, msg, llEmpty, rlContent, tvEmpty);
+        empty(true, true, msg, llEmpty, rlContent, tvEmpty);
     }
 
     @Override
     public void empty() {
-        empty(true, getString(R.string.msg_no_data_message), llEmpty, rlContent, tvEmpty);
+        empty(true, true, getString(R.string.msg_no_data_message), llEmpty, rlContent, tvEmpty);
     }
 }
