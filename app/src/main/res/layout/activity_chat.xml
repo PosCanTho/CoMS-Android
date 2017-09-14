@@ -56,12 +56,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="0dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="0dp"
         android:background="@drawable/bg_line_circle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/etTypeMessage"
-        app:layout_constraintVertical_bias="0.444"
         app:srcCompat="@drawable/btn_send_circle" />
 </android.support.constraint.ConstraintLayout>

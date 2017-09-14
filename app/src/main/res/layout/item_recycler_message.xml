@@ -35,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tvMessage"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvName"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.49" />
 
     <cse.duytan.coms.customviews.CustomTextView
         android:id="@+id/tvMessage"
@@ -74,10 +74,7 @@
         android:layout_height="25dp"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/ivAvatar"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivAvatar"
-        app:layout_constraintVertical_bias="0.5"
         app:srcCompat="@drawable/ic_right_arrow" />
 </android.support.constraint.ConstraintLayout>

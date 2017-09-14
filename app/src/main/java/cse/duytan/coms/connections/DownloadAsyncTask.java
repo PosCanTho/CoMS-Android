@@ -296,7 +296,7 @@ public class DownloadAsyncTask extends OkHttpClient implements Constants {
                         @Override
                         public void run() {
                             downloadCallback.downloadSuccess(processId, listObject);
-                            Log.d(TAG, "run: " + listObject.size());
+                            Log.d(TAG, "List size: " + listObject.size());
                         }
                     });
                 } else {

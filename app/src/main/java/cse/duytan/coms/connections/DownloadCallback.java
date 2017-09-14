@@ -8,6 +8,5 @@ package cse.duytan.coms.connections;
 
 public interface DownloadCallback {
     void downloadSuccess(int processId, Object data);
-
     void downloadError(int processId, String msg);
 }
