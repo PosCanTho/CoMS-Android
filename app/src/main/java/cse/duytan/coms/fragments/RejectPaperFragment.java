@@ -1,6 +1,5 @@
 package cse.duytan.coms.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
-import cse.duytan.coms.activities.XemThongtinActivity;
 import cse.duytan.coms.adapters.ReviewAdapter1;
 import cse.duytan.coms.models.Review;
 
@@ -56,22 +54,16 @@ public class RejectPaperFragment extends ListFragment {
 
 
     private void addArrNotYetEvaluat(){
-        arrReject.add(new Review("Bài báo 10", 1, "Ngày gửi: 7/7/2017","207 Nguyễn Văn Linh, Phòng 01"));
-        arrReject.add(new Review("Bài báo 11", 1, "Ngày gửi: 8/7/2017","207 Nguyễn Văn Linh, Phòng 02"));
-        arrReject.add(new Review("Bài báo 12", 1, "Ngày gửi: 9/7/2017","207 Nguyễn Văn Linh, Phòng 03"));
-        arrReject.add(new Review("Bài báo 13", 1, "Ngày gửi: 10/7/2017","207 Nguyễn Văn Linh, Phòng 04"));
-        arrReject.add(new Review("Bài báo 14", 1, "Ngày gửi: 11/7/2017","207 Nguyễn Văn Linh, Phòng 05"));
-        arrReject.add(new Review("Bài báo 15", 1, "Ngày gửi: 12/7/2017","207 Nguyễn Văn Linh, Phòng 06"));
-        arrReject.add(new Review("Bài báo 16", 1, "Ngày gửi: 13/7/2017","207 Nguyễn Văn Linh, Phòng 07"));
-        arrReject.add(new Review("Bài báo 17", 1, "Ngày gửi: 14/7/2017","207 Nguyễn Văn Linh, Phòng 08"));
-        arrReject.add(new Review("Bài báo 18", 1, "Ngày gửi: 15/7/2017","207 Nguyễn Văn Linh, Phòng 09"));
+//        arrReject.add(new Review("Bài báo 10", 1, "Ngày gửi: 7/7/2017","207 Nguyễn Văn Linh, Phòng 01"));
+//        arrReject.add(new Review("Bài báo 11", 1, "Ngày gửi: 8/7/2017","207 Nguyễn Văn Linh, Phòng 02"));
+//        arrReject.add(new Review("Bài báo 12", 1, "Ngày gửi: 9/7/2017","207 Nguyễn Văn Linh, Phòng 03"));
+//        arrReject.add(new Review("Bài báo 13", 1, "Ngày gửi: 10/7/2017","207 Nguyễn Văn Linh, Phòng 04"));
+//        arrReject.add(new Review("Bài báo 14", 1, "Ngày gửi: 11/7/2017","207 Nguyễn Văn Linh, Phòng 05"));
+//        arrReject.add(new Review("Bài báo 15", 1, "Ngày gửi: 12/7/2017","207 Nguyễn Văn Linh, Phòng 06"));
+//        arrReject.add(new Review("Bài báo 16", 1, "Ngày gửi: 13/7/2017","207 Nguyễn Văn Linh, Phòng 07"));
+//        arrReject.add(new Review("Bài báo 17", 1, "Ngày gửi: 14/7/2017","207 Nguyễn Văn Linh, Phòng 08"));
+//        arrReject.add(new Review("Bài báo 18", 1, "Ngày gửi: 15/7/2017","207 Nguyễn Văn Linh, Phòng 09"));
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Intent intent = new Intent(getActivity(), XemThongtinActivity.class);
-        intent.putExtra("type","2");// tiêu đề bài báo
-        startActivity(intent);
-    }
+
 }

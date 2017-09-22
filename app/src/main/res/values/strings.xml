@@ -161,6 +161,7 @@
     <string name="msg_update_profile_success">Update profile success.</string>
     <string name="msg_can_not_load_map">Can not load map.</string>
     <string name="msg_no_data_notification">No data notification.</string>
+    <string name="msg_sory_data_is_empty">Sorry, data is empty.</string>
 
     <!--Button-->
     <string name="btn_sign_in">Sign In</string>
@@ -258,10 +259,17 @@
     <string name="title_papertext">Gửi Bài Báo</string>
     <string name="title_abstarct">Gửi Bài Tóm Tắt</string>
     <string name="title_see_review_abstract">Xem đánh giá bài tóm tắt</string>
+    <string name="review_abstract">Đánh giá bài tóm tắt</string>
     <string name="title_see_review_paper">Xem đánh giá bài báo</string>
     <string name="title_see_abstract">Xem bài tóm tắt</string>
     <string name="title_see_paper">Xem bài báo</string>
     <string name="title_update_abstract">Cập nhật bài tóm tắt</string>
+    <string-array name="yeucauReview">
+        <item>SIGNIFICANT REVISION</item>
+        <item>MINIMAL REVISION</item>
+        <item>REVISION NEEDED</item>
+        <item>NO REVISION NEEDED</item>
+    </string-array>
     <string-array name="dsChude">
         <item>Vui lòng chọn chủ đề …</item>
         <item>Chủ đề 1</item>

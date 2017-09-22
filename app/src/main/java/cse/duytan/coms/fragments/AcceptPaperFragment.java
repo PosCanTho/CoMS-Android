@@ -1,27 +1,28 @@
 package cse.duytan.coms.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cse.duytan.coms.R;
-import cse.duytan.coms.activities.XemThongtinActivity;
 import cse.duytan.coms.adapters.ReviewAdapter;
+import cse.duytan.coms.connections.DownloadCallback;
 import cse.duytan.coms.models.Review;
 
 /**
  * Created by DungTrungCut on 7/11/2017.
  */
 
-public class AcceptPaperFragment extends ListFragment {
+public class AcceptPaperFragment extends ListFragment implements DownloadCallback {
     private ListView listView;
     private ArrayList<Review> arrAccept;
     private ReviewAdapter adapter;
@@ -55,22 +56,26 @@ public class AcceptPaperFragment extends ListFragment {
     }
 
     private void addArrAccept(){
-        arrAccept.add(new Review("Bài báo 19", 2, "Ngày gửi: 7/7/2017","207 Nguyễn Văn Linh, Phòng 01"));
-        arrAccept.add(new Review("Bài báo 20", 2, "Ngày gửi: 8/7/2017","207 Nguyễn Văn Linh, Phòng 02"));
-        arrAccept.add(new Review("Bài báo 21", 2, "Ngày gửi: 9/7/2017","207 Nguyễn Văn Linh, Phòng 03"));
-        arrAccept.add(new Review("Bài báo 22", 2, "Ngày gửi: 10/7/2017","207 Nguyễn Văn Linh, Phòng 04"));
-        arrAccept.add(new Review("Bài báo 23", 2, "Ngày gửi: 11/7/2017","207 Nguyễn Văn Linh, Phòng 05"));
-        arrAccept.add(new Review("Bài báo 24", 2, "Ngày gửi: 12/7/2017","207 Nguyễn Văn Linh, Phòng 06"));
-        arrAccept.add(new Review("Bài báo 25", 2, "Ngày gửi: 13/7/2017","207 Nguyễn Văn Linh, Phòng 07"));
-        arrAccept.add(new Review("Bài báo 26", 2, "Ngày gửi: 14/7/2017","207 Nguyễn Văn Linh, Phòng 08"));
-        arrAccept.add(new Review("Bài báo 27", 2, "Ngày gửi: 15/7/2017","207 Nguyễn Văn Linh, Phòng 09"));
+//        arrAccept.add(new Review("Bài báo 19", 2, "Ngày gửi: 7/7/2017","207 Nguyễn Văn Linh, Phòng 01"));
+//        arrAccept.add(new Review("Bài báo 20", 2, "Ngày gửi: 8/7/2017","207 Nguyễn Văn Linh, Phòng 02"));
+//        arrAccept.add(new Review("Bài báo 21", 2, "Ngày gửi: 9/7/2017","207 Nguyễn Văn Linh, Phòng 03"));
+//        arrAccept.add(new Review("Bài báo 22", 2, "Ngày gửi: 10/7/2017","207 Nguyễn Văn Linh, Phòng 04"));
+//        arrAccept.add(new Review("Bài báo 23", 2, "Ngày gửi: 11/7/2017","207 Nguyễn Văn Linh, Phòng 05"));
+//        arrAccept.add(new Review("Bài báo 24", 2, "Ngày gửi: 12/7/2017","207 Nguyễn Văn Linh, Phòng 06"));
+//        arrAccept.add(new Review("Bài báo 25", 2, "Ngày gửi: 13/7/2017","207 Nguyễn Văn Linh, Phòng 07"));
+//        arrAccept.add(new Review("Bài báo 26", 2, "Ngày gửi: 14/7/2017","207 Nguyễn Văn Linh, Phòng 08"));
+//        arrAccept.add(new Review("Bài báo 27", 2, "Ngày gửi: 15/7/2017","207 Nguyễn Văn Linh, Phòng 09"));
+    }
+
+
+    @Override
+    public void downloadSuccess(int processId, Object data) {
+        Log.d("----", "hihi");
+        Toast.makeText(this.getActivity(), "hihi", Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Intent intent = new Intent(getActivity(), XemThongtinActivity.class);
-        intent.putExtra("type","2");// tiêu đề bài báo
-        startActivity(intent);
+    public void downloadError(int processId, String msg) {
+        Toast.makeText(this.getActivity(), "huhu", Toast.LENGTH_LONG).show();
     }
 }

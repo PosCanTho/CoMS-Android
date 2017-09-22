@@ -55,7 +55,6 @@ public class MainPresenter extends BasePresenter {
         listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài tóm tắt", "16", new ListAbstractFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_paper, "Danh sách bài báo", "20", new ListPaperFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài tóm tắt", "4", new ReviewsFragment()));//ReviewsPaperFragment
-        listMenu.add(new MenuApp(R.drawable.ic_paper, "Đánh giá bài báo", "2", new ReviewsPaperFragment()));
         listMenu.add(new MenuApp(R.drawable.ic_map_location, "Bản đồ", "", null));
         listMenu.add(new MenuApp(R.drawable.ic_package, "Mua gói", "", null));
         listMenu.add(new MenuApp(R.drawable.ic_settings, "Cài đặt", "", new SettingsFragment()));

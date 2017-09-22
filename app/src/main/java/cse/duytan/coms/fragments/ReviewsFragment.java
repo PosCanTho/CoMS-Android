@@ -51,7 +51,6 @@ public class ReviewsFragment extends Fragment {
         ViewPagerAdapter adapter = new ViewPagerAdapter(((FragmentActivity)getActivity()).getSupportFragmentManager());
 
         adapter.addFragment(new NotYetEvaluatedFragment(), getString(R.string.tab_not_yet_evaluated));
-//        adapter.addFragment(new FeedbackFragment(), getString(R.string.tab_feedback));
         adapter.addFragment(new RejectFragment(), getString(R.string.tab_reject));
         adapter.addFragment(new AcceptFragment(), getString(R.string.tab_accept));
         viewPager.setAdapter(adapter);

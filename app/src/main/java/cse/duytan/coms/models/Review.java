@@ -1,25 +1,47 @@
 package cse.duytan.coms.models;
 
+import java.io.Serializable;
+
 /**
  * Created by DungTrungCut on 7/7/2017.
  */
 
-public class Review {
+public class Review implements Serializable {
     private String name;
     private int imgTrangthai;//0: chưa đánh giá, 1: phản hồi, 2: từ chối, Chấp nhận
     private String time;
     private String infomation;
     private boolean visible_row = true;
     private boolean visible_func = false;// danh sách chức năng trên dòng abstract
+    private int idperson;
+    private int idpaper;
 
     public Review() {
     }
 
-    public Review(String name, int imgTrangthai, String time, String infomation) {
+    public Review(String name, int imgTrangthai, String time, String infomation, int idperson, int idpaper) {
         this.name = name;
         this.imgTrangthai = imgTrangthai;
         this.time = time;
         this.infomation = infomation;
+        this.idperson = idperson;
+        this.idpaper = idpaper;
+    }
+
+    public int getIdpaper() {
+        return idpaper;
+    }
+
+    public void setIdpaper(int idpaper) {
+        this.idpaper = idpaper;
+    }
+
+    public int getIdperson() {
+        return idperson;
+    }
+
+    public void setIdperson(int idperson) {
+        this.idperson = idperson;
     }
 
     public String getName() {

@@ -266,4 +266,11 @@ public class Utils implements Constants {
         dates.add(enddate);
         return dates;
     }
+
+    /*Cắt chuỗi xác định trạng thái abstract chuyển thành chữ thường không khoảng trắng*/
+    public static String convertStringLowerCase(String plaintext){
+        String str = "";
+        str = plaintext.replace(" ", "").replace("_","").toLowerCase();
+        return str;
+    }
 }

@@ -21,23 +21,27 @@ import java.util.Date;
 import java.util.List;
 
 import cse.duytan.coms.R;
-import cse.duytan.coms.models.AbstractModel;
-import cse.duytan.coms.untils.Utils;
+import cse.duytan.coms.models.PaperTextModel;
 
 /**
- * Created by lehoangdung on 20/06/2017.
+ * Created by lehoangdung on 9/19/2017.
  */
 
-public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
+public class PaperTextAdapter extends ArrayAdapter<PaperTextModel> {
     private Context context;
 
+//    public PaperTextAdapter(Context context, int resource, List<PaperTextModel> objects) {
+//        super(context, resource, objects);
+//        // TODO Auto-generated constructor stub
+//        this.context = context;
+//    }
 
-    public AbstractAdapter(Context context, int textViewResourceId, List<AbstractModel> objects) {
+
+    public PaperTextAdapter(Context context, int textViewResourceId, List<PaperTextModel> objects) {
         super(context, textViewResourceId, objects);
         // TODO Auto-generated constructor stub
         this.context = context;
     }
-
 
     private class ViewHolder {
         TextView txtThongTinAbs, txtNgayAbs, txtTrangThaiAbs;
@@ -52,14 +56,14 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
-        final AbstractModel rowItem = getItem(position);
+        PaperTextAdapter.ViewHolder holder = null;
+        final PaperTextModel rowItem = getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
 //            Log.i("===convertView===","convertView == null");
-            holder = new ViewHolder();
+            holder = new PaperTextAdapter.ViewHolder();
             convertView = mInflater.inflate(R.layout.row_abstract, null);
             holder.txtThongTinAbs = (TextView) convertView.findViewById(R.id.txtThongtinAbs);
             holder.txtNgayAbs = (TextView) convertView.findViewById(R.id.txtNgayAbs);
@@ -87,7 +91,7 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
             holder.ln_Capnhat_Dangsoan = (LinearLayout) convertView.findViewById(R.id.ln_listfunc_author_Capnhat_Dangsoan);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (PaperTextAdapter.ViewHolder) convertView.getTag();
         }
         // định dạng datetime
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");// so sán=> xuất trạng thái
@@ -99,7 +103,7 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
         Calendar currentDate = Calendar.getInstance();
 
         try {
-            date_deadline = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(rowItem.getPAPER_ABSTRACT_DEADLINE() + "");
+            date_deadline = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(rowItem.getPAPER_TEXT_DEADLINE() + "");
             date_submit = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(rowItem.getLAST_REVISED_DATE() + "");
             formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(date_deadline);
 
@@ -115,7 +119,7 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
         holder.txtNgayAbs.setText("Hạn cuối:" + formattedDate);
 
         // xử lý xuất trạng thái bài tóm tăt
-        String str_deadline = rowItem.getPAPER_ABSTRACT_DEADLINE();
+        String str_deadline = rowItem.getPAPER_TEXT_DEADLINE();
         String str_submit = rowItem.getLAST_REVISED_DATE();
         /*
         if ngay hien tai > deadline{
@@ -135,30 +139,29 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
 //        if(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT() != null){
 //            trangthaiDanhGiaAbstract = Utils.convertStringLowerCase(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT());
 //        }
-        if(rowItem.getFULL_PAPER_OR_WORK_IN_PROGRESS() != null){
-            trangthaiAbstract = Utils.convertStringLowerCase(rowItem.getFULL_PAPER_OR_WORK_IN_PROGRESS());
-        }
+//        if(rowItem.getFULL_PAPER_OR_WORK_IN_PROGRESS() != null){
+//            trangthaiAbstract = Utils.convertStringLowerCase(rowItem.getFULL_PAPER_OR_WORK_IN_PROGRESS());
+//        }
 
 
 
         if(date_now.getTime() > date_deadline.getTime()){
-            if( Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT()) &&
-                    !trangthaiAbstract.endsWith("workinprogress") &&
+            if( Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) &&
                     date_deadline.getTime() > date_now.getTime() ){
                 Log.d("--- Trạng thái:","đã duyệt 1");
                 Log.d("position:", rowItem.getPOSITION()+"");
                 trangthai = 1;
-            }else if( Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT())
+            }else if( Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT())
                     ){
                 Log.d("--- Trạng thái:","Từ chối 1");// từ chối do hội đồng
                 trangthai = 0;
-            }else if( Boolean.TRUE.equals(rowItem.getPAPER_ABSTRACT_WITHDRAWN()) ){
+            }else if( Boolean.TRUE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) ){
                 trangthai = 4;// rút bài
             }else if(
-                            Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT()) == false &&
-                            Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT()) == false &&
-                            Boolean.TRUE.equals(rowItem.getPAPER_ABSTRACT_WITHDRAWN()) == false &&
-                            Boolean.FALSE.equals(rowItem.getPAPER_ABSTRACT_WITHDRAWN()) == false
+                    Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) == false &&
+                            Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) == false &&
+                            Boolean.TRUE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) == false &&
+                            Boolean.FALSE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) == false
                     ){
                 Log.d("--- Trạng thái:","Từ chối 1");// từ chối vi đã gửi bài mà quá deadline vẫn chưa duyệt
                 trangthai = 0;
@@ -167,22 +170,21 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
                 trangthai = 0;
             }
         }else{
-            if( Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT()) &&
-                    !trangthaiAbstract.endsWith("workinprogress") &&
+            if( Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT())  &&
                     date_deadline.getTime() > date_now.getTime()){
                 Log.d("--- Trạng thái:","đã duyệt 2");
                 Log.d("position:", rowItem.getPOSITION()+"");
                 trangthai = 1;
-            }else if( Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_ABSTRACT()) ){
+            }else if( Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) ){
                 Log.d("--- Trạng thái:","Từ chối 2" );// từ chối khi deadline chưa hết
                 trangthai = 0;
-            }else if( Boolean.TRUE.equals(rowItem.getPAPER_ABSTRACT_WITHDRAWN()) ){
-                Log.d("--- Trang thái:", "Rút bài2=" + rowItem.getPAPER_ABSTRACT_WITHDRAWN());
+            }else if( Boolean.TRUE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) ){
+                Log.d("--- Trang thái:", "Rút bài2=" + rowItem.getPAPER_TEXT_WITHDRAWN());
                 trangthai = 4;
-            }else if(trangthaiAbstract.endsWith("workinprogress")   ){
-                Log.d("--- Trạng thái:","đang soạn 2");
-                trangthai = 3;
-            }else if(trangthaiAbstract.endsWith("fullpaper")){
+            }else if(Boolean.TRUE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) == false &&
+                    Boolean.FALSE.equals(rowItem.getFINAL_APPROVAL_OR_REJECTION_OF_PAPER_TEXT()) == false &&
+                    Boolean.TRUE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) == false &&
+                    Boolean.FALSE.equals(rowItem.getPAPER_TEXT_WITHDRAWN()) == false){
                 Log.d("--- Trạng thái:","chờ duyệt 2");
                 trangthai = 2;
             }else{
@@ -201,10 +203,13 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
                 holder.txtTrangThaiAbs.setTextColor(Color.parseColor("#f44336"));
                 holder.imgStatus.setImageResource(R.drawable.status_red);
                 //hiển thị chức năng hiển thị
-                holder.ln_XemDanhGia.setVisibility(View.VISIBLE);
+
                 holder.ln_Xoa.setVisibility(View.VISIBLE);
                 holder.ln_Capnhat.setVisibility(View.VISIBLE);
                 // ẩn
+                holder.ln_XemDanhGia.setVisibility(View.GONE);
+
+
                 holder.ln_Guibaibao_Daduyet.setVisibility(View.GONE);
                 holder.ln_Xemthongtin_Daduyet.setVisibility(View.GONE);
                 holder.ln_XemDanhGia_Daduyet.setVisibility(View.GONE);
@@ -226,10 +231,14 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
                 holder.ln_XemThongtin_Choduyet.setVisibility(View.GONE);
                 holder.ln_Rutbai_Dangsoan.setVisibility(View.GONE);
                 holder.ln_Capnhat_Dangsoan.setVisibility(View.GONE);
+
+
+                holder.ln_Guibaibao_Daduyet.setVisibility(View.GONE);
+                holder.ln_XemDanhGia_Daduyet.setVisibility(View.GONE);
                 // hiển thị chức năng
-                holder.ln_Guibaibao_Daduyet.setVisibility(View.VISIBLE);
+
                 holder.ln_Xemthongtin_Daduyet.setVisibility(View.VISIBLE);
-                holder.ln_XemDanhGia_Daduyet.setVisibility(View.VISIBLE);
+
                 break;
             case 2:
                 holder.txtTrangThaiAbs.setText("Chờ duyệt");
@@ -247,7 +256,9 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
                 holder.ln_Capnhat_Dangsoan.setVisibility(View.GONE);
 
                 //hiện
+
                 holder.ln_Rutbai_Choduyet.setVisibility(View.VISIBLE);
+                holder.ln_Capnhat_Dangsoan.setVisibility(View.VISIBLE);
                 holder.ln_XemThongtin_Choduyet.setVisibility(View.VISIBLE);
                 break;
             case 3:
@@ -311,5 +322,5 @@ public class AbstractAdapter extends ArrayAdapter<AbstractModel> {
         return convertView;
     }
 
-
+    //end
 }

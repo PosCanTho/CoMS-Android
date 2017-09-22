@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -231,6 +232,41 @@
                     style="@style/tvBlack16"
                     android:textSize="14sp"
                     android:scrollbars="vertical"/>
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    style="@style/tvRed12"
+                    android:textAllCaps="true"
+                    android:text="Chủ đề tiểu bang:" />
+
+                <TextView
+                    android:id="@+id/txtReview_see_session_topic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp"
+                    style="@style/tvBlack16"/>
+
+                <TextView
+                    android:id="@+id/textView47"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loại hình trình bày:"
+                    android:paddingTop="8dp"
+                    style="@style/tvRed12"
+                    android:textAllCaps="true"/>
+                <TextView
+                    android:id="@+id/txtReview_see_presentation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:paddingTop="5dp"
+                    android:textSize="14sp"
+                    style="@style/tvBlack16"/>
             </LinearLayout>
         </LinearLayout>
 
